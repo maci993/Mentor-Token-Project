@@ -1,0 +1,23 @@
+.user-card {
+  width: 250px;
+  height: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  border-radius: 10px;
+  top: 200px;
+}
+
+.user-card-icons{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.user-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}

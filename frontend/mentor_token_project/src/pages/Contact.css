@@ -1,0 +1,75 @@
+.contact-container {
+  background-image: url("../assets/unsplash_background.svg");
+  background-size: cover;
+  background-position: center top;
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 600px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container h1 {
+  font-size: 36px;
+  margin-left: 100px;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.contact-container p {
+  margin-left: 100px;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 1200px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solidcolor #696CFF;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+textarea {
+  width: 1180px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #696CFF;;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 150px;
+  resize: none;
+}
+
+button {
+  background-color: #696CFF;;
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  align-self: flex-end;
+  margin-right: 130px;
+  margin-top: 50px;
+}
+
+button:hover {
+  background-color: #5a52e0;
+}

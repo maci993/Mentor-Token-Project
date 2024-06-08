@@ -1,0 +1,57 @@
+.team-section {
+  display: flex;
+  flex-direction: column;
+  width: 1400px;
+  height: 792px;
+  margin-top: 100px;
+  left: 40px;
+  gap: 19.32px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 80px;
+}
+
+.team-container {
+  align-items: center;
+  text-align: center;
+  background-image: url("../assets/unsplash_background.svg");
+  background-size: cover;
+  background-position: center top;
+  height: 400px;
+  top: 50px;
+  margin-left: 30px;
+  margin-right: 55px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.team-container h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
+}
+
+.team-container p {
+  margin-bottom: 20px;
+  font-size: 1em;
+  color: #666;
+}
+
+.user-cards {
+  width: 1, 139px;
+  height: 792px;
+  margin-top: 150px;
+  left: 157px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: auto;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-button {
+  padding-left: 10px;
+}

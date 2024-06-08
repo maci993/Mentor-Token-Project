@@ -1,0 +1,15 @@
+.button {
+  text-align: center;
+  font-size: 16px;
+  border-radius: 9px;
+  height: 45px;
+  /* margin-top: 15px; */
+  width: 180px;
+  height: 51px;
+  gap: 16px;
+  align-content: center;
+  background-color: #696CFF;
+  color: white;
+  border: none;
+  box-shadow: blue;
+}
