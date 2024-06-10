@@ -60,7 +60,7 @@ const About = () => {
   useEffect(() => {});
 
   return (
-    <div className="team-section">
+    <div className="about-page">
         <div className="team-container">
           {/* <div className="bg-image"> */}
             {/* <img src={hero} alt="hero-background" /> */}
@@ -72,11 +72,11 @@ const About = () => {
                 <br />
                 Focus on what's most important to them.
               </p>
+              <div className="about-button">
               <Link to={"/contact"}>
-                <Button className="about-button" name={"→ Get in touch"} />
+                <Button name={"→ Get in touch"} />
               </Link>
-            {/* </div> */}
-          {/* </div> */}
+              </div>
         </div>
         <div className="user-cards">
         {users.map((user, index) => (

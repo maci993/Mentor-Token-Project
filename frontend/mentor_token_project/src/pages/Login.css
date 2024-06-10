@@ -1,0 +1,139 @@
+.login-page {
+  font-family: "Manrope", sans-serif;
+  width: 1440px;
+  height: 1024px;
+  padding-top: 10px;
+  background: url(../assets//Login-background.svg);
+   /* linear-gradient(#696cff 100% #9574ff 100%) */
+}
+
+.main-login-title {
+  width: 442px;
+  height: 267px;
+  margin-top: -30px;
+  margin-left: 79px;
+}
+
+.main-login-title h1 {
+  font-size: 88.63px;
+  line-height: 89px;
+}
+
+.main-login-title p {
+  margin-top: -20px;
+  font-size: 20px;
+}
+
+.mentor-token-logo {
+  width: 251px;
+  height: 93px;
+  margin-top: 450px;
+  margin-left: 79px;
+  border: 3.16px;
+}
+
+.mentor-token-logo p {
+  margin-top: 0;
+  margin-left: 29px;
+}
+.mentor-token-image {
+  width: 251px;
+  height: 93px;
+  margin-top: 80px;
+  margin-left: 29px;
+  border: 3.16px;
+}
+
+.log-in-section img {
+  position: absolute;
+  width: 49px;
+  height: 54.44px;
+  margin-top: -90px;
+  margin-left: 779px;
+}
+
+.log-in-paragraph h1 {
+  width: 430px;
+  height: 89px;
+  margin-top: -750px;
+  margin-left: 779px;
+  font-size: 34px;
+  line-height: 89px;
+}
+
+.log-in-paragraph p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+  width: 256px;
+  height: 22px;
+  margin-top: -22px;
+  margin-left: 781px;
+}
+
+.log-in-inputs {
+  width: 521px;
+  height: 60px;
+  margin-top: 80px;
+  margin-left: 780px;
+  border-radius: 41px;
+  gap: 10px;
+}
+
+.email {
+  width: 521px;
+  height: 60px;
+  font-size: 17px;
+  font-weight: 17px;
+  color: #566a7f;
+  border-radius: 9px;
+  border: 2px solid #696cff;
+  margin-bottom: 30px;
+}
+
+.password {
+  width: 521px;
+  height: 60px;
+  font-size: 17px;
+  font-weight: 17px;
+  color: #566a7f;
+  border-radius: 9px;
+  border: 2px solid;
+}
+
+.log-in-button {
+  width: 521px;
+  height: 60px;
+  margin-top: 100px;
+  margin-left: 786px;
+  border-radius: 9px;
+}
+
+.whitespace {
+  position: absolute;
+  font-weight: 600px;
+  font-size: 16px;
+  line-height: 22px;
+  margin-left: 940px;
+  margin-top: 60px;
+  color: #566a7f;
+}
+
+.register {
+  position: absolute;
+  font-weight: 600px;
+  font-size: 16px;
+  line-height: 22px;
+  margin-left: 1093px;
+  margin-top: 60px;
+  color: #9574ff;
+}
+
+.rocket-img {
+  position: absolute;
+  width: 1071.81px;
+  height: 959.07px;
+  margin-top: -753px;
+  margin-left: 80px;
+  rotate: 9.13°;
+}

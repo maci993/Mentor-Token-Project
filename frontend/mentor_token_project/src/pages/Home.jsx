@@ -6,6 +6,8 @@ import Computer from "../assets/computer.png";
 import Logos from "../assets/Company-logos/Logos1.svg";
 import Logos1 from "../assets/Company-logos/Logos2.svg";
 // import Mentors from "../components/Mentors";
+import Rocket from "../assets/Rocket.svg"
+import Picture from "../assets/picture-group-hp.svg"
 import Mentors from "../assets/Mentors-img.svg";
 import FooterSection from "../components/FooterSection";
 import Features from "../components/Features";
@@ -36,7 +38,7 @@ const Home = () => {
               <Button name={"→Get Started"} />
             </Link>
             <Link to={"/contact"}>
-              <span>Get in Touch</span>
+              <span className="get-in-touch">Get in Touch</span>
             </Link>
           </div>
         </div>
@@ -59,6 +61,9 @@ const Home = () => {
           world trusted Mentor Token.
         </p>
       </div>
+      <div className="rocket-home">
+        <img src={Rocket} alt="rocket-image" />
+      </div>
       <Features />
       <div>
         <h1 className="success-paragraph">
@@ -67,7 +72,10 @@ const Home = () => {
       </div>
       <div className="mentors-component">
         {/* <Mentors /> */}
-        <img src={Mentors} alt="mentors-img" />
+        <img className="mentors-image" src={Mentors} alt="mentors-img" />
+      </div>
+      <div className="picture-group-mentors">
+<img src={Picture} alt="picture-group" />
       </div>
       <div>
         <FooterSection />

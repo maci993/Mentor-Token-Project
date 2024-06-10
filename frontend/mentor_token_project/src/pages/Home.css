@@ -15,18 +15,20 @@
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-margin: auto;
+  margin: auto;
 }
-
 
 .text-home-page h1 {
   width: 614px;
   height: 378px;
+  font-size: 56px;
   gap: 32px;
   margin-left: 50px;
 }
 
 .text-home-page p {
+  font-size: 18px;
+  line-height: 28.8px;
   position: relative;
   left: 50px;
   bottom: 150px;
@@ -37,20 +39,34 @@ margin: auto;
   width: 750px;
   height: 600px;
   position: absolute;
-  padding-right: 80px;
+  padding-right: 0px;
   right: 0;
   align-self: flex-end;
 }
 
-.button2{
-  position: relative;
-  left: 50px;
+.button2 {
+  position: absolute;
+  width: fit-content;
+  height: 51px;
+  padding-left: 50px;
+  margin-top: -170px;
 }
 
-.button2 span {
-  position: relative;
-  margin-left: -80px;
+.get-in-touch {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 500px;
+  width: 102px;
+  height: 18px;
+  position: absolute;
+  margin-left: -90px;
+  margin-top: 65px;
+  color: #232323;
   text-decoration: none;
+}
+
+.get-in-touch:hover {
+  color: #696cff;
 }
 
 .logo-container {
@@ -60,10 +76,9 @@ margin: auto;
   position: absolute;
   bottom: 5px;
   left: 750px;
-  top: 120%;
+  top: 130%;
   transform: translateX(-50%);
   text-align: center;
-  z-index: 2;
   margin-bottom: 50px;
 }
 
@@ -79,16 +94,27 @@ margin: auto;
 }
 
 .text-paragraph {
+  font-size: 24px;
+  font-weight: 500px;
+  line-height: 38.4px;
+  color: radial-gradient(#232323 100% #232323 30%);
   align-items: center;
   text-align: center;
   display: flex;
   height: 15%;
   position: absolute;
   bottom: 5px;
-  left: 770px;
-  top: 160%;
-  transform: translateX(-50%);
-  z-index: 2;
+  left: 600px;
+  top: 170%;
+}
+
+.rocket-home {
+  position: absolute;
+  width: 689px;
+  height: 616px;
+  top: 930px;
+  left: 739px;
+  rotate: 9.13°;
 }
 
 .success-paragraph {
@@ -98,19 +124,36 @@ margin: auto;
   position: absolute;
   bottom: 15px;
   left: 160px;
-  top: 310%;
+  top: 325%;
 }
 
 .highlight {
-  color: #696CFF;;
+  color: #696cff;
 }
 
 .mentors-component {
+  border: 5px solid #696cff;
   display: flex;
-  height: fit-content;
-  width: 300px;
+  height: 886px;
+  width: 1234px;
+  border-radius: 60px;
   margin-top: 220px;
-  margin-left: 180px;
+  margin-left: 130px;
+  padding-top: 20px;
   margin-bottom: 50px;
+}
 
+.mentors-image {
+  width: 1175px;
+  height: 836px;
+  margin-left: 30px;
+  border-radius: 57px;
+}
+
+.picture-group-mentors {
+  position: absolute;
+  width: 558px;
+  height: 522px;
+  top: 2200px;
+  left: 768px;
 }

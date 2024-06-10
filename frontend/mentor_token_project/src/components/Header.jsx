@@ -53,9 +53,11 @@ const Header = () => {
         <p className="login" to="/login" onClick={(e) => updateNavigation(e, "/login")}>
           Login
         </p>
+        <div className="button-header">
         <Link to={"/login"}>
-        <Button className="button-header" name={"→Get Started"} />
+        <Button  name={"→Get Started"} />
         </Link>
+        </div>
       </div>
     </header>
   );

@@ -1,19 +1,27 @@
 .features {
+  font-style: Manrope, sans-serif;
   text-align: center;
   color: white;
-  background: linear-gradient(135deg, #696bfe , #6457fc, #9473fe, #987cfa);
+  background: linear-gradient(135deg, #696bfe, #6457fc, #9473fe, #987cfa);
   background-size: 100% 100%;
-  margin-top: 600px;
-  margin-left: 9%;
+  margin-top: 630px;
+  padding-right: 70px;
+  padding-left: 30px;
   margin-right: 5%;
-  width: 85%;
+  width: 1400px;
+  height: 758px;
   border-radius: 20px;
 }
 
 .main-title {
+  font-size: 18px;
+  line-height: 21.6px;
+  font-weight: 700px;
   padding-top: 30px;
 }
 .title {
+  font-size: 40px;
+  line-height: 47px;
   margin-top: 80px;
 }
 
@@ -29,7 +37,7 @@
 }
 
 .card {
-background-color: rgb(255,255,255, 0.1);
+  background-color: rgb(255, 255, 255, 0.1);
   /* background-color: rgb(124, 124, 255); */
   color: white;
   width: 298px;
@@ -37,8 +45,8 @@ background-color: rgb(255,255,255, 0.1);
   border-radius: 12px;
   padding: 32px, 32px, 52px, 34px;
   gap: 37px;
-  margin-top: 80px;
-  margin-left: 10px;
+  margin-top: 40px;
+  margin-left: 40px;
 }
 
 .card img {
@@ -46,14 +54,20 @@ background-color: rgb(255,255,255, 0.1);
   width: 24px;
   position: relative;
   margin-left: 15px;
-float: left;
+  float: left;
 }
 
-.card h3{
+.card h3 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700px;
   margin-top: 50px;
 }
 
-.card p{
+.card p {
+  font-size: 15px;
+  font-weight: 400px;
+  line-height: 18px;
   margin-left: 10px;
   margin-top: 5px;
 }

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import fb from "../assets/Social-icons/Socialicon.svg";
 import gh from "../assets/Social-icons/Socialicon1.svg";
 import In from "../assets/Social-icons/Socialicon2.svg";
+import "./UserCard.css"
 
 const UserCard = ({
   img,
@@ -15,10 +16,11 @@ const UserCard = ({
 }) => {
   return (
     <div className="user-card">
-      <img src={img} alt="user-image" />
+      <img src={img} alt={name} />
       <h3>{name}</h3>
       <h4>{position}</h4>
       <p>{hobby}</p>
+      <div className="social-icons">
       <Link to="https://www.facebook.com/">
         <img src={fb} alt="" />
         {facebook}
@@ -31,6 +33,7 @@ const UserCard = ({
         <img src={In} alt="" />
         {linkedin}
       </Link>
+      </div>
     </div>
   );
 };

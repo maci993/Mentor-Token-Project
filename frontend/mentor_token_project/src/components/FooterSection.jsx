@@ -32,7 +32,7 @@ const FooterSection = () => {
           </p>
         </div>
         <div className="footer-section-div">
-          <h4>Pages</h4>
+          <h4 className="pages-footer">Pages</h4>
           <ul className="footer-section-links">
             <li>
               <Link
@@ -56,8 +56,8 @@ const FooterSection = () => {
         </div>
         <div class="footer-section-div">
           <h4>Contact</h4>
-          <p> info@mentortoken.com</p>
-          <p>+(389) 123 456 789</p>
+          <p className="email-footer"> info@mentortoken.com</p>
+          <p className="phone-number-footer">+(389) 123 456 789</p>
         </div>
         <div class="footer-section-div">
           <h4>Follow Us</h4>
