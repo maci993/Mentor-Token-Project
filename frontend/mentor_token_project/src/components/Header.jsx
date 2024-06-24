@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useNavigate, useLocation,} from "react-router-dom";
 import "./Header.css";
 import Logo from "../assets/Logo.svg";
 import Button from "./Button";
@@ -40,11 +40,10 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-
       <div className="footer-right">
-        <p className="login" to="/login">
+        <NavLink to="/login" className="login" activeClassName="active">
           Login
-        </p>
+        </NavLink>
         <div className="button-header">
           <NavLink to="/login" activeClassName="active">
             <Button name="→Get Started" />

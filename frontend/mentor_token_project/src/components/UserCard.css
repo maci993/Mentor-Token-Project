@@ -31,6 +31,19 @@
   gap: 19.32px;
 }
 
+.social-icons img {
+  vertical-align: middle; 
+  transition: transform 0.3s; 
+}
+
+.social-icons a:hover {
+  color:  rgba(105, 108, 255, 1);
+}
+
+.social-icons img:hover {
+  color: rgba(105, 108, 255, 1);
+}
+
 .user-image {
   height: 100px;
   width: 100px;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import LogPage from "../components/LogPage.jsx";
 import "./Login.css";
@@ -69,7 +69,9 @@ const Login = () => {
               </div>
               <div>
                 <span className="whitespace">Don't have account?</span>
-                <span className="register">Register.</span>
+                <NavLink to="/register" className="register">
+                  Register.
+                </NavLink>
               </div>
             </div>
           </form>

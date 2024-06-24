@@ -28,6 +28,7 @@
   line-height: 22px;
   margin-left: 5px;
   color: #9574ff;
+  text-decoration: none;
 }
 
 .email {
@@ -59,6 +60,5 @@
 }
 
 .log-in-form input::placeholder {
-  color:rgba(170, 180, 191, 1);
-
+  color: rgba(170, 180, 191, 1);
 }
