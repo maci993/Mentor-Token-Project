@@ -1,0 +1,85 @@
+.log-in-page {
+  font-family: "Manrope";
+  position: relative;
+  display: flex;
+  flex-direction: screen;
+  justify-content: center;
+  align-items: center;
+  width: 1440px;
+  height: 1024px;
+  background: linear-gradient(177.44deg, #696cff 21.89%, #9574ff 74.83%);
+}
+.log-in-rocket {
+  position: absolute;
+  width: 620px;
+  bottom: -30px;
+  left: -400px;
+}
+
+.bg-log-in {
+  opacity: 60%;
+}
+.log-in-page-info {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: normal;
+  color: rgba(255, 255, 255, 1);
+  padding: 100px 0 100px 80px;
+  padding-top: 100px;
+  padding-left: 80px;
+  width: 500px;
+  height: 824px;
+}
+.log-in-page-info h1 {
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  font-size: 4.9em;
+  line-height: 90px;
+}
+.log-in-page-info span {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  line-height: 50px;
+  font-weight: 700;
+}
+.log-in-page-logo {
+  width: fit-content;
+}
+
+.log-in-page-logo p {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+.log-in-section {
+  margin: 0;
+  padding: 100px 100px 100px 150px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 550px;
+  height: 824px;
+  background-color: rgba(255, 255, 255, 1);
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 20px;
+}
+.mentor-logo-log-in {
+  width: 55px;
+  height: auto;
+}
+.log-in-section-component {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 30px 0 0 0;
+  height: 830px;
+}

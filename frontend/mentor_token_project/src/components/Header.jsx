@@ -1,62 +1,54 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 import Logo from "../assets/Logo.svg";
 import Button from "./Button";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const [navigation, setNavigation] = useState("/");
-  const location = useLocation();
+  // const navigate = useNavigate();
+  // const [navigation, setNavigation] = useState("/");
+  // const location = useLocation();
 
-  useEffect(() => {
-    setNavigation(location.pathname);
-  }, [location]);
-  const updateNavigation = (e, value) => {
-    e.preventDefault();
-    setNavigation(value);
-    navigate(value);
-  };
+  // useEffect(() => {
+  //   setNavigation(location.pathname);
+  // }, [location]);
+  // const updateNavigation = (e, value) => {
+  //   e.preventDefault();
+  //   setNavigation(value);
+  //   navigate(value);
+  // };
 
   return (
     <header>
-      <img
-        onclick={(e) => updateNavigation(e, "/")}
-        src={Logo}
-        className="app-logo"
-        alt="logo-img"
-      />
+      <img src={Logo} className="app-logo" alt="logo-img" />
       <nav>
         <ul className="navbar">
           <li>
-            <Link to={"/"} onClick={(e) => updateNavigation(e, "/")}>
+            <NavLink to="/" activeClassName="active">
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={"/about"} onClick={(e) => updateNavigation(e, "/about")}>
+            <NavLink to="/about" activeClassName="active">
               About
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
-              to={"/contact"}
-              onClick={(e) => updateNavigation(e, "/contact")}
-            >
+            <NavLink to="/contact" activeClassName="active">
               Contact
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
 
       <div className="footer-right">
-        <p className="login" to="/login" onClick={(e) => updateNavigation(e, "/login")}>
+        <p className="login" to="/login">
           Login
         </p>
         <div className="button-header">
-        <Link to={"/login"}>
-        <Button  name={"→Get Started"} />
-        </Link>
+          <NavLink to="/login" activeClassName="active">
+            <Button name="→Get Started" />
+          </NavLink>
         </div>
       </div>
     </header>

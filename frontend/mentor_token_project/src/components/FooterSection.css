@@ -17,6 +17,10 @@
 }
 
 .footer-section {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  font: "Inter";
   align-self: baseline;
 }
 
@@ -33,6 +37,7 @@
 }
 
 .footer-section-div {
+  font-family: "Plus Jakarta", sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400px;
@@ -54,8 +59,12 @@
   line-height: 24px;
 }
 
-.logo {
+.logo-footer {
   margin: 10px;
+}
+
+.logo-footer:hover {
+  color: #ffffff;
 }
 
 hr {
@@ -67,4 +76,8 @@ hr {
   line-height: 24px;
   font-weight: 400px;
   padding-left: 120px;
+}
+
+.footer-section-link:hover {
+  color: #696cff;
 }

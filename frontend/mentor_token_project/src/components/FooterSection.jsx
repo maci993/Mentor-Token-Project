@@ -62,9 +62,15 @@ const FooterSection = () => {
         <div class="footer-section-div">
           <h4>Follow Us</h4>
           <br />
-          <img className="logo" src={LogoFooter} alt="footer-logo" />
-          <img className="logo" src={LogoFooter1} alt="footer-logo1" />
-          <img className="logo" src={LogoFooter2} alt="foot-logo2" />
+          <Link to="https://www.linkedin.com/">
+            <img className="logo-footer" src={LogoFooter} alt="footer-logo" />
+          </Link>
+          <Link to="https://x.com/">
+            <img className="logo-footer" src={LogoFooter1} alt="footer-logo1" />
+          </Link>
+          <Link to="https://www.facebook.com/">
+            <img className="logo-footer" src={LogoFooter2} alt="foot-logo2" />
+          </Link>
         </div>
       </div>
       <hr />

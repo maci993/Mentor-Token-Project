@@ -11,6 +11,7 @@ import Alex from "../assets/Team-Members/AlexJensen.svg";
 import Keira from "../assets/Team-Members/KeiraBattye.svg";
 import Dominic from "../assets/Team-Members/DominicGame.svg";
 import James from "../assets/Team-Members/JamesVial.svg";
+import Footer from "../components/FooterSection"
 
 // import ian from "../assets/Team-Members/ian.jpg"
 // import maya from "../assets/Team-Members/maya.jpg"
@@ -83,6 +84,7 @@ const About = () => {
           <UserCard key={index} img={user.img} name={user.name} position={user.position} hobby={user.hobby}/>
         ))}
       </div>
+      <Footer />
     </div>
   );
 };

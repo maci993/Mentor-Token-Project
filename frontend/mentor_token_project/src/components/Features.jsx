@@ -9,7 +9,7 @@ import "./Features.css";
 const Features = () => {
   return (
     <div class="features">
-      <p className="main-title">FEATURES</p>
+      <p className="main-title-features">FEATURES</p>
       <h1 className="title">
         Boost Your Startup's Journey:
         <br />

@@ -1,4 +1,5 @@
 .home-page {
+  font-family: "Manrope", sans-serif;
   overflow: hidden;
   /* border-radius: 20px; */
 }
@@ -56,7 +57,7 @@
   font-size: 18px;
   line-height: 18px;
   font-weight: 500px;
-  width: 102px;
+  width: 122px;
   height: 18px;
   position: absolute;
   margin-left: -90px;
@@ -104,7 +105,7 @@
   height: 15%;
   position: absolute;
   bottom: 5px;
-  left: 600px;
+  left: 531px;
   top: 170%;
 }
 

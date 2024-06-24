@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Footer from "../components/FooterSection"
 import "./Contact.css";
 
 const Contact = () => {
@@ -50,6 +51,7 @@ const Contact = () => {
           <button type="submit">SEND MESSAGE</button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

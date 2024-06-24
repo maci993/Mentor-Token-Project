@@ -1,5 +1,5 @@
 .features {
-  font-style: Manrope, sans-serif;
+  font-style: "Manrope", sans-serif;
   text-align: center;
   color: white;
   background: linear-gradient(135deg, #696bfe, #6457fc, #9473fe, #987cfa);
@@ -13,7 +13,7 @@
   border-radius: 20px;
 }
 
-.main-title {
+.main-title-features {
   font-size: 18px;
   line-height: 21.6px;
   font-weight: 700px;

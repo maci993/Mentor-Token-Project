@@ -13,8 +13,13 @@ import FooterSection from "../components/FooterSection";
 import Features from "../components/Features";
 
 const Home = () => {
+  const handleClick = () => {
+    alert("Button clicked!");
+  };
+
   const navigate = useNavigate;
   useEffect(() => {}, []);
+
   return (
     <div className="home-page">
       <div className="images-container">
@@ -35,7 +40,8 @@ const Home = () => {
           </p>
           <div className="button2">
             <Link to={"/login"}>
-              <Button name={"→Get Started"} />
+              <Button name={" → Get Started"} />
+              {/* // hasIcon={true} iconSrc="../assets/arrow-right.svg" /> */}
             </Link>
             <Link to={"/contact"}>
               <span className="get-in-touch">Get in Touch</span>
