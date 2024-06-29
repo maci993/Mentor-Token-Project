@@ -1,0 +1,116 @@
+.startup-account-form {
+  z-index: 999;
+}
+
+.setup-startup-acc-title {
+  margin-top: -25px;
+  font-family: "Manrope";
+  width: 500px;
+  height: 69px;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 89px;
+  color: #566a7f;
+}
+
+.startup-profile-img {
+  width: 121px;
+  height: 121px;
+  margin-top: -5px;
+  margin-left: 149px;
+}
+
+.camera-img {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  margin-left: 75px;
+  margin-top: -130px;
+}
+
+.startup-inputs label {
+  font-family: "Manrope";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  color: #3a4857;
+  margin-top: 18px;
+  display: block;
+}
+
+.startup-inputs {
+  margin-top: 20px;
+  left: 786px;
+}
+.startup-name-input {
+  width: 521px;
+  height: 60px;
+  top: 417px;
+  left: 482px;
+  border-radius: 9px;
+  border: 2px solid #696cff;
+  margin-top: -5px;
+}
+
+.startup-name-input::placeholder {
+  font-size: 17px;
+  font-weight: 400;
+  color: #566a7f;
+  font: "Manrope";
+  padding-left: 10px;
+}
+
+.startup-input {
+  margin-top: -3px;
+  width: 521px;
+  height: 60px;
+  top: 417px;
+  left: 482px;
+  border-radius: 9px;
+  border: 1px solid #d3d3ff;
+  padding-left: 10px;
+}
+
+.startup-input::placeholder {
+  font-family: "Manrope";
+  font-size: 14px;
+  font-weight: 400;
+  color: #9c9aa5;
+}
+
+.required-asterisk {
+  color: red;
+}
+
+.register-startup-button button {
+  width: 535px;
+  height: 60px;
+  margin-top: 25px;
+  left: 782px;
+  border-radius: 9px;
+  gap: 10px;
+  background-color: #696cff;
+}
+
+.whitespace-register-startup-form {
+  font-family: "Manrope";
+  font-weight: 500px;
+  font-size: 12px;
+  line-height: 13.66px;
+  text-align: center;
+  color: #9c9aa5;
+  margin-left: 20px;
+}
+
+.whitespace-register-startup-form img {
+  margin-right: 20px;
+}
+
+.terms-of-use-text-register-form {
+  font-family: "Manrope";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 13.66px;
+  text-align: center;
+  color: #696cff;
+}

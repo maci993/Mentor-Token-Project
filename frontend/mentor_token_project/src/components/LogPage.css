@@ -1,4 +1,5 @@
 .log-in-page {
+  float: left;
   font-family: "Manrope";
   position: relative;
   display: flex;
@@ -9,16 +10,18 @@
   height: 1024px;
   background: linear-gradient(177.44deg, #696cff 21.89%, #9574ff 74.83%);
 }
+
 .log-in-rocket {
   position: absolute;
-  width: 620px;
-  bottom: -30px;
-  left: -400px;
+  width: 1000px;
+  bottom: 30px;
+  left: -560px;
 }
 
 .bg-log-in {
   opacity: 60%;
 }
+
 .log-in-page-info {
   position: absolute;
   top: 0px;
@@ -34,6 +37,7 @@
   width: 500px;
   height: 824px;
 }
+
 .log-in-page-info h1 {
   margin: 0;
   padding: 0;
@@ -41,6 +45,7 @@
   font-size: 4.9em;
   line-height: 90px;
 }
+
 .log-in-page-info span {
   margin: 0;
   padding: 0;
@@ -48,6 +53,7 @@
   line-height: 50px;
   font-weight: 700;
 }
+
 .log-in-page-logo {
   width: fit-content;
 }
@@ -60,6 +66,7 @@
   font-weight: 700;
   text-align: center;
 }
+
 .log-in-section {
   margin: 0;
   padding: 100px 100px 100px 150px;
@@ -72,14 +79,25 @@
   border-top-left-radius: 40px;
   border-bottom-left-radius: 20px;
 }
+
 .mentor-logo-log-in {
   width: 55px;
   height: auto;
 }
+
 .log-in-section-component {
   display: flex;
   flex-direction: column;
   padding: 0;
   margin: 30px 0 0 0;
   height: 830px;
+}
+
+.log-in-page-info .back-text {
+  font-family: "Manrope";
+  font-size: 14px;
+  z-index: 999;
+  /* margin-top: 50px; */
+  font-weight: 400;
+  color: black;
 }

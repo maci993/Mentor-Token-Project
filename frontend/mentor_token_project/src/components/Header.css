@@ -7,36 +7,31 @@ header {
   justify-content: space-between;
 }
 
-.navbar li a {
+.header li a {
   text-decoration: none;
   color: black;
 }
-.navbar {
+.header {
   font-size: 18px;
-  gap: 60px;
+  gap: 70px;
   list-style-type: none;
   display: flex;
 }
 
-/* .navbar li a:hover {
-  color: #696CFF;
-} */
-
-.footer-right {
+.header {
   text-decoration: none;
-  gap: 20px;
+  gap: 70px;
   display: flex;
   align-items: center;
 }
 
-.footer-right .login {
+.header .login {
   text-decoration: none;
   font-size: 18px;
   color: black;
 }
 
 .login {
-  gap: 10px;
   cursor: pointer;
 }
 
@@ -45,7 +40,6 @@ header {
 }
 
 .button-header {
-  margin-right: 10px;
   margin-bottom: 45px;
 }
 
@@ -54,6 +48,6 @@ header {
   height: 51px;
 }
 
-.active {
+.header .active {
   color: #696cff;
 }

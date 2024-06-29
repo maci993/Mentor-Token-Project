@@ -1,0 +1,37 @@
+.setup-mentor-acc-title {
+  margin-top: -25px;
+  font-family: "Manrope";
+  width: 500px;
+  height: 69px;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 89px;
+  color: #566a7f;
+}
+
+.mentor-image-elipse {
+  height: 121px;
+  width: 121px;
+  margin-left: 170px;
+}
+
+.mentor-img {
+  height: 49px;
+  width: 49px;
+  margin-left: -85px;
+  margin-bottom: 35px;
+}
+
+.register-startup-button button {
+  margin-top: 90px;
+}
+
+.startup-inputs label {
+  font-family: "Manrope";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  color: #3a4857;
+  margin-bottom: -15px;
+  display: block;
+}

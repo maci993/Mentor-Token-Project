@@ -61,10 +61,11 @@
 
 .logo-footer {
   margin: 10px;
+  transition: filter 0.3s ease-in-out;
 }
 
 .logo-footer:hover {
-  color: #ffffff;
+  filter: brightness(0) invert(1);
 }
 
 hr {

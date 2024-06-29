@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./LogPage.css";
 import Logo from "../assets/Login-Page/Mentor-Logo.svg";
 import Vector from "../assets/Login-Page/Vector.svg";
@@ -15,6 +16,9 @@ const LogPage = ({ logData }) => {
       />
       <div className="log-in-page-info">
         <div>
+          <NavLink to="/">
+          <span className="back-text">← Back</span>
+          </NavLink>
           <h1>
             GROW
             <br />
@@ -23,7 +27,9 @@ const LogPage = ({ logData }) => {
           <span>MONITORING AND EVALUATING NOW IS EASY!</span>
         </div>
         <div className="log-in-page-logo">
-          <img src={Logo} alt="logo-log-in" />
+          <NavLink to="/">
+            <img src={Logo} alt="logo-log-in" style={{ cursor: "pointer" }} />
+          </NavLink>
           <p>mentortoken.com</p>
         </div>
       </div>

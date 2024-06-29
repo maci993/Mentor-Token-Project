@@ -5,6 +5,10 @@
   line-height: 90px;
 }
 
+.log-in-form {
+  z-index: 999;
+}
+
 .log-in-section_component p {
   padding: 0 0 90px 0;
   color: rgba(170, 180, 191, 1);
@@ -20,6 +24,10 @@
   line-height: 22px;
   margin-left: 170px;
   color: #566a7f;
+}
+
+.under-button-text {
+  margin-top: 30px;
 }
 
 .register {

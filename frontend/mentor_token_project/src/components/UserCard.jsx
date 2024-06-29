@@ -22,15 +22,15 @@ const UserCard = ({
       <p>{hobby}</p>
       <div className="social-icons">
       <Link to="https://www.facebook.com/">
-        <img src={fb} alt="Facebook" />
+        <img src={fb} className="social-icon-img" alt="Facebook" />
         {facebook}
       </Link>
       <Link to="https://github.com/">
-        <img src={gh} alt="GitHub" />
+        <img src={gh} className="social-icon-img" alt="GitHub" />
         {github}
       </Link>
       <Link to="https://www.linkedin.com/">
-        <img src={In} alt="Linkedin" />
+        <img src={In} className="social-icon-img" alt="Linkedin" />
         {linkedin}
       </Link>
       </div>

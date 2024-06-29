@@ -1,21 +1,17 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../components/Header";
 import "./About.css";
 import UserCard from "../components/UserCard";
-import hero from "../assets/hero.svg";
 import Button from "../components/Button";
 import Ian from "../assets/Team-Members/ian.png";
 import Maya from "../assets/Team-Members/MayaMatt.svg";
-import Alex from "../assets/Team-Members/AlexJensen.svg";
+import alex from "../assets/Team-Members/alex.jpg"
 import Keira from "../assets/Team-Members/KeiraBattye.svg";
 import Dominic from "../assets/Team-Members/DominicGame.svg";
 import James from "../assets/Team-Members/JamesVial.svg";
 import Footer from "../components/FooterSection"
 
-// import ian from "../assets/Team-Members/ian.jpg"
-// import maya from "../assets/Team-Members/maya.jpg"
-import alex from "../assets/Team-Members/alex.jpg"
+
 const users = [
   {
     img: Ian,

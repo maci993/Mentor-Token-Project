@@ -1,0 +1,93 @@
+.register-title {
+  font-family: "Manrope";
+  width: 407px;
+  height: 89px;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 89px;
+  color: #566a7f;
+}
+
+.register-form {
+  z-index: 999;
+}
+
+.register-inputs {
+  margin-top: 80px;
+  left: 786px;
+}
+
+.email {
+  font-family: "Manrope";
+  font-weight: 400;
+  font-size: 17px;
+  color: #566a7f;
+}
+
+.password {
+  font-family: "Manrope";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19.12px;
+  color: #9c9aa5;
+}
+
+.span-password {
+  font-family: "Manrope";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21.86px;
+  color: #566a7f;
+}
+
+.password-text {
+  width: 350px;
+  height: 88px;
+  margin-top: 15px;
+  gap: 18px;
+  font-family: "Manrope";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 12px;
+  color: #aab4bf;
+}
+
+.password-text {
+  margin-top: 25px;
+}
+
+.spacing {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.register-button button{
+    width: 530px;
+    height: 60px;
+    margin-top: 100px;
+    border-radius: 9px;
+    gap: 10px;
+    background-color: #D3D3FF;
+    color: #FFFFFF;
+    font-family: "Manrope";
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.whitespace-register-form {
+    font-weight: 600px;
+    font-size: 16px;
+    line-height: 22px;
+    margin-left: 170px;
+    color: #566a7f;
+}
+
+.login-text-register-form {
+    font-weight: 600px;
+    font-size: 16px;
+    line-height: 22px;
+    margin-left: 5px;
+    color: #9574ff;
+    text-decoration: none;
+}

@@ -6,7 +6,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login"
 import Register from "./pages/Register"
-import LogPage from "./components/LogPage";
+import RegisterStartup from "./pages/Register-Startup";
+import RegisterMentor from "./pages/Register-Mentor";
 
 
 function App() {
@@ -14,11 +15,15 @@ function App() {
     <>
       <Header />
       <Routes>
+        {/* <Switch> */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />}/>
+        <Route path="/register" element={<Register/>} />
+        <Route path="/register-startup" element={<RegisterStartup/>} />
+        <Route path="/register-mentor" element={<RegisterMentor/>} />
+        {/* </Switch> */}
       </Routes>
       
     </>

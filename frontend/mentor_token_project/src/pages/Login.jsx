@@ -67,7 +67,7 @@ const Login = () => {
               <div className="log-in-button">
                 <Button type="submit" name="Log in" />
               </div>
-              <div>
+              <div className="under-button-text">
                 <span className="whitespace">Don't have account?</span>
                 <NavLink to="/register" className="register">
                   Register.
