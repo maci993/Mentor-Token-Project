@@ -39,7 +39,7 @@
   text-decoration: none;
 }
 
-.email {
+.email-login {
   width: 521px;
   height: 60px;
   font-size: 17px;
@@ -50,7 +50,7 @@
   margin-bottom: 30px;
 }
 
-.password {
+.password-login {
   width: 521px;
   height: 60px;
   font-size: 17px;

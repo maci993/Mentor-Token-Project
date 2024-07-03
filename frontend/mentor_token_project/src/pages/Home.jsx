@@ -83,9 +83,6 @@ const Home = () => {
       <div className="picture-group-mentors">
 <img src={Picture} alt="picture-group" />
       </div>
-      <div>
-        <FooterSection />
-      </div>
     </div>
   );
 };

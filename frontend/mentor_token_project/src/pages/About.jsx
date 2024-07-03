@@ -80,7 +80,6 @@ const About = () => {
           <UserCard key={index} img={user.img} name={user.name} position={user.position} hobby={user.hobby}/>
         ))}
       </div>
-      <Footer />
     </div>
   );
 };

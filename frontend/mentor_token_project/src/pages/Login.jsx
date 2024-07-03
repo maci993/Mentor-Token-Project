@@ -48,7 +48,7 @@ const Login = () => {
           <form className="log-in-form" onSubmit={handleSubmit}>
             <div className="log-in-inputs">
               <input
-                className="email"
+                className="email-login"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -57,7 +57,7 @@ const Login = () => {
               />
               <br />
               <input
-                className="password"
+                className="password-login"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
