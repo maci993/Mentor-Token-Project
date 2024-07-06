@@ -1,5 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import {
+  BrowserRouter,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
+import { UserProvider } from "./context/UserContext";
 import App from "./App.jsx";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
@@ -9,20 +15,18 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import RegisterStartup from "./pages/Register-Startup.jsx";
 import RegisterMentor from "./pages/Register-Mentor.jsx";
-import ForgotPassword from "./pages/ForgotPass.jsx";
-import {
-  BrowserRouter,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
-import "./App.css";
-import SideBar from "./components/SideBar.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import StartupDashboard from "./pages/StartupDashboard.jsx";
 import Mentors from "./pages/Mentors.jsx";
 import Jobs from "./pages/Jobs.jsx";
 import MyStats from "./pages/MyStats.jsx";
 import JobFeed from "./pages/JobFeed.jsx";
 import ErrorPage from "./pages/NotFound";
+import "./App.css";
+
+
+const userRole = "company"; // or "company"
+
 
 const router = createBrowserRouter([
   {
@@ -85,54 +89,58 @@ const router = createBrowserRouter([
           </Layout>
         ),
       },
-      {
-        path: "forgot-password",
-        element: (
-          <Layout nav={false} footer={false}>
-            <ForgotPassword />
-          </Layout>
-        ),
-      },
-      {
-        path: "dashboard",
-        element: (
-          <Layout nav={false} footer={false}>
-            <Dashboard />
-          </Layout>
-        ),
-      },
-      {
-        path: "mentors",
-        element: (
-          <Layout nav={false} footer={false}>
-            <Mentors />
-          </Layout>
-        ),
-      },
-      {
-        path: "jobs",
-        element: (
-          <Layout nav={false} footer={false}>
-            <Jobs />
-          </Layout>
-        ),
-      },
-      {
-        path: "my-stats",
-        element: (
-          <Layout nav={false} footer={false}>
-            <MyStats />
-          </Layout>
-        ),
-      },
-      {
-        path: "job-feed",
-        element: (
-          <Layout nav={false} footer={false}>
-            <JobFeed />
-          </Layout>
-        ),
-      },
+      ...(userRole === "company" ? [
+        {
+          path: "dashboard-startup",
+          element: (
+            <Layout nav={false} footer={false}>
+              <StartupDashboard />
+            </Layout>
+          ),
+        },
+        {
+          path: "mentors",
+          element: (
+            <Layout nav={false} footer={false}>
+              <Mentors />
+            </Layout>
+          ),
+        },
+        {
+          path: "jobs",
+          element: (
+            <Layout nav={false} footer={false}>
+              <Jobs />
+            </Layout>
+          ),
+        },
+      ] : []),
+      ...(userRole === "mentor" ? [
+        {
+          path: "dashboard",
+          element: (
+            <Layout nav={false} footer={false}>
+              <Dashboard />
+            </Layout>
+          ),
+        },
+        {
+          path: "job-feed",
+          element: (
+            <Layout nav={false} footer={false}>
+              <JobFeed />
+            </Layout>
+          ),
+        },
+        {
+          path: "my-stats",
+          element: (
+            <Layout nav={false} footer={false}>
+              <MyStats />
+            </Layout>
+          ),
+        },
+      ] : []),
     ],
   },
   {
@@ -143,6 +151,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+     <UserProvider>
     <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );

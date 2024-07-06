@@ -1,4 +1,5 @@
 header {
+  font-family: "Manrope";
   display: flex;
   flex-direction: row;
   margin: auto;
@@ -37,6 +38,7 @@ header {
 
 .app-logo {
   height: 40px;
+  margin-left: 90px;
 }
 
 .button-header {
