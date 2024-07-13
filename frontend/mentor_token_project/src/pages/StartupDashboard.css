@@ -1,0 +1,42 @@
+.startup-dashboard-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+  margin-top: 30px;
+  margin-left: 0px;
+}
+
+.dashboard-content {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.left-section {
+  flex: 1;
+}
+
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.right-section .overall-statistics-title{
+font-family: "Manrope";
+font-weight: 700;
+font-size: 16px;
+line-height: 24px;
+color: #566A7F;
+margin-top: 50px;
+margin-left: -100px;
+}

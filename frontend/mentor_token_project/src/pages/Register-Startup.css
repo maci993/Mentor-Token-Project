@@ -92,25 +92,44 @@
   background-color: #696cff;
 }
 
-.whitespace-register-startup-form {
-  font-family: "Manrope";
-  font-weight: 500px;
+.under-button-text span {
+  display: flex;
+  align-items: center;
   font-size: 12px;
+  font-family: "Manrope";
+  font-weight: 500;
   line-height: 13.66px;
-  text-align: center;
-  color: #9c9aa5;
   margin-left: 20px;
+  margin-left: 20px;
+  color: #9c9aa5;
 }
 
-.whitespace-register-startup-form img {
-  margin-right: 20px;
-}
-
-.terms-of-use-text-register-form {
+.under-button-text .terms-of-use-text-register-form {
   font-family: "Manrope";
   font-weight: 500;
   font-size: 12px;
   line-height: 13.66px;
-  text-align: center;
   color: #696cff;
+  margin-left: 5px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-custom {
+  width: 13px;
+  height: 13px;
+  background-size: cover;
+  margin-right: 8px;
+}
+
+.checked {
+  background-image: url("../assets/checkbox/checkbox-checked.png");
+}
+
+.unchecked {
+  background-image: url("../assets/checkbox/checkbox-unchecked.png");
 }

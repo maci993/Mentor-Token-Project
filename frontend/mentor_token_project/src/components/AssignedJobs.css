@@ -1,0 +1,98 @@
+.assigned-jobs-container {
+  width: 100%;
+  max-width: 600px;
+  margin-left: 500px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.assigned-jobs-container h1 {
+  width: 250px;
+  height: 20px;
+  top: 148px;
+  margin-left: -438px;
+  color: #404d61;
+}
+
+.filter-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.filter-tabs button {
+  margin-right: 70px;
+  margin-left: -870px;
+  padding: 10px 15px;
+  border: none;
+  font-family: "Manrope";
+  font-weight: 500;
+  line-height: 19.12px;
+  color: #566a7f;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter-tabs .active {
+  border-bottom: 2px solid #696cff;
+  color: #696cff;
+}
+
+.job-list {
+  width: 470px;
+  margin-top: 10px;
+  overflow: hidden;
+  margin-left: -450px;
+}
+
+.job-item {
+  font-family: "Nunito Sans";
+  font-weight: 400;
+  font-size: 13.2px;
+  line-height: 18.85px;
+  color: #566a7f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 52px;
+  padding: 0 10px;
+  border: 1px solid #e0e0e0;
+  margin: 10px 0;
+}
+
+.job-name {
+  font-family: "Nunito Sans";
+  font-size: 13.2px;
+  font-weight: 400;
+  line-height: 18.85px;
+  color: #566a7f;
+}
+
+.status-button {
+  font-family: "Nunito Sans";
+  line-height: 20px;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.status-button.done {
+  background-color: #ebf6eb;
+  color: #31aa27;
+}
+
+.status-button.rejected {
+  background-color: #fff0f3;
+  color: #f2076a;
+}
+
+.status-button.in-progress {
+  background-color: #d3d3ff80;
+  color: #696cff;
+}

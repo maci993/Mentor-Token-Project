@@ -9,7 +9,7 @@ import LogoutIcon from "../assets/Sidebar-icons/logout.svg";
 import "./SideBar.css";
 
 const SideBar = ({ role }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = {
     company: [

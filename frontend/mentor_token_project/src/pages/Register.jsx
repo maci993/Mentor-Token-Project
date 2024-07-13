@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import LogPage from "../components/LogPage.jsx";
 import SwitchSelector from "react-switch-selector";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import "./Register.css";
+import RegisterMentor from "./Register-Mentor.jsx";
+import RegisterStartup from "./Register-Startup.jsx";
 
 const options = [
   {
@@ -38,19 +40,49 @@ const Register = () => {
   const [continueButton, setContinueButton] = useState(false);
   const [error, setError] = useState("");
 
+  const updateRole = (userRole) => {
+    setRole(userRole);
+    console.log("The role is:", userRole);
+  };
+
+  const navigate = useNavigate();
+
   useEffect(() => {
-    setNoNameAndEmail(
-      !password.toUpperCase().includes(username.toUpperCase()) &&
-        !password.toUpperCase().includes(email.toUpperCase())
+    const noNameAndEmail =
+      !password.toLowerCase().includes(username.toLowerCase()) ||
+      !password.toLowerCase().includes(email.toLowerCase());
+    // (!password.toUpperCase().includes(username.toUpperCase()) ||
+    //       !password.toUpperCase().includes(email.toUpperCase())
+    //   ) ? setNoNameAndEmail(false) : setNoNameAndEmail(true);
+
+    noNameAndEmail && characters && numberSymbol
+      ? setPasswordStrength(true)
+      : setPasswordStrength(false);
+
+    /^.{8,}$/.test(password) ? setCharacters(true) : setCharacters(false);
+
+    /^.[0-9!@#$%^&*(),.?":{}|<>]/.test(password)
+      ? setNumberSymbol(true)
+      : setNumberSymbol(false);
+
+    password.toString() === confirmPassword.toString()
+      ? setPasswordMatch(true)
+      : setPasswordMatch(false);
+    /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)
+      ? setEmailAddressPattern(true)
+      : setEmailAddressPattern(false);
+    setPasswordStrength(
+      noNameAndEmail && characters && numberSymbol && passwordMatch
     );
 
-    setCharacters(/^.{8,}$/.test(password));
+    const isFormValid = passwordMatch && passwordStrength && emailAddressPattern && username.trim() !== "";
+    setContinueButton(isFormValid);
 
-    setNumberSymbol(/^.[0-9!@#$%^&*(),.?":{}|<>]/.test(password));
-
-    setPasswordMatch(password === confirmPassword && password !== "");
-    setEmailAddressPattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email));
-    setPasswordStrength(noNameAndEmail && characters && numberSymbol);
+    console.log("No Name and Email:", noNameAndEmail);
+    console.log("Characters:", characters);
+    console.log("Number Symbol:", numberSymbol);
+    console.log("Password Match:", passwordMatch);
+    console.log("Email Pattern:", email);
   }, [
     password,
     confirmPassword,
@@ -59,12 +91,8 @@ const Register = () => {
     noNameAndEmail,
     characters,
     numberSymbol,
+    passwordMatch,
   ]);
-
-  const updateRole = (userRole) => {
-    setRole(userRole);
-    console.log("The role is:", userRole);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,9 +104,22 @@ const Register = () => {
       alert("Passwords do not match!");
       return;
     }
+    if (!passwordStrength) {
+      alert("Password is not strong enough!");
+      return;
+    }
+    if (!emailAddressPattern) {
+      alert("Please enter a valid email address!");
+      return;
+    }
     setContinueButton(true);
     console.log("Form submitted successfully!");
   };
+  // if (role === "mentor") {
+  //   navigate("/register-mentor");
+  // } else {
+  //   navigate("/register-startup");
+  // }
 
   const customStyles = (selected) => ({
     backgroundColor: selected
@@ -87,7 +128,13 @@ const Register = () => {
     color: selected ? "#FFFFFF" : "#566A7F",
   });
 
-  return (
+  return continueButton ? (
+    role === "mentor" ? (
+      <RegisterMentor goBack={() => setContinueButton(false)} />
+    ) : (
+      <RegisterStartup goBack={() => setContinueButton(false)} />
+    )
+  ) : (
     <LogPage
       logData={
         <>
@@ -190,7 +237,17 @@ const Register = () => {
                 <br />
               </div>
               <div className="register-button">
-                <Button type="submit" name="Continue" />
+              {/* ne raboti */}
+                <Button
+                  type="submit"
+                  name="Continue"
+                  style={{
+                    backgroundColor: continueButton ? "#696CFF" : "#D3D3FF",
+                    color: "white",
+                    cursor: continueButton ? "pointer" : "not-allowed",
+                  }}
+                  disabled={!continueButton}
+                />
               </div>
               <div className="under-button-text">
                 <span className="whitespace-register-form">

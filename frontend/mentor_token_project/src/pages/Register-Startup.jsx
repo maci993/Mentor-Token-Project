@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import LogPage from "../components/LogPage.jsx";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button.jsx";
 import StartupProfileImage from "../assets/Register-Images/profileImg.png";
 import CameraImage from "../assets/Register-Images/photo.png";
-import CheckMark from "../assets/Register-Images/check.png";
+import CheckMarkChecked from "../assets/checkbox/checkbox-checked.png";
+import CheckMark from "../assets/checkbox/checkbox-unchecked.png";
 import "./Register-Startup.css";
 
 const RegisterStartup = () => {
@@ -12,14 +13,27 @@ const RegisterStartup = () => {
   const [nameSurname, setNameSurname] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
+  const [isAccepted, setIsAccepted] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (isAccepted) {
+      console.log("StartupName", startupName);
+      console.log("nameSurname", nameSurname);
+      console.log("address", address);
+      console.log("email", email);
+      navigate("/");
+    } else {
+      alert(
+        "You need to accept the Terms of use & Privacy Policy to register."
+      );
+    }
+  };
 
-    console.log("StartupName", startupName);
-    console.log("nameSurname", nameSurname);
-    console.log("address", address);
-    console.log("email", email);
+  const toggleCheckbox = () => {
+    setIsAccepted(!isAccepted);
   };
 
   return (
@@ -96,13 +110,20 @@ const RegisterStartup = () => {
                 <Button type="submit" name="Register" />
               </div>
               <div className="under-button-text">
-                <span className="whitespace-register-startup-form">
-                  <img src={CheckMark} alt="" />
-                  By signing up to create an account I accept Company’s{" "}
-                </span>
-                <NavLink to="/" className="terms-of-use-text-register-form">
-                  Terms of use & Privacy Policy.
-                </NavLink>
+                <div className="checkbox-container" onClick={toggleCheckbox}>
+                  <div
+                    className={`checkbox-custom ${
+                      isAccepted ? "checked" : "unchecked"
+                    }`}
+                  ></div>
+                  <span>
+                    {" "}
+                    By signing up to create an account I accept Company’s{" "}
+                  </span>
+                  <span className="terms-of-use-text-register-form">
+                    Terms of use & Privacy Policy.
+                  </span>
+                </div>
               </div>
             </div>
           </form>

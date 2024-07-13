@@ -1,0 +1,98 @@
+.pending-jobs {
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: -30px;
+  width: 651px;
+  height: 456px;
+}
+
+.pending-jobs h2 {
+  font-family: "Manrope";
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 25px;
+  margin-bottom: 10px;
+  color: #404d61;
+}
+
+.pending-jobs p {
+  font-family: "Manrope";
+  font-weight: 500;
+  line-height: 98px;
+  font-size: 14px;
+  color: #566a7f;
+  margin-bottom: 20px;
+}
+
+.jobs-list-mentor-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.job-item-mentor-dashboard {
+  width: 500px;
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.job-title-mentor-dashboard {
+  font-family: "Nunito Sans";
+  font-weight: 400;
+  font-size: 13.2px;
+  line-height: 18.85px;
+  color: #566a7f;
+}
+
+.job-action-mentor-dashboard {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.accept-button,
+.reject-button {
+  margin-top: 13px;
+  gap: -20px;
+  width: 77px;
+  height: 25px;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: "Noto Sans";
+  font-weight: 400;
+  text-align: center;
+}
+
+.accept-button {
+  margin-right: 15px;
+  background-color: #696cff;
+  color: white;
+  border: 1px solid #696cff;
+}
+
+.accept-button:hover {
+    background-color: white;
+    color: #696cff;
+
+}
+
+.reject-button {
+  margin-right: 30px;
+  background-color: white;
+  color: #F2076A;
+  border: 1px solid #F2076A;
+}
+
+.reject-button:hover {
+    background-color: #F2076A;
+    color: white;
+}

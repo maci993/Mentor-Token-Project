@@ -15,8 +15,8 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import RegisterStartup from "./pages/Register-Startup.jsx";
 import RegisterMentor from "./pages/Register-Mentor.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
 import StartupDashboard from "./pages/StartupDashboard.jsx";
+import MentorDashboard from "./pages/MentorDashboard.jsx";
 import Mentors from "./pages/Mentors.jsx";
 import Jobs from "./pages/Jobs.jsx";
 import MyStats from "./pages/MyStats.jsx";
@@ -25,7 +25,7 @@ import ErrorPage from "./pages/NotFound";
 import "./App.css";
 
 
-const userRole = "company"; // or "company"
+const userRole = "mentor"; // or "company"
 
 
 const router = createBrowserRouter([
@@ -117,10 +117,10 @@ const router = createBrowserRouter([
       ] : []),
       ...(userRole === "mentor" ? [
         {
-          path: "dashboard",
+          path: "dashboard-mentor",
           element: (
             <Layout nav={false} footer={false}>
-              <Dashboard />
+              <MentorDashboard />
             </Layout>
           ),
         },
