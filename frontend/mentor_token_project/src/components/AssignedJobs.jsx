@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { fetchJobs } from "../services/api";
 import "./AssignedJobs.css";
 
 const jobsData = [
@@ -15,7 +16,31 @@ const jobsData = [
 ];
 
 const AssignedJobs = () => {
+  // const token = window.localStorage.getItem("jwt_token");
+  // console.log("jwt_token", token);
   const [filter, setFilter] = useState("All");
+  // const [jobs, setJobs] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+  // const [jobsData, setJobsData] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchJobPosts = async () => {
+  //     try {
+  //       const data = await fetchJobs(token);
+  //       // setJobs(jobsData);
+  //       console.log(data, "data from assigned jobs");
+  //       setJobsData(data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching jobs:", error);
+  //       setError(error.message || "An unexpected error occurred");
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchJobPosts();
+  // }, [token]);
 
   const filteredJobs = jobsData.filter((job) => {
     if (filter === "All") return true;
@@ -35,6 +60,14 @@ const AssignedJobs = () => {
     }
   };
 
+  // if (loading) {
+  //   return <p>Loading jobs...</p>;
+  // }
+
+  // if (error) {
+  //   return <p>Error loading jobs: {error}</p>;
+  // }
+
   return (
     <div className="assigned-jobs-container">
       <h1>Assigned Jobs</h1>
@@ -42,7 +75,7 @@ const AssignedJobs = () => {
         {["All", "Done", "Rejected", "In Progress"].map((tab) => (
           <button
             key={tab}
-            className={`filter-tab ${filter === tab ? 'active' : ''}`}
+            className={`filter-tab ${filter === tab ? "active" : ""}`}
             onClick={() => setFilter(tab)}
           >
             {tab}
@@ -51,7 +84,7 @@ const AssignedJobs = () => {
       </div>
       <div className="job-list">
         {filteredJobs.map((job, index) => (
-          <div key={index} className="job-item">
+          <div key={index} className="job-item-mentor-dashboard">
             <span className="job-name">{job.name}</span>
             <span className={`status-button ${getStatus(job.status)}`}>
               {job.status}

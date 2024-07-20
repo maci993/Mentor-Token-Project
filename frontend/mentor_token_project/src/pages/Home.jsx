@@ -9,7 +9,6 @@ import Logos1 from "../assets/Company-logos/Logos2.svg";
 import Rocket from "../assets/Rocket.svg"
 import Picture from "../assets/picture-group-hp.svg"
 import Mentors from "../assets/Mentors-img.svg";
-import FooterSection from "../components/FooterSection";
 import Features from "../components/Features";
 
 const Home = () => {

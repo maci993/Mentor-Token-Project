@@ -42,25 +42,26 @@
 }
 
 .job-list {
-  width: 470px;
   margin-top: 10px;
   overflow: hidden;
   margin-left: -450px;
 }
 
-.job-item {
+.job-list .job-item-mentor-dashboard {
+  width: 500px;
+  height: 52px;
   font-family: "Nunito Sans";
   font-weight: 400;
   font-size: 13.2px;
   line-height: 18.85px;
-  color: #566a7f;
+  background-color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 52px;
-  padding: 0 10px;
-  border: 1px solid #e0e0e0;
+  padding: 15px 20px;
+  border: 1px solid #ececec;;
   margin: 10px 0;
+  border-radius: 5px;
 }
 
 .job-name {
@@ -86,7 +87,6 @@
   background-color: #ebf6eb;
   color: #31aa27;
 }
-
 .status-button.rejected {
   background-color: #fff0f3;
   color: #f2076a;

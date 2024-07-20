@@ -21,7 +21,8 @@
   line-height: 98px;
   font-size: 14px;
   color: #566a7f;
-  margin-bottom: 20px;
+  margin-top: -7px;
+  margin-bottom: 7px;
 }
 
 .jobs-list-mentor-dashboard {
@@ -32,8 +33,9 @@
 
 .job-item-mentor-dashboard {
   width: 500px;
+  height: 52px;
   display: flex;
-  margin-top: 10px;
+  margin-top: -9px;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
@@ -80,19 +82,18 @@
 }
 
 .accept-button:hover {
-    background-color: white;
-    color: #696cff;
-
+  background-color: white;
+  color: #696cff;
 }
 
 .reject-button {
   margin-right: 30px;
   background-color: white;
-  color: #F2076A;
-  border: 1px solid #F2076A;
+  color: #f2076a;
+  border: 1px solid #f2076a;
 }
 
 .reject-button:hover {
-    background-color: #F2076A;
-    color: white;
+  background-color: #f2076a;
+  color: white;
 }

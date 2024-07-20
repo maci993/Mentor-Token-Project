@@ -5,7 +5,7 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import { UserProvider } from "./context/UserContext";
+import { UserProvider, useUser } from "./context/UserContext";
 import App from "./App.jsx";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
@@ -17,21 +17,39 @@ import RegisterStartup from "./pages/Register-Startup.jsx";
 import RegisterMentor from "./pages/Register-Mentor.jsx";
 import StartupDashboard from "./pages/StartupDashboard.jsx";
 import MentorDashboard from "./pages/MentorDashboard.jsx";
-import Mentors from "./pages/Mentors.jsx";
-import Jobs from "./pages/Jobs.jsx";
+// import Mentors from "./pages/Mentors.jsx";
+// import Jobs from "./pages/Jobs.jsx";
 import MyStats from "./pages/MyStats.jsx";
 import JobFeed from "./pages/JobFeed.jsx";
-import ErrorPage from "./pages/NotFound";
+import Mentors from "./pages/Mentors.jsx"
+import ErrorPage from "./pages/ErrorPage.jsx";
+import { jwtDecode } from "jwt-decode";
 import "./App.css";
 
+// let type;
 
-const userRole = "mentor"; // or "company"
+// try {
+//   const token = localStorage.getItem("jwt_token");
+//   if (token) {
+//     const decodedToken = jwtDecode(token);
+//     type = decodedToken.type;
+//     console.log("User role:", type);
+//   }
+// } catch (error) {
+//   console.error("Error decoding token:", error);
+//   type = null;
+// }
 
+// const { jwt_token, type, id } = data;
+
+const type = "company"; // or "company"
+// const { userRole } = useUser();
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -89,70 +107,74 @@ const router = createBrowserRouter([
           </Layout>
         ),
       },
-      ...(userRole === "company" ? [
-        {
-          path: "dashboard-startup",
-          element: (
-            <Layout nav={false} footer={false}>
-              <StartupDashboard />
-            </Layout>
-          ),
-        },
-        {
-          path: "mentors",
-          element: (
-            <Layout nav={false} footer={false}>
-              <Mentors />
-            </Layout>
-          ),
-        },
-        {
-          path: "jobs",
-          element: (
-            <Layout nav={false} footer={false}>
-              <Jobs />
-            </Layout>
-          ),
-        },
-      ] : []),
-      ...(userRole === "mentor" ? [
-        {
-          path: "dashboard-mentor",
-          element: (
-            <Layout nav={false} footer={false}>
-              <MentorDashboard />
-            </Layout>
-          ),
-        },
-        {
-          path: "job-feed",
-          element: (
-            <Layout nav={false} footer={false}>
-              <JobFeed />
-            </Layout>
-          ),
-        },
-        {
-          path: "my-stats",
-          element: (
-            <Layout nav={false} footer={false}>
-              <MyStats />
-            </Layout>
-          ),
-        },
-      ] : []),
+      ...(type === "company"
+        ? [
+            {
+              path: "dashboard-startup",
+              element: (
+                <Layout nav={false} footer={false}>
+                  <StartupDashboard />
+                </Layout>
+              ),
+            },
+            {
+              path: "mentors",
+              element: (
+                <Layout nav={false} footer={false}>
+                  <Mentors />
+                </Layout>
+              ),
+            },
+            {
+              path: "jobs",
+              element: (
+                <Layout nav={false} footer={false}>
+                  <JobFeed />
+                </Layout>
+              ),
+            },
+          ]
+        : []),
+      ...(type === "mentor"
+        ? [
+            {
+              path: "dashboard-mentor",
+              element: (
+                <Layout nav={false} footer={false}>
+                  <MentorDashboard />
+                </Layout>
+              ),
+            },
+            {
+              path: "job-feed",
+              element: (
+                <Layout nav={false} footer={false}>
+                  <JobFeed />
+                </Layout>
+              ),
+            },
+            {
+              path: "my-stats",
+              element: (
+                <Layout nav={false} footer={false}>
+                  <MyStats />
+                </Layout>
+              ),
+            },
+          ]
+        : []),
     ],
   },
-  {
-    path: "*",
-    element: <ErrorPage />,
-  },
+  // {
+  //   path: "*",
+  //   element: <ErrorPage />,
+  // },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-     <UserProvider>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
     </UserProvider>
   </React.StrictMode>
 );

@@ -18,7 +18,7 @@ const SideBar = ({ role }) => {
       { name: "Jobs", path: "/jobs" },
     ],
     mentor: [
-      { name: "Dashboard", path: "/dashboard" },
+      { name: "Dashboard", path: "/dashboard-mentor" },
       { name: "My Stats", path: "/my-stats" },
       { name: "Job Feed", path: "/job-feed" },
     ],

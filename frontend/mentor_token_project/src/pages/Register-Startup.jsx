@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LogPage from "../components/LogPage.jsx";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../components/Button.jsx";
 import StartupProfileImage from "../assets/Register-Images/profileImg.png";
 import CameraImage from "../assets/Register-Images/photo.png";
@@ -19,17 +19,15 @@ const RegisterStartup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isAccepted) {
-      console.log("StartupName", startupName);
-      console.log("nameSurname", nameSurname);
-      console.log("address", address);
-      console.log("email", email);
-      navigate("/");
-    } else {
-      alert(
-        "You need to accept the Terms of use & Privacy Policy to register."
-      );
-    }
+if(isAccepted){
+    console.log("StartupName", startupName);
+    console.log("nameSurname", nameSurname);
+    console.log("address", address);
+    console.log("email", email);
+    navigate("/");
+  } else {
+    alert("You need to accept the Terms of use & Privacy Policy to register.")
+  }
   };
 
   const toggleCheckbox = () => {
@@ -111,19 +109,14 @@ const RegisterStartup = () => {
               </div>
               <div className="under-button-text">
                 <div className="checkbox-container" onClick={toggleCheckbox}>
-                  <div
-                    className={`checkbox-custom ${
-                      isAccepted ? "checked" : "unchecked"
-                    }`}
-                  ></div>
-                  <span>
-                    {" "}
-                    By signing up to create an account I accept Company’s{" "}
-                  </span>
+                  <div className={`checkbox-custom ${isAccepted ? "checked" : "unchecked"}`}>
+                  </div>
+                  <span> By signing up to create an account I accept Company’s{" "}</span>
                   <span className="terms-of-use-text-register-form">
-                    Terms of use & Privacy Policy.
-                  </span>
-                </div>
+                  Terms of use & Privacy Policy.</span>
+                  </div>
+
+               
               </div>
             </div>
           </form>

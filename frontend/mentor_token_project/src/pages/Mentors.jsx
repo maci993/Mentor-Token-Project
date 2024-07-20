@@ -1,7 +1,9 @@
 import React from "react";
 
 const Mentors = () => {
-  return <h1>Mentors</h1>;
-};
+    return  (
+        <div>MENTORS</div>
+    )
+}
 
 export default Mentors;
