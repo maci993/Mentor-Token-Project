@@ -42,7 +42,7 @@ import "./App.css";
 
 // const { jwt_token, type, id } = data;
 
-const type = "company"; // or "company"
+const type = "mentor"; // or "company"
 // const { userRole } = useUser();
 
 const router = createBrowserRouter([
@@ -107,7 +107,7 @@ const router = createBrowserRouter([
           </Layout>
         ),
       },
-      ...(type === "company"
+      ...(type === "startup"
         ? [
             {
               path: "dashboard-startup",

@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { fetchJobApplications } from "../services/api";
+// import { fetchJobApplications } from "../services/api";
 import ClockImg from "../assets/clock.png";
 import "./ApplicationSent.css";
 
-const ApplicationSent = ({ title, description, application }) => {
+const API_BASE_URL = "/api";
+
+const fetchJobApplications = async (token) => {
+  const res = await fetch(`${API_BASE_URL}/jobapplications`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+  return res.json();
+};
+
+const ApplicationSent = ({ title, description }) => {
   const token = localStorage.getItem("jwt_token");
   const [applications, setApplications] = useState([]);
   const [error, setError] = useState(null);

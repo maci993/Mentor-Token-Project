@@ -1,4 +1,9 @@
+.body{
+  background-color: #f6f6f6;
+}
+
 .startup-dashboard-page {
+  background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,11 +29,18 @@
   flex: 1;
 }
 
+
+.assigned-jobs-startup-dashboard {
+  margin-top: -1045px;
+  margin-left: 50px;
+}
+
 .right-section {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-left: 190px;
 }
 
 .right-section .overall-statistics-title{

@@ -1,7 +1,9 @@
 .body{
   background-color: #f6f6f6;
 }
+
 .mentor-dashboard-page {
+  margin-left: 50px;
   background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
@@ -13,8 +15,7 @@
   display: flex;
   justify-content: flex-end;
   padding-bottom: 20px;
-  margin-top: 30px;
-  margin-left: -80px;
+  margin-left: 150px;
 }
 
 .dashboard-content {
@@ -23,5 +24,10 @@
 }
 
 .assigned-jobs-mentor-dashboard {
-  margin-top: -1045px;
+  margin-top: 10px;
+  margin-left: 50px;
+} 
+
+.dropdown-mentor-dashboard {
+  margin-right: -50px;
 }

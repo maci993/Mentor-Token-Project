@@ -1,0 +1,74 @@
+.user-info-card {
+  width: 233px;
+  height: 280px;
+  border: 1px solid #e0e0e0;
+  border-radius: 21px;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: -655px;
+  margin-top: 20px;
+}
+
+.user-image {
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.check-mark-green {
+  width: 20.89px;
+  height: 20.89px;
+  position: absolute;
+  margin-top: 74px;
+  margin-left: -25px;
+}
+.user-name-user-info-card {
+  font-size: 23px;
+  font-family: "Manrope";
+  line-height: 24px;
+  color: #566a7f;
+  font-weight: 600;
+  margin: 0;
+}
+
+.user-title-user-info-card {
+  color: #696cff;
+  font-family: "Manrope";
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
+  margin: 15px 0;
+}
+
+.user-email-user-info-card,
+.user-phone-user-info-card {
+  display: flex;
+  font-family: "Manrope";
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  margin-left: 5px;
+  color: #566A7F;
+}
+
+.user-email img,
+.user-phone img {
+  margin-right: 8px;
+  width: 14px;
+  height: 14px;
+}
+
+.user-linkedin-user-info-card {
+  width: 14px;
+  height: 13px;
+  position: absolute;
+  margin-top: -75px;
+  margin-left: 65px;
+}

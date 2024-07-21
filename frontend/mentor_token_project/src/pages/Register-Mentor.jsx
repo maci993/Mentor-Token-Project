@@ -43,7 +43,7 @@ const RegisterMentor = () => {
       console.log("skills", skills);
       console.log("phone", phone);
       console.log("description", description);
-      navigate("/");
+      navigate("/dashboard-mentor");
     } else {
       alert(
         "You need to accept the Terms of use & Privacy Policy to register."

@@ -24,7 +24,7 @@ if(isAccepted){
     console.log("nameSurname", nameSurname);
     console.log("address", address);
     console.log("email", email);
-    navigate("/");
+    navigate("/dashboard-startup");
   } else {
     alert("You need to accept the Terms of use & Privacy Policy to register.")
   }

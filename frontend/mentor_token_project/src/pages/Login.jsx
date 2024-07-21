@@ -40,7 +40,7 @@ const Login = () => {
         const type = decodedToken.type;
         console.log("User role:", type);
 
-        if (type === "company") {
+        if (type === "startup") {
           navigate("/dashboard-startup");
         } else if (type === "mentor") {
           navigate("/dashboard-mentor");

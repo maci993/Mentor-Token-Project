@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { fetchJobs } from "../services/api";
 import "./AssignedJobs.css";
+
+// const API_BASE_URL = "/api";
+
+// export const fetchJobs = async (token) => {
+//   const res = await fetch(`${API_BASE_URL}/jobs`, {
+//     method: "GET",
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
+//   if (!res.ok) {
+//     throw new Error(res.statusText);
+//   }
+//   const data = await res.json();
+//   return data;
+// };
 
 const jobsData = [
   { name: "Revenue per rate", status: "Done" },

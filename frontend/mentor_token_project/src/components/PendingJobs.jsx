@@ -1,6 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { fetchJobOffers, updateJobOfferStatus } from "../services/api";
 import "./PendingJobs.css";
+
+const API_BASE_URL = "/api";
+
+const fetchJobOffers = async (token) => {
+  const res = await fetch(`${API_BASE_URL}/jobs`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+  return res.json();
+};
+
+const updateJobOfferStatus = async (jobId, status, token) => {
+  const res = await fetch(`${API_BASE_URL}/jobs/${jobId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ status }),
+  });
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+  return res.json();
+};
 
 const PendingJobs = ({ title, description, jobs }) => {
   const token = window.localStorage.getItem("jwt_token");

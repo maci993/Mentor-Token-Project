@@ -1,0 +1,50 @@
+.quick-overview-card {
+  margin-top: -400px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f6f6f6;
+  margin-left: 600px;
+}
+
+
+.overview-item {
+  background-color: white;
+  width: 340px;
+  height: 71.83px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  padding-top: 10px;
+}
+
+.overview-item p {
+  font-family: "Roboto";
+  font-size: 16.19px;
+  font-weight: 400;
+  line-height: 18.97px;
+  margin-left: 20px;
+  margin-top: 5px;
+  color: #757d8a;
+}
+
+.overview-item h3 {
+  font-family: "Roboto";
+  font-size: 22.26px;
+  font-weight: 700;
+  line-height: 26.08px;
+  color: #404d61;
+  margin-left: 20px;
+  margin-top: -10px;
+}
+
+.finished-jobs {
+  background-color: #6366f1;
+  color: white;
+  border-radius: 5px;
+  width: 340px;
+  height: 71.83px;
+}
+
+.finished-jobs p,
+.finished-jobs h3 {
+  color: white;
+}

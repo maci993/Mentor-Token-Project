@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import "./BestPerformingMentors.css";
 import LucieWeber from "../assets/Startup-dashboard/LucieWeber.svg";
 import CrystalPorter from "../assets/Startup-dashboard/CrystalPorter.svg";
@@ -7,7 +8,14 @@ import Arrow from "../assets/arrowSymbol_mentors.svg";
 import BlueArrow from "../assets/arrowSymbol_mentors_blue.svg";
 import BlueOval from "../assets/Startup-dashboard/Oval Copy 11.png"
 
+// const API_URL = "/api";
+
 const BestPerformingMentors = () => {
+  const token = window.localStorage.getItem("jwt_token");
+  // const [mentors, setMentors] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const mentors = [
     {
       name: "Lucie Weber",
@@ -25,6 +33,49 @@ const BestPerformingMentors = () => {
       achievedJobs: 22,
     },
   ];
+  // useEffect(() => {
+  //   const fetchBestPerformingMentors = async (token) => {
+  //     try {
+  //       const res = await fetch("/api/best-performing-mentors", {
+  //         method: "GET",
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       console.log("Response status:", res.status);
+  //       if (!res.ok) {
+  //         throw new Error(`Error: ${res.status} ${res.statusText}`);
+  //       }
+
+  //       const data = await res.json();
+  //       console.log("Data fetched:", data);
+  //       return data;
+  //     } catch (error) {
+  //       throw error;
+  //     }
+  //   };
+
+  //   const fetchMentors = async () => {
+  //     try {
+  //       const mentorsData = await fetchBestPerformingMentors(token);
+  //       setMentors(mentorsData);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       console.error("Error fetching mentors:", err);
+  //       setError(err.message || "An unexpected error occurred");
+  //     }
+  //   };
+
+  //   fetchMentors();
+  // }, [token]);
+
+  // if (loading) {
+  //   return <p>Loading mentors...</p>;
+  // }
+
+  // if (error) {
+  //   return <p>Error loading mentors: {error}</p>;
+  // }
 
   return (
     <div className="best-performing-mentors-list">
