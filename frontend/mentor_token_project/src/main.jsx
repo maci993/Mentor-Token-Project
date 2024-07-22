@@ -21,6 +21,7 @@ import MentorDashboard from "./pages/MentorDashboard.jsx";
 // import Jobs from "./pages/Jobs.jsx";
 import MyStats from "./pages/MyStats.jsx";
 import JobFeed from "./pages/JobFeed.jsx";
+import Jobs from "./pages/Jobs.jsx"
 import Mentors from "./pages/Mentors.jsx"
 import ErrorPage from "./pages/ErrorPage.jsx";
 import { jwtDecode } from "jwt-decode";
@@ -129,7 +130,7 @@ const router = createBrowserRouter([
               path: "jobs",
               element: (
                 <Layout nav={false} footer={false}>
-                  <JobFeed />
+                  <Jobs />
                 </Layout>
               ),
             },

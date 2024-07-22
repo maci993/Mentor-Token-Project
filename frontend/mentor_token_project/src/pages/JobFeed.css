@@ -1,0 +1,25 @@
+.job-feed-page {
+  width: 100%;
+  height: 100%;
+  margin-left: 50px;
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.search-bar-job-feed {
+  padding-left: 650px;
+  padding-top: 80px;
+}
+
+.user-dropdown-job-feed {
+  margin-left: 1300px;
+  margin-top: -70px;
+}
+
+.job-card-job-feed h1 {
+margin-left: 385px;
+margin-top: 80px;
+}

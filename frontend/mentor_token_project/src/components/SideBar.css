@@ -55,12 +55,12 @@
 }
 
 .sidebar-menu .menu-item.active {
-  background-color: #007bff;
+  background-color: #9b9cff;
   color: white;
 }
 
 .sidebar-menu .menu-item:hover {
-  background-color: #ddd;
+  background-color: #9b9cff;
 }
 
 .sidebar-footer {
