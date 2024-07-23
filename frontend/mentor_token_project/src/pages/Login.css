@@ -5,7 +5,10 @@
   line-height: 90px;
 }
 
-h1 {
+.log-in-title {
+  width: 430px;
+  margin-left: 0;
+  margin-top: -10px;
   font-family: "Manrope";
   font-weight: 700;
   font-size: 34px;
@@ -16,7 +19,8 @@ h1 {
   z-index: 999;
 }
 
-.log-in-section_component p {
+.under-title-paragraph {
+  margin-top: 60px;
   padding: 0 0 90px 0;
   color: rgba(170, 180, 191, 1);
   letter-spacing: 0.03em;

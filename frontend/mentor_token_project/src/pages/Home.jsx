@@ -6,8 +6,8 @@ import Computer from "../assets/computer.png";
 import Logos from "../assets/Company-logos/Logos1.svg";
 import Logos1 from "../assets/Company-logos/Logos2.svg";
 // import Mentors from "../components/Mentors";
-import Rocket from "../assets/Rocket.svg"
-import Picture from "../assets/picture-group-hp.svg"
+import Rocket from "../assets/Rocket.svg";
+import Picture from "../assets/picture-group-hp.svg";
 import Mentors from "../assets/Mentors-img.svg";
 import Features from "../components/Features";
 
@@ -23,12 +23,12 @@ const Home = () => {
     <div className="home-page">
       <div className="images-container">
         <div className="text-home-page">
-          <h1>
+          <h1 className="title-home-page">
             Grow your StartUp! <br />
             Monitoring and <br />
             Evaluating now is easy!
           </h1>
-          <p>
+          <p className="paragraph-home">
             Welcome to Mentor Token, where we redifine the dynamic of start-up{" "}
             <br />
             succes. Our innovative platform offers a transformative approach to{" "}
@@ -69,7 +69,7 @@ const Home = () => {
       <div className="rocket-home">
         <img src={Rocket} alt="rocket-image" />
       </div>
-      <Features />
+      <Features className="features-home-page"/>
       <div>
         <h1 className="success-paragraph">
           Every <span className="highlight">success</span> is rewarded!
@@ -80,7 +80,7 @@ const Home = () => {
         <img className="mentors-image" src={Mentors} alt="mentors-img" />
       </div>
       <div className="picture-group-mentors">
-<img src={Picture} alt="picture-group" />
+        <img src={Picture} alt="picture-group" />
       </div>
     </div>
   );

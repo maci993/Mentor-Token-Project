@@ -42,7 +42,7 @@ const JobList = ({ jobs }) => {
           </select>
         </label>
 </div>
-<div className="job-list">
+<div className="job-list-job-feed">
         {sortedJobs.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}

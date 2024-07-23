@@ -19,15 +19,19 @@
   margin: auto;
 }
 
-.text-home-page h1 {
+.text-home-page .title-home-page {
   width: 614px;
   height: 378px;
+  font-family: "Manrope";
+  line-height: 67.2px;
+  font-weight: 700;
   font-size: 56px;
   gap: 32px;
   margin-left: 50px;
+  color: #232323;
 }
 
-.text-home-page p {
+.text-home-page .paragraph-home {
   font-size: 18px;
   line-height: 28.8px;
   position: relative;
@@ -77,14 +81,14 @@
   position: absolute;
   bottom: 5px;
   left: 750px;
-  top: 130%;
+  top: 100%;
   transform: translateX(-50%);
   text-align: center;
   margin-bottom: 50px;
 }
 
 .logo {
-  margin-left: 120px
+  margin-left: 380px
 }
 
 .logo1 {
@@ -92,7 +96,7 @@
   height: 15%;
   position: absolute;
   bottom: 5px;
-  margin-left: 750px;
+  margin-left: 1050px;
   top: 18%;
   transform: translateX(-50%);
   z-index: 2;
@@ -109,16 +113,16 @@
   height: 15%;
   position: absolute;
   bottom: 5px;
-  margin-left: 620px;
-  top: 160%;
+  margin-left: 820px;
+  top: 130%;
 }
 
 .rocket-home {
   position: absolute;
   width: 689px;
   height: 616px;
-  top: 950px;
-  margin-left: 799px;
+  top: 960px;
+  margin-left: 999px;
   rotate: 9.13°;
 }
 
@@ -135,24 +139,28 @@
 .highlight {
   color: #696cff;
 }
+/* 
+.features-home-page {
+  padding-left: 130px;
+} */
 
 .mentors-component {
   border: 5px solid #696cff;
   display: flex;
   height: 886px;
-  width: 1234px;
+  width: 1334px;
   border-radius: 60px;
   margin-top: 220px;
-  margin-left: 200px;
+  margin-left: 300px;
   padding-top: 20px;
   margin-bottom: 50px;
 }
 
 .mentors-image {
-  width: 1175px;
+  width: 1575px;
   height: 836px;
   margin-top: 18px;
-  margin-left: 30px;
+  margin-left: 0;
   border-radius: 57px;
 }
 
@@ -160,6 +168,6 @@
   position: absolute;
   width: 558px;
   height: 522px;
-  top: 2280px;
-  left: 768px;
+  top: 2350px;
+  left: 968px;
 }

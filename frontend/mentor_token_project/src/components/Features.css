@@ -5,31 +5,35 @@
   background: linear-gradient(135deg, #696bfe, #6457fc, #9473fe, #987cfa);
   background-size: 100% 100%;
   margin-top: 700px;
-  padding-right: 70px;
-  padding-left: 30px;
-  margin-right: 5%;
-  margin-left: 80px;
-  width: 1400px;
+  width: 1800px;
   height: 758px;
   border-radius: 20px;
+  margin-left: 110px;
+  margin-right: 50px;
 }
 
 .main-title-features {
   font-size: 18px;
   line-height: 21.6px;
   font-weight: 700px;
-  padding-top: 30px;
+  padding-top: 100px;
 }
 .title {
+  width: 614px;
+  height: 188px;
+  font-family: "Manrope";
+  font-weight: 500;
   font-size: 40px;
+  margin-left: 580px;
+  color: white;
   line-height: 47px;
   margin-top: 80px;
 }
 
 .cards {
+  margin-left: 150px;
   border-radius: 20px;
-  margin-top: 10%;
-  width: 1200px;
+  width: 1240px;
   height: 400px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -41,7 +45,7 @@
   background-color: rgb(255, 255, 255, 0.1);
   /* background-color: rgb(124, 124, 255); */
   color: white;
-  width: 298px;
+  width: 300px;
   height: 250px;
   border-radius: 12px;
   padding: 32px, 32px, 52px, 34px;

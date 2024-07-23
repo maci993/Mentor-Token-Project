@@ -5,7 +5,6 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import { UserProvider, useUser } from "./context/UserContext";
 import App from "./App.jsx";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
@@ -21,30 +20,15 @@ import MentorDashboard from "./pages/MentorDashboard.jsx";
 // import Jobs from "./pages/Jobs.jsx";
 import MyStats from "./pages/MyStats.jsx";
 import JobFeed from "./pages/JobFeed.jsx";
-import Jobs from "./pages/Jobs.jsx"
-import Mentors from "./pages/Mentors.jsx"
+import Jobs from "./pages/Jobs.jsx";
+import Mentors from "./pages/Mentors.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
+import ProtectedRoutes from "./routes/ProtectedRoutes.jsx";
 import { jwtDecode } from "jwt-decode";
 import "./App.css";
 
-// let type;
 
-// try {
-//   const token = localStorage.getItem("jwt_token");
-//   if (token) {
-//     const decodedToken = jwtDecode(token);
-//     type = decodedToken.type;
-//     console.log("User role:", type);
-//   }
-// } catch (error) {
-//   console.error("Error decoding token:", error);
-//   type = null;
-// }
-
-// const { jwt_token, type, id } = data;
-
-const type = "mentor"; // or "company"
-// const { userRole } = useUser();
+const type = "company"; // or "mentor"
 
 const router = createBrowserRouter([
   {
@@ -108,62 +92,68 @@ const router = createBrowserRouter([
           </Layout>
         ),
       },
-      ...(type === "startup"
-        ? [
-            {
-              path: "dashboard-startup",
-              element: (
-                <Layout nav={false} footer={false}>
-                  <StartupDashboard />
-                </Layout>
-              ),
-            },
-            {
-              path: "mentors",
-              element: (
-                <Layout nav={false} footer={false}>
-                  <Mentors />
-                </Layout>
-              ),
-            },
-            {
-              path: "jobs",
-              element: (
-                <Layout nav={false} footer={false}>
-                  <Jobs />
-                </Layout>
-              ),
-            },
-          ]
-        : []),
-      ...(type === "mentor"
-        ? [
-            {
-              path: "dashboard-mentor",
-              element: (
-                <Layout nav={false} footer={false}>
-                  <MentorDashboard />
-                </Layout>
-              ),
-            },
-            {
-              path: "job-feed",
-              element: (
-                <Layout nav={false} footer={false}>
-                  <JobFeed />
-                </Layout>
-              ),
-            },
-            {
-              path: "my-stats",
-              element: (
-                <Layout nav={false} footer={false}>
-                  <MyStats />
-                </Layout>
-              ),
-            },
-          ]
-        : []),
+
+      {
+        path: "dashboard-startup",
+        element: (
+          <ProtectedRoutes>
+          <Layout nav={false} footer={false}>
+            <StartupDashboard />
+          </Layout>
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "mentors",
+        element: (
+          <ProtectedRoutes>
+          <Layout nav={false} footer={false}>
+            <Mentors />
+          </Layout>
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "jobs",
+        element: (
+          <ProtectedRoutes>
+          <Layout nav={false} footer={false}>
+            <Jobs />
+          </Layout>
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "dashboard-mentor",
+        element: (
+      <ProtectedRoutes>
+          <Layout nav={false} footer={false}>
+            <MentorDashboard />
+          </Layout>
+          </ProtectedRoutes>
+        ),
+      },
+      {
+
+        path: "job-feed",
+        element: (
+          <ProtectedRoutes>
+          <Layout nav={false} footer={false}>
+            <JobFeed />
+          </Layout>
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "my-stats",
+        element: (
+          <ProtectedRoutes>
+          <Layout nav={false} footer={false}>
+            <MyStats />
+          </Layout>
+          </ProtectedRoutes>
+        ),
+      },
     ],
   },
   // {
@@ -174,8 +164,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <UserProvider>
       <RouterProvider router={router} />
-    </UserProvider>
   </React.StrictMode>
 );

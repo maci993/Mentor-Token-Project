@@ -44,12 +44,12 @@ const ApplicationSent = ({ title, description }) => {
 
   return (
     <div className="application-sent">
-      <h2>{title}</h2>
-      <p>{description}</p>
+      <h2 className="application-sent-title">{title}</h2>
+      <p className="application-sent-paragraph">{description}</p>
       <div className="applications-list">
         {applications.map((application, index) => (
           <div key={index} className="application-item">
-            <span className="application-title">{application.title}</span>
+            <span className="application-title-span">{application.title}</span>
             <div className="application-status">
               <img
                 src={ClockImg}

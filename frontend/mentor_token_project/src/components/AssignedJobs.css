@@ -1,12 +1,13 @@
 .assigned-jobs-container {
   width: 100%;
   max-width: 600px;
-  margin-left: 500px;
+  margin-left: 650px;
+  margin-top: 1000px;
   padding: 20px;
   box-sizing: border-box;
 }
 
-.assigned-jobs-container h1 {
+.assigned-jobs-title {
   width: 250px;
   height: 20px;
   top: 148px;
@@ -41,13 +42,13 @@
   color: #696cff;
 }
 
-.job-list {
+.job-list-assigned-jobs{
   margin-top: 10px;
   overflow: hidden;
   margin-left: -450px;
 }
 
-.job-list .job-item-mentor-dashboard {
+.job-list-assigned-jobs .job-item-mentor-dashboard {
   width: 500px;
   height: 52px;
   font-family: "Nunito Sans";

@@ -61,8 +61,8 @@ const Login = () => {
     <LogPage
       logData={
         <>
-          <h1>LOG IN TO MENTOR TOKEN</h1>
-          <p>Enter your email and pass to login.</p>
+          <h1 className="log-in-title">LOG IN TO MENTOR TOKEN</h1>
+          <p className="under-title-paragraph">Enter your email and pass to login.</p>
           <form className="log-in-form" onSubmit={handleLogin}>
             <div className="log-in-inputs">
               <input

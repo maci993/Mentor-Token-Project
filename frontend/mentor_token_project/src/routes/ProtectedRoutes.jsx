@@ -1,14 +1,22 @@
-// import React from 'react';
-// import { Navigate } from 'react-router-dom';
-// import { useUser } from '../context/UserContext';
+import React from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import  useAuth  from "../hooks/useAuth.jsx"
+import PropTypes from "prop-types"
 
-// const ProtectedRoute = ({ children }) => {
-//     const { user } = useUser();
 
-//     if (!user) {
-//       return <Navigate to="/login" replace />;
-//     }
-//     return children;
-//   };
+const ProtectedRoutes = ({ children }) => {
+    const location = useLocation();
+    const isAuth = useAuth();
 
-//   export default ProtectedRoute;
+    return useAuth ? (
+        children
+    ) : (
+        <Navigate to= "/" replace state={{ from: location }} />
+    );
+  };
+
+  ProtectedRoutes.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
+  export default ProtectedRoutes;

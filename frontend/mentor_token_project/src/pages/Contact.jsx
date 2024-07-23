@@ -21,8 +21,8 @@ const Contact = () => {
   return (
     <div className="contact-section">
       <div className="contact-container">
-        <h1>Let's Talk!</h1>
-        <p>
+        <h1 className="contact-page-title">Let's Talk!</h1>
+        <p className="paragraph-contact-page">
           We're thrilled to connect with you! Whether you have a question, need
           assistance, or want to discuss a potential project, we're<br /> here to
           listen and help. At Mentor Token, we believe in the power of

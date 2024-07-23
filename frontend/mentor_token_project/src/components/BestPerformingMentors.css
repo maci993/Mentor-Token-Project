@@ -12,7 +12,7 @@
   box-shadow: 0 4px 16px rgba(204, 188, 252, 0.15);
 }
 
-.best-performing-mentors-list h1 {
+.best-performing-mentors-title {
   width: 402px;
   height: 22px;
   margin-top: -105px;
@@ -20,7 +20,7 @@
   color: #404d61;
 }
 
-.best-performing-mentors-list ul {
+.best-performing-mentors-list-unordered{
   margin-top: 85px;
 }
 
@@ -57,8 +57,7 @@
   margin-right: 10px;
 }
 
-
-.mentors-details h3 {
+.mentors-details .mentor-name{
   font-family: "Manrope";
   font-size: 16px;
   color: #8b8795;

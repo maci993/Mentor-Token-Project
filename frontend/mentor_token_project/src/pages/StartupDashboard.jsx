@@ -26,9 +26,10 @@ const StartupDashboard = () => {
         <UserDropdownInfo 
         userImg={UserCompany}
         userName="TechWave"
-        userTitle="Innovations"/>
+        userTitle="Innovations"
+        className="drop-down-startup-dash"/>
       </header>
-      <SearchBar placeholder="Search Mentor..." />
+      <SearchBar placeholder="Search Mentor..." className="search-bar-startup-dash"/>
       <div className="dashboard-content">
       <div className="left-section">
       <div className="sidebar-startup-dashboard">
@@ -39,7 +40,7 @@ const StartupDashboard = () => {
           </div>
         </div>
         <div className="right-section">
-          <BestPerformingMentors />
+          <BestPerformingMentors  className="best-performing-mentors-startup-dash"/>
           <p className="overall-statistics-title">OVERALL STATISTICS</p>
           <Statistics
             title="STATISTICS"

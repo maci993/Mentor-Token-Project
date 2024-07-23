@@ -62,8 +62,8 @@ const About = () => {
           {/* <div className="bg-image"> */}
             {/* <img src={hero} alt="hero-background" /> */}
             {/* <div className="text-section"> */}
-              <h1>Meet our team members</h1>
-              <p>
+              <h1 className="title-about-page">Meet our team members</h1>
+              <p className="paragraph-about-page">
                 We Focus on the details of everything we do. All to help
                 businesses around the world
                 <br />
@@ -75,7 +75,7 @@ const About = () => {
               </Link>
               </div>
         </div>
-        <div className="user-cards">
+        <div className="user-cards-about-page">
         {users.map((user, index) => (
           <UserCard key={index} img={user.img} name={user.name} position={user.position} hobby={user.hobby}/>
         ))}

@@ -4,7 +4,6 @@ import SideBar from "../components/SideBar";
 import SearchBar from "../components/SearchBar";
 import UserDropdownInfo from "../components/UserDropdownInfo";
 import Kirra from "../assets/KirraPress.png";
-import JobCard from "../components/JobCard";
 import JobList from "../components/JobList"
 import CompanyLogo from "../assets/Job-Feed/companyLogo.svg"
 import CompanyLogo1 from "../assets/Job-Feed/companyLogo1.svg"
@@ -22,8 +21,6 @@ const JobFeed = () => {
         const myToken = jwtDecode(localStorage.getItem("jwt_token"));
         console.log("Retrieved role:", myToken.type);
         setRole(myToken.type);
-    
-    
     
 
       const jobs = [

@@ -85,7 +85,7 @@ const AssignedJobs = () => {
 
   return (
     <div className="assigned-jobs-container">
-      <h1>Assigned Jobs</h1>
+      <h1 className="assigned-jobs-title">Assigned Jobs</h1>
       <div className="filter-tabs">
         {["All", "Done", "Rejected", "In Progress"].map((tab) => (
           <button
@@ -97,7 +97,7 @@ const AssignedJobs = () => {
           </button>
         ))}
       </div>
-      <div className="job-list">
+      <div className="job-list-assigned-jobs">
         {filteredJobs.map((job, index) => (
           <div key={index} className="job-item-mentor-dashboard">
             <span className="job-name">{job.name}</span>

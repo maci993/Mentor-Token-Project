@@ -79,8 +79,8 @@ const BestPerformingMentors = () => {
 
   return (
     <div className="best-performing-mentors-list">
-      <h1>Best Performing Mentors</h1>
-      <ul>
+      <h1 className="best-performing-mentors-title">Best Performing Mentors</h1>
+      <ul className="best-performing-mentors-list-unordered">
         {mentors.map((mentor, index) => (
           <li key={index} className="mentor-item">
             <div className="best-mentor-info">
@@ -92,7 +92,7 @@ const BestPerformingMentors = () => {
               />
 
               <div className="mentors-details">
-                <h3>{mentor.name}</h3>
+                <h3 className="mentor-name">{mentor.name}</h3>
                 <p>
                  <span className="mentor-jobs-number"> {mentor.achievedJobs}</span> <br/>Achieved Jobs
                   </p>

@@ -138,7 +138,7 @@ const Register = () => {
     <LogPage
       logData={
         <>
-          <h1 className="register-title">Choose Account type</h1>
+          <h1 className="register-page-title">CHOOSE ACCOUNT TYPE</h1>
           <div style={{ width: "528px", height: "46px" }}>
             <SwitchSelector
               onChange={updateRole}

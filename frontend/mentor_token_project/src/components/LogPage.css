@@ -6,7 +6,7 @@
   flex-direction: screen;
   justify-content: center;
   align-items: center;
-  width: 1440px;
+  width: 1640px;
   height: 1024px;
   background: linear-gradient(177.44deg, #696cff 21.89%, #9574ff 74.83%);
 }
@@ -38,17 +38,22 @@
   height: 824px;
 }
 
-.log-in-page-info h1 {
+.grow-your-startup-title {
+  color: #FFFF;
+  font-family: "Manrope";
+
   margin: 0;
   padding: 0;
   font-weight: 700;
-  font-size: 4.9em;
+  font-size: 88.63px;
   line-height: 90px;
 }
 
-.log-in-page-info span {
-  margin: 0;
-  padding: 0;
+.span-log-page {
+  font-family: "Manrope";
+  position: absolute;
+  color: #FFFF;
+  margin-top: 250px;
   font-size: 20px;
   line-height: 50px;
   font-weight: 700;

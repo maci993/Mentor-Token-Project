@@ -19,12 +19,12 @@ const LogPage = ({ logData }) => {
           <NavLink to="/">
           <span className="back-text">← Back</span>
           </NavLink>
-          <h1>
+          <h1 className="grow-your-startup-title">
             GROW
             <br />
             YOUR STARTUP!
           </h1>
-          <span>MONITORING AND EVALUATING NOW IS EASY!</span>
+          <span className="span-log-page">MONITORING AND EVALUATING NOW IS EASY!</span>
         </div>
         <div className="log-in-page-logo">
           <NavLink to="/">

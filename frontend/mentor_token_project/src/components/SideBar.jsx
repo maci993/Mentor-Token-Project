@@ -9,7 +9,7 @@ import LogoutIcon from "../assets/Sidebar-icons/logout.svg";
 import "./SideBar.css";
 
 const SideBar = ({ role }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const menuItems = {
     startup: [
@@ -20,7 +20,7 @@ const SideBar = ({ role }) => {
     mentor: [
       { name: "Dashboard", path: "/dashboard-mentor", icon: DashboardIcon },
       { name: "My Stats", path: "/my-stats", icon: MentorIcon },
-      { name: "Job Feed", path: "/job-feed", JobsIcon },
+      { name: "Job Feed", path: "/job-feed", icon: JobsIcon },
     ],
   };
 
