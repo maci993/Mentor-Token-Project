@@ -37,14 +37,17 @@ const MentorDashboard = () => {
   return (
     <div className="mentor-dashboard-page">
       <header className="dashboard-header">
+        <div className="test">
+      <SearchBar placeholder="Search" className="search-bar-mentor-dashboard" style={{ marginLeft: 250}}/>
         <UserDropdownInfo
           userImg={Kirra}
           userName="Kirra Press"
           userTitle="Mentor"
           className="dropdown-mentor-dashboard"
         />
+        </div>
       </header>
-      <SearchBar placeholder="Search" />
+      
       <div className="dashboard-content">
         <div className="left-section">
           <div className="sidebar-mentor-dashboard">
@@ -59,6 +62,7 @@ const MentorDashboard = () => {
             title="Pending Jobs"
             description="Jobs offered from your startup"
             jobs={pendingJobs}
+        
           />
           <ApplicationSent 
           title="Applications sent"

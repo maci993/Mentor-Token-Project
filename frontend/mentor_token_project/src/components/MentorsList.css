@@ -1,0 +1,152 @@
+.mentor-card-company-view {
+  width: 741px;
+  height: 160px;
+  gap: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+.mentor-image {
+  width: 81px;
+  height: 81px;
+  border-radius: 50%;
+  margin-right: 600px;
+  margin-top: 30px;
+}
+
+.mentor-name {
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18.15px;
+  color: #000000;
+  margin-left: 120px;
+  /* margin-right: 420px; */
+  margin-top: -100px;
+}
+
+.mentor-rating {
+  display: flex;
+  align-items: center;
+  font-family: "Inter";
+  font-weight: 400;
+  line-height: 12.1px;
+  font-size: 10px;
+  color: #000000;
+  margin-top: 2px;
+  margin-left: 120px;
+}
+
+.mentor-rating-span {
+  margin-left: 10px;
+}
+
+.mentor-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.mentor-skills {
+  font-family: "Inter";
+  font-weight: 500;
+  line-height: 14.52px;
+  font-size: 13px;
+  color: #000000;
+  margin-top: 30px;
+  margin-left: 120px;
+}
+
+.mentor-description {
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.52px;
+  color: #000000;
+  margin-top: 30px;
+  margin-left: 120px;
+}
+
+.view-mentor-btn {
+  width: 128px;
+  height: 45px;
+  background-color: #696cff;
+  position: absolute;
+  color: white;
+  font-family: "Noto Sans";
+  font-size: 11.13px;
+  line-height: 14.47px;
+  font-weight: 400;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 240px;
+  margin-top: -50px;
+  transition: background-color 0.3s ease;
+}
+
+.view-mentor-button:hover {
+  background-color: #575af6;
+}
+
+.star {
+  margin-left: 0px;
+  width: 14.72px;
+  height: 14px;
+  /* fill: #575af6; */
+  border: 1px;
+}
+
+.mentor-rating .star-rating {
+
+}
+/* .stars-out {
+  display: inline-block;
+  position: relative;
+  /* font-family: "Font Awesome"; */
+  /* margin-right: 5px;
+} */
+
+/* .stars-in {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #575af6;
+} */
+ */
+
+/* .star {
+  width: 20px;
+  height: 20px;
+  fill: #575af6;
+  
+}
+
+.stars-in .star {
+  fill: #575af6;
+
+} */
+
+
+/* .stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+  color: #ccc;
+  /* font-family: "Font Awesome"; */
+/* } */
+
+/* .stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome";
+} */ */
+
+.mentor-list {
+  display: flex;
+  flex-direction: column;
+}

@@ -11,23 +11,50 @@
   padding: 20px;
 }
 
-.dashboard-header {
+.test {
   display: flex;
-  justify-content: flex-end;
-  padding-bottom: 20px;
-  margin-left: 150px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dashboard-header {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+margin-top: 100px;
+width: 100%;
+  margin-top: 100px;
+  padding-bottom: 20px; */
+  margin-top: 70px;
+  margin-right: 150px;
+  position: absolute;
+
 }
 
 .dashboard-content {
-  width: 100%;
-  margin-top: 20px;
+  /* width: 100%;
+  margin-top: 20px; */
+  display: flex;
+  gap: 20px;
+  margin-top: 80px;
 }
 
 .assigned-jobs-mentor-dashboard {
-  margin-top: -1000px;
-  margin-left: 50px;
+  margin-top: -900px;
+  margin-left: 0;
 } 
 
+/* .dashboard-header {  
+  margin-right: 150px;
+  margin-top: 50px;
+} */
+
+.search-bar-mentor-dashboard {
+  margin-left: 400px;
+  display: flex;
+  margin-top: 0px;
+}
+
 .dropdown-mentor-dashboard {
-  margin-right: -50px;
+  margin-right: 20px;
 }

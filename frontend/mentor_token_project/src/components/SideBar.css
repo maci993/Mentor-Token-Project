@@ -1,4 +1,8 @@
 .sidebar {
+  font-family: "Manrope";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
   width: 250px;
   background-color: #ffffff;
   padding: 20px;

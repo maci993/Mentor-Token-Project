@@ -1,61 +1,62 @@
 import React, { useState, useEffect } from "react";
 import "./AssignedJobs.css";
 
-// const API_BASE_URL = "/api";
-
-// export const fetchJobs = async (token) => {
-//   const res = await fetch(`${API_BASE_URL}/jobs`, {
-//     method: "GET",
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-//   if (!res.ok) {
-//     throw new Error(res.statusText);
-//   }
-//   const data = await res.json();
-//   return data;
-// };
-
-const jobsData = [
-  { name: "Revenue per rate", status: "Done" },
-  { name: "ARPU (Average revenue per use)", status: "Rejected" },
-  { name: "CAC (Custom Acquisition Cost)", status: "In Progress" },
-  { name: "Churn Rate", status: "Done" },
-  { name: "Burn Rate", status: "In Progress" },
-  { name: "Operation Efficiency", status: "Done" },
-  { name: "Burn Rate", status: "In Progress" },
-  { name: "Operation Efficiency", status: "Done" },
-  { name: "Burn Rate", status: "In Progress" },
-  { name: "Operation Efficiency", status: "Done" },
-];
+// const jobsData = [
+//   { name: "Revenue per rate", status: "Done" },
+//   { name: "ARPU (Average revenue per use)", status: "Rejected" },
+//   { name: "CAC (Custom Acquisition Cost)", status: "In Progress" },
+//   { name: "Churn Rate", status: "Done" },
+//   { name: "Burn Rate", status: "In Progress" },
+//   { name: "Operation Efficiency", status: "Done" },
+//   { name: "Burn Rate", status: "In Progress" },
+//   { name: "Operation Efficiency", status: "Done" },
+//   { name: "Burn Rate", status: "In Progress" },
+//   { name: "Operation Efficiency", status: "Done" },
+// ];
 
 const AssignedJobs = () => {
-  // const token = window.localStorage.getItem("jwt_token");
-  // console.log("jwt_token", token);
+  const token = window.localStorage.getItem("jwt_token");
+  console.log("jwt_token", token);
   const [filter, setFilter] = useState("All");
-  // const [jobs, setJobs] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-  // const [jobsData, setJobsData] = useState([]);
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [jobsData, setJobsData] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchJobPosts = async () => {
-  //     try {
-  //       const data = await fetchJobs(token);
-  //       // setJobs(jobsData);
-  //       console.log(data, "data from assigned jobs");
-  //       setJobsData(data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("Error fetching jobs:", error);
-  //       setError(error.message || "An unexpected error occurred");
-  //       setLoading(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchJobPosts = async () => {
+      try {
+        const response = await fetch("http://localhost:10000/api/jobs", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`Error fetching jobs: ${response.statusText}`);
+        }
+        const dataa = await response.json();
+        setJobsData(dataa);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+        setError(error.message || "An unexpected error occurred");
+        setLoading(false);
+      }
+    };
+    // setJobs(jobsData);
+    //     console.log(data, "data from assigned jobs");
+    //     setJobsData(data);
+    //     setLoading(false);
+    //   } catch (error) {
+    //     console.error("Error fetching jobs:", error);
+    //     setError(error.message || "An unexpected error occurred");
+    //     setLoading(false);
+    //   }
+    // };
 
-  //   fetchJobPosts();
-  // }, [token]);
+    fetchJobPosts();
+  }, [token]);
 
   const filteredJobs = jobsData.filter((job) => {
     if (filter === "All") return true;
@@ -75,13 +76,13 @@ const AssignedJobs = () => {
     }
   };
 
-  // if (loading) {
-  //   return <p>Loading jobs...</p>;
-  // }
+  if (loading) {
+    return <p>Loading jobs...</p>;
+  }
 
-  // if (error) {
-  //   return <p>Error loading jobs: {error}</p>;
-  // }
+  if (error) {
+    return <p>Error loading jobs: {error}</p>;
+  }
 
   return (
     <div className="assigned-jobs-container">
@@ -100,7 +101,7 @@ const AssignedJobs = () => {
       <div className="job-list-assigned-jobs">
         {filteredJobs.map((job, index) => (
           <div key={index} className="job-item-mentor-dashboard">
-            <span className="job-name">{job.name}</span>
+            <span className="job-name">{job.title}</span>
             <span className={`status-button ${getStatus(job.status)}`}>
               {job.status}
             </span>

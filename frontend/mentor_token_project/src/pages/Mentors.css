@@ -1,0 +1,75 @@
+.body {
+  background-color: #f6f6f6;
+}
+
+.mentors-list-company-view {
+  margin-left: 50px;
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.mentors-company-view {
+  /* display: flex;
+    justify-content: space-between;
+    align-items: center;
+  margin-top: 100px;
+  width: 100%;
+    margin-top: 100px;
+    padding-bottom: 20px; */
+  margin-top: 70px;
+  margin-right: 150px;
+  position: absolute;
+}
+
+.search-bar-company-view {
+  margin-left: 400px;
+  display: flex;
+  margin-top: 0px;
+}
+
+.search-bar-and-dropdown .dropdown-company-view {
+  margin-right: 20px;
+}
+
+.mentors-list-company-view {
+  padding-top: 250px;
+  padding-right: 560px;
+}
+
+.quick-overview-company-view {
+  position: absolute;
+  margin-left: 650px;
+  margin-top: -200px;
+}
+
+.quick-overview-paragraph {
+  width: 166px;
+  height: 22px;
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 22px;
+  color: #404d61;
+  position: absolute;
+  margin-top: -500px;
+  margin-left: 620px;
+}
+
+.quick-overview-paragraph1 {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #757d8a;
+  position: absolute;
+  margin-top: -460px;
+  margin-left: 620px;
+}
+
+.drop-down-startup-view {
+  margin-left: 1700px;
+  margin-top: -70px;
+}

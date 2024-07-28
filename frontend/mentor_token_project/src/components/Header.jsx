@@ -23,7 +23,7 @@ const Header = () => {
       <img src={Logo} className="app-logo" alt="logo-img" />
       <nav>
         <ul className="header">
-          <li>
+          <li className="list-header-section">
             <NavLink activeStyle={{ color: "#696cff" }} to="/">
               Home
             </NavLink>

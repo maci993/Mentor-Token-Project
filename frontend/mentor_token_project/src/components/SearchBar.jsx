@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./SearchBar.css";
 
-const SearchBar = ({ placeholder, onSearch }) => {
+const SearchBar = ({ placeholder, onSearch, className }) => {
   const [query, setQuery] = useState("");
 
   const handleInputChange = (event) => {
@@ -12,7 +12,7 @@ const SearchBar = ({ placeholder, onSearch }) => {
   };
 
   return (
-    <div className="search-bar">
+    <div className={`search-bar ${className}`} >
       <FontAwesomeIcon icon={faSearch} className="search-icon" />
       <input
         type="text"

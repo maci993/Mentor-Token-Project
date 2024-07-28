@@ -2,7 +2,7 @@ import React from "react";
 import "./Statistics.css";
 import PropTypes from "prop-types";
 
-const Statistics = ({ title, description, dataPoints }) => {
+const Statistics = ({ title, description, dataPoints = [] }) => {
   const points = dataPoints
     .map((point, index) => `${index * 50},${150 - point}`)
     .join(" ");

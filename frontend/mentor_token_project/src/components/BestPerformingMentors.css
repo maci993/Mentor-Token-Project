@@ -2,7 +2,7 @@
   width: 592px;
   height: 440px;
   padding-right: 30px;
-  margin-top: 150px;
+  margin-top: 30px;
   margin-left:-100px;
   /* margin-top: 40px;
   padding-right: 30px;
@@ -15,13 +15,14 @@
 .best-performing-mentors-title {
   width: 402px;
   height: 22px;
-  margin-top: -105px;
+  font-size: 34px;
+  margin-top: -115px;
   margin-left: 0;
   color: #404d61;
 }
 
 .best-performing-mentors-list-unordered{
-  margin-top: 85px;
+  margin-top: 95px;
 }
 
 .mentor-item {
@@ -58,6 +59,7 @@
 }
 
 .mentors-details .mentor-name{
+  margin-top: 10px;
   font-family: "Manrope";
   font-size: 16px;
   color: #8b8795;
@@ -70,7 +72,7 @@
   position: absolute;
   font-size: 12px;
   color: #566a7f;
-  margin-left: 220px;
+  margin-left: 290px;
   margin-top: -35px;
   text-align: center;
 }

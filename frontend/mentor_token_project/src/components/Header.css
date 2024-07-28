@@ -2,6 +2,10 @@ header {
   font-family: "Manrope";
   display: flex;
   flex-direction: row;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  color: #222222;
   margin: auto;
   width: 90vw;
   align-items: center;
@@ -17,14 +21,12 @@ header {
   gap: 70px;
   list-style-type: none;
   display: flex;
-}
-
-.header {
   text-decoration: none;
   gap: 70px;
   display: flex;
   align-items: center;
 }
+
 
 .header .login {
   text-decoration: none;
@@ -37,8 +39,8 @@ header {
 }
 
 .app-logo {
-  height: 40px;
-  margin-left: 90px;
+  height: 50px;
+  margin-left: 50px;
 }
 
 .button-header {
@@ -48,6 +50,7 @@ header {
 .button-header button {
   width: 168px;
   height: 51px;
+  font-size: 18px;
 }
 
 .header .active {

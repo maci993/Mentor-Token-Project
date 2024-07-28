@@ -35,8 +35,8 @@
 }
 
 .assigned-jobs-startup-dashboard {
-  margin-top: -905px;
-  margin-left: -140px;
+  margin-top: -1005px;
+  margin-left: -290px;
 }
 
 .right-section {
@@ -59,4 +59,9 @@
   color: #566a7f;
   margin-top: 50px;
   margin-left: -100px;
+}
+
+.drop-down-startup-dash {
+  margin-left: 1600px;
+  margin-top: -230px;
 }

@@ -3,7 +3,7 @@ import "./UserDropdownInfo.css";
 import PropTypes from "prop-types";
 
 
-const UserDropdownInfo = ({ userImg, userName, userTitle }) => {
+const UserDropdownInfo = ({ userImg, userName, userTitle, className }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -11,7 +11,7 @@ const UserDropdownInfo = ({ userImg, userName, userTitle }) => {
   };
 
   return (
-    <div className="user-dropdown-startup-dashboard">
+    <div className={`user-dropdown-menu ${className}`}>
       <div className="user-info-startup" onClick={toggleDropdown}>
         <img
           src={userImg}

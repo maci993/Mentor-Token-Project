@@ -5,7 +5,7 @@
   border: 1px #ffffff;
   align-items: center;
   height: 400px;
-  width: 1440px;
+  width: 100%;
   margin: auto;
 }
 
@@ -70,14 +70,15 @@
 }
 
 hr {
-  width: 1200px;
+  width: 70%;
+  margin-left: 240px;
 }
 
 .footer-bottom {
   font-size: 16px;
   line-height: 24px;
   font-weight: 400px;
-  padding-left: 120px;
+  padding-left: 240px;
 }
 
 .footer-section-link:hover {
