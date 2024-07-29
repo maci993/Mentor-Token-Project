@@ -34,8 +34,8 @@
   font-size: 14.75px;
   line-height: 20px;
   color: #566a7f;
-  margin-top: 45px;
-  margin-left: -130px;
+  margin-top: 55px;
+  margin-right: 55px;
 }
 
 .job-card p {
@@ -44,6 +44,7 @@
   line-height: 17.42px;
   font-weight: 400;
   color: #757d8a;
+  margin-top: 10px;
   margin-left: 6px;
   text-align: left;
 }
@@ -63,8 +64,8 @@
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
-  align-items: center;
   margin-top: 30px;
+  margin-right: 140px
 }
 
 .view-more-button:hover {

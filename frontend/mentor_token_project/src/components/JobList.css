@@ -21,14 +21,14 @@
   color: #566a7f;
   line-height: 24px;
   font-weight: 600;
-  margin-left: 70px;
+  margin-left: -240px;
   background-color: #fffefe;
   border-radius: 10px;
   padding-left: 15px;
 }
 
 .filter-label1 {
-  margin-left: 400px;
+  margin-left: 100px;
   font-family: "Manrope";
   display: flex;
   align-items: center;

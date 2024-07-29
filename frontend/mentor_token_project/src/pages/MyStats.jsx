@@ -32,7 +32,12 @@ const MyStats = () => {
   //   finishedJobs: 63,
   // };
   const [dataPoints, setDataPoints] = useState([]);
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    totalJobs: 0,
+    totalAssignedJobs: 0,
+    appliedJobs: 0,
+    finishedJobs: 0,
+  });
   const [mentors, setMentors] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -56,55 +61,82 @@ const MyStats = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("jwt_token");
-        const usersResponse = await fetch("http://localhost:10000/api/users", 
+        const myToken = jwtDecode(token);
+        setRole(myToken.type);
+
+        const userResponse = await fetch(
+          `http://localhost:10000/api/users/${myToken.id}`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${token}`
-            }
-        });
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-        if (!usersResponse.ok) {
+        if (!userResponse.ok) {
           throw new Error("Error fetching data");
         }
-        const usersData = await usersResponse.json();
+        const userData = await userResponse.json();
+        setUserInfo(userData);
 
-        const mentorsData = usersData.filter((account) => account.type === "mentor");
-        setMentors(mentorsData);
+        // const user = usersData.find((account) => account._id === myToken.id);
+        // setUserInfo(user);
 
-        const myToken = jwtDecode(localStorage.getItem("jwt_token"));
-        setRole(myToken.type);
-
-        const user = usersData.find((account) => account._id === myToken.id);
-        setUserInfo(user);
-        const statisticsResponse = await fetch("http://localhost:10000/api/jobs", {
+        const usersResponse = await fetch("http://localhost:10000/api/users", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         });
+
+        if (!usersResponse.ok) {
+          throw new Error("Error fetching users data");
+        }
+        const usersData = await usersResponse.json();
+
+        const mentorsData = usersData.filter(
+          (account) => account.type === "mentor"
+        );
+        setMentors(mentorsData);
+
+        //fetch statistics
+        const statisticsResponse = await fetch(
+          "http://localhost:10000/api/jobs",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!statisticsResponse.ok) {
           throw new Error("Error fetching statistics data");
         }
         const statisticsData = await statisticsResponse.json();
-        setDataPoints(statisticsData.dataPoints);
+        setDataPoints(statisticsData.dataPoints || []);
 
         // Fetch quick overview data
-        const overviewResponse = await fetch("http://localhost:10000/api/jobs", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const overviewResponse = await fetch(
+          "http://localhost:10000/api/jobs",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!overviewResponse.ok) {
           throw new Error("Error fetching overview data");
         }
         const overviewData = await overviewResponse.json();
+        console.log("Overview Data:", overviewData);
         setData(overviewData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -175,7 +207,7 @@ const MyStats = () => {
         />
       </div>
       <div className="quick-overview-my-stats">
-      <h2>Quick Overview</h2>
+        <h2>Quick Overview</h2>
         <QuickOverviewCard
           totalJobs={data.totalJobs}
           totalAssignedJobs={data.totalAssignedJobs}

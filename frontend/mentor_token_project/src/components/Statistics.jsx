@@ -73,7 +73,8 @@ const Statistics = ({ title, description, dataPoints = [] }) => {
 Statistics.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  dataPoints: PropTypes.arrayOf(PropTypes.number).isRequired,
+  dataPoints: PropTypes.arrayOf(PropTypes.number),
 };
+
 
 export default Statistics;

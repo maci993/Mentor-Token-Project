@@ -1,5 +1,10 @@
-.body {
+/* .body {
   background-color: #f6f6f6;
+} */
+
+.mentors-company-view-page {
+  background-color: #f6f6f6;
+  height: 100vh;
 }
 
 .mentors-list-company-view {

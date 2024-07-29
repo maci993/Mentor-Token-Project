@@ -20,7 +20,7 @@ import MentorDashboard from "./pages/MentorDashboard.jsx";
 // import Jobs from "./pages/Jobs.jsx";
 import MyStats from "./pages/MyStats.jsx";
 import JobFeed from "./pages/JobFeed.jsx";
-import Jobs from "./pages/Jobs.jsx";
+// import Jobs from "./pages/Jobs.jsx";
 import Mentors from "./pages/Mentors.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import ProtectedRoutes from "./routes/ProtectedRoutes.jsx";
@@ -118,7 +118,7 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoutes>
           <Layout nav={false} footer={false}>
-            <Jobs />
+            <JobFeed />
           </Layout>
           </ProtectedRoutes>
         ),

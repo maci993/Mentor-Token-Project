@@ -1,7 +1,7 @@
 import React from "react";
 import "./JobCard.css";
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, onCardClick }) => {
   console.log("Rendering job:", job);
   
   if (!job) {
@@ -13,7 +13,7 @@ const JobCard = ({ job }) => {
   // const secondPart = companyNameParts.slice(-1);
 
   return (
-    <div className="job-card">
+    <div className="job-card" onClick={() => onCardClick(job)}>
       <img src={job.companyLogo} alt="company-logo" className="company-logo" />
       <h3 className="company-name">
     {job.companyName}

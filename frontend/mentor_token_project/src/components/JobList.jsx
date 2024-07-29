@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import JobCard from "./JobCard";
 import "./JobList.css"
 
-const JobList = ({ jobs }) => {
+const JobList = ({ jobs, onCardClick }) => {
     const [category, setCategory] = useState("All");
     const [sorting, setSorting] = useState("Popular")
 
@@ -44,7 +44,7 @@ const JobList = ({ jobs }) => {
 </div>
 <div className="job-list-job-feed">
         {sortedJobs.map((job) => (
-          <JobCard key={job.id} job={job} />
+          <JobCard key={job.id} job={job} onCardClick={onCardClick} />
         ))}
       </div>
         </div>

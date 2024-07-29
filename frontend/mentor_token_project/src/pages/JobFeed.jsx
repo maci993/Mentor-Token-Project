@@ -5,6 +5,8 @@ import SearchBar from "../components/SearchBar";
 import UserDropdownInfo from "../components/UserDropdownInfo";
 import Kirra from "../assets/KirraPress.png";
 import JobList from "../components/JobList";
+import JobModal from "../components/JobModal";
+import CreateJobModal from "../components/CreateJobModal"
 // import CompanyLogo from "../assets/Job-Feed/companyLogo.svg";
 // import CompanyLogo1 from "../assets/Job-Feed/companyLogo1.svg";
 // import CompanyLogo2 from "../assets/Job-Feed/companyLogo2.svg";
@@ -12,11 +14,14 @@ import JobList from "../components/JobList";
 // import CompanyLogo4 from "../assets/Job-Feed/companyLogo4.svg";
 import "./JobFeed.css";
 
+
 const JobFeed = () => {
   const token = window.localStorage.getItem("jwt_token");
   const [role, setRole] = useState(null);
   const [job, setJob] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [isCreateJobModalOpen, setIsCreateJobModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -155,6 +160,22 @@ const JobFeed = () => {
       setFilteredJobs(filtered);
     };
 
+    const handleCardClick = (job) => {
+      setSelectedJob(job);
+    };
+  
+    const closeModal = () => {
+      setSelectedJob(null);
+    };
+
+    const openCreateJobModal = () => {
+      setIsCreateJobModalOpen(true);
+    };
+  
+    const closeCreateJobModal = () => {
+      setIsCreateJobModalOpen(false);
+    };
+
     if (loading) {
       return <p>Loading jobs...</p>;
     }
@@ -168,6 +189,7 @@ const JobFeed = () => {
 
     return (
       <div className="job-feed-page">
+         {selectedJob && <div className="background-overlay-job-feed"></div>}
         <div className="sidebar-job-feed">
           <SideBar role={role} />
         </div>
@@ -183,8 +205,18 @@ const JobFeed = () => {
         </div>
         <div className="job-card-job-feed">
           <h1>Your Startup Jobs</h1>
-          <JobList jobs={filteredJobs} />
+          {role === "startup" && (
+          <button className="create-job-button" onClick={openCreateJobModal}>
+            + Create new job
+          </button>
+        )}
+          <JobList jobs={filteredJobs} onCardClick={handleCardClick}/>
         </div>
+        <JobModal isOpen={!!selectedJob} isClosed={closeModal} job={selectedJob} />
+        <CreateJobModal
+        isOpen={isCreateJobModalOpen}
+        onClose={closeCreateJobModal}
+      />
       </div>
     );
   };
