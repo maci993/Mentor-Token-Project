@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo.svg";
 import DashboardIcon from "../assets/Sidebar-icons/category.svg";
 import JobsIcon from "../assets/Sidebar-icons/disc.svg";
@@ -10,6 +10,8 @@ import "./SideBar.css";
 
 const SideBar = ({ role }) => {
   const [isOpen, setIsOpen] = useState(true);
+
+  const navigate = useNavigate();
 
   const menuItems = {
     startup: [
@@ -29,6 +31,11 @@ const SideBar = ({ role }) => {
   if (!items) {
     return <div>Invalid role</div>;
   }
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwt_token");
+    navigate("/");
+  };
 
   return (
 //     <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
@@ -107,7 +114,7 @@ const SideBar = ({ role }) => {
         ))}
       </div>
       {isOpen && (
-        <div className="sidebar-footer">
+        <div className="sidebar-footer"  onClick={handleLogout} style={{cursor: 'pointer'}}>
           <img
             src={LogoutIcon}
             className="logout-icon-sidebar"

@@ -3,10 +3,10 @@ import { jwtDecode } from "jwt-decode";
 import SideBar from "../components/SideBar";
 import SearchBar from "../components/SearchBar";
 import UserDropdownInfo from "../components/UserDropdownInfo";
-import Kirra from "../assets/KirraPress.png";
 import JobList from "../components/JobList";
 import JobModal from "../components/JobModal";
 import CreateJobModal from "../components/CreateJobModal"
+import defaultLogo from "../assets/userStartupAvatar.png"
 // import CompanyLogo from "../assets/Job-Feed/companyLogo.svg";
 // import CompanyLogo1 from "../assets/Job-Feed/companyLogo1.svg";
 // import CompanyLogo2 from "../assets/Job-Feed/companyLogo2.svg";
@@ -24,6 +24,8 @@ const JobFeed = () => {
   const [isCreateJobModalOpen, setIsCreateJobModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const companyLogo = job.companyLogo || defaultLogo;
 
   const fetchJobPosts = async () => {
     try {
@@ -198,9 +200,9 @@ const JobFeed = () => {
         </div>
         <div className="user-dropdown-menu-stats">
           <UserDropdownInfo
-            userImg={Kirra}
-            userName="Kirra Press"
-            userTitle="Mentor"
+            userImg={companyLogo}
+            userName="TechWave"
+            userTitle="Innovations"
           />
         </div>
         <div className="job-card-job-feed">
@@ -215,7 +217,7 @@ const JobFeed = () => {
         <JobModal isOpen={!!selectedJob} isClosed={closeModal} job={selectedJob} />
         <CreateJobModal
         isOpen={isCreateJobModalOpen}
-        onClose={closeCreateJobModal}
+        isClosed={closeCreateJobModal}
       />
       </div>
     );

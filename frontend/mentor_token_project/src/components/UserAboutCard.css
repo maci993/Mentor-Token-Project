@@ -1,14 +1,15 @@
 .user-about-card {
-  width: 967px;
+  width: 100%;
+  max-width: 967px;
   height: 280px;
   border: 1px solid #e0e0e0;
   border-radius: 21px;
   padding: 20px;
   margin-top: -322px;
-  margin-left: 290px;
+  margin-left: 190px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
+  /* position: relative; */
 }
 
 .card-header {
@@ -29,8 +30,10 @@
 }
 
 .skills-paragraph {
-  width: 323px;
+  width: 100%;
+  max-width: 323px;
   height: 36px;
+  height: auto;
   font-family: "Inter";
   font-size: 17px;
   font-weight: 500;
@@ -39,6 +42,7 @@
 }
 
 .user-about-desc {
+  /* width: 100%;  */
   width: 842px;
   height: 141px;
   margin-top: 10px;
@@ -65,13 +69,27 @@
 }
 
 .edit-textarea {
-  margin-top: -10px;
+  margin-top: 10px;
   font-family: "Inter";
   font-size: 15px;
   width: 850px;
   height: 100px;
 }
 
+.edit-input {
+  font-family: "Inter";
+  font-size: 15px;
+  height: 20px;
+  width: 240px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border-color: #696cff;
+}
+
 .save-button:hover {
   background-color: #0056b3;
+}
+
+.edit-section {
+  margin-bottom: 10px;
 }

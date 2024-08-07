@@ -3,7 +3,7 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-  width: 250px;
+  width: 300px;
   background-color: #ffffff;
   padding: 20px;
   position: fixed;
@@ -77,7 +77,18 @@
 }
 
 .sidebar-footer .logout-icon-sidebar {
-  margin-right: 10px;
+  margin-right: 170px;
+  margin-bottom: 50px;
+}
+
+.logout-span-sidebar {
+  position: absolute;
+margin-bottom: 50px;
+margin-left: -50px;
+color: #696CFF;
+font-family: "Manrope";
+font-size: 16px;
+line-height: 24px;
 }
 
 .hidden {

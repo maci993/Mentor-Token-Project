@@ -30,7 +30,7 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
       if (res.ok) {
         const data = await res.json();
         console.log("Job created:", data);
-        onClose();
+        isClosed();
       } else {
         console.error("Error creating job:", res.statusText);
       }
@@ -53,7 +53,7 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
             Company Name:
             <input
               type="text"
-              name="CompanyName"
+              name="companyName"
               value={jobDetails.companyName}
               onChange={handleChange}
               required

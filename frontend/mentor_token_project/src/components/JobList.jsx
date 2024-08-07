@@ -10,7 +10,7 @@ const JobList = ({ jobs, onCardClick }) => {
         setCategory(event.target.value);
       };
       const handleSorting = (event) => {
-        setSortOrder(event.target.value);
+        setSorting(event.target.value);
       };
 
       const filteredJobs = jobs.filter((job) => {

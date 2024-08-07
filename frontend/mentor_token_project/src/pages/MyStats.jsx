@@ -23,6 +23,11 @@ const MyStats = () => {
   const [description, setDescription] = useState(
     "Lorem ipsum dolor sit amet consectetur. Suspendisse quis varius felis augue adipiscing. Sapien volutpat ac velit facilisis fermentum diam bibendum libero non. Semper morbi at congue pellentesque pharetra amet rhoncus elit quis. Lorem ipsum dolor sit amet consectetur. Suspendisse quis varius felis augue adipiscing. Sapien volutpat ac velit facilisis fermentum diam bibendum libero non. Semper morbi at congue pellentesque pharetra amet rhoncus elit quis. Lorem ipsum dolor sit amet consectetur. Suspendisse quis varius felis augue adipiscing. Sapien volutpat ac velit facilisis fermentum diam bibendum libero non. Semper morbi at congue pellentesque pharetra amet rhoncus elit quis."
   );
+  const [skills, setSkills] = useState([
+    "Sales",
+    "Management",
+    "Problem-solving",
+  ]);
   // const dataPoints = [0, 20, 60, 70, 100, 110, 80, 40, 50, 30, 20];
 
   // const data = {
@@ -64,6 +69,7 @@ const MyStats = () => {
         const myToken = jwtDecode(token);
         setRole(myToken.type);
 
+        //this is fetch for user informations
         const userResponse = await fetch(
           `http://localhost:10000/api/users/${myToken.id}`,
           {
@@ -80,10 +86,13 @@ const MyStats = () => {
         }
         const userData = await userResponse.json();
         setUserInfo(userData);
+        setDescription(userData.desc || "");
+        setSkills(userData.skills || []);
 
         // const user = usersData.find((account) => account._id === myToken.id);
         // setUserInfo(user);
 
+        //fetch for all mentors
         const usersResponse = await fetch("http://localhost:10000/api/users", {
           method: "GET",
           headers: {
@@ -97,10 +106,10 @@ const MyStats = () => {
         }
         const usersData = await usersResponse.json();
 
-        const mentorsData = usersData.filter(
+        const mentors = usersData.filter(
           (account) => account.type === "mentor"
         );
-        setMentors(mentorsData);
+        setMentors(mentors);
 
         //fetch statistics
         const statisticsResponse = await fetch(
@@ -161,8 +170,9 @@ const MyStats = () => {
     return <div>No user info available</div>;
   }
 
-  const handleSave = (newDescription) => {
-    setDescription(newDescription);
+  const handleSave = (newData) => {
+    setDescription(newData.description);
+    setSkills(newData.skills);
   };
 
   return (
@@ -182,22 +192,33 @@ const MyStats = () => {
       </div>
       <h1>My stats</h1>
       <div className="user-info-card-my-stats">
-        <UserInfoCard
-          image={user.image}
-          name={user.name}
-          title={user.title}
-          email={user.email}
-          phone={user.phone}
-        />
+        {mentors.map((mentor) => (
+          <div key={mentor._id}>
+            <UserInfoCard
+              image={mentor.image}
+              name={mentor.name}
+              title={mentor.title}
+              email={mentor.email}
+              phone={mentor.phone}
+            />
+            <UserAboutCard
+              about="About"
+              skills={skills}
+              description={description}
+              onSave={handleSave}
+            />
+          </div>
+        ))}
+
+        {/* <UserInfoCard
+        image={user.image}
+        name={user.name}
+        title={user.title}
+        email={user.email}
+        phone={user.phone}
+      /> */}
       </div>
-      <div className="user-about-card-my-stats">
-        <UserAboutCard
-          about="About"
-          skills={["Sales", "Management", "Problem-solving"]}
-          description={description}
-          onSave={handleSave}
-        />
-      </div>
+      {/* <div className="user-about-card-my-stats"></div> */}
       <h1 className="performance-over-time">Performance Over Time</h1>
       <div className="statistics-my-stats">
         <Statistics
