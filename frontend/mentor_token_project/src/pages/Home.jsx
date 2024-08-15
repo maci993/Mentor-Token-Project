@@ -72,7 +72,7 @@ const Home = () => {
       <Features className="features-home-page"/>
       <div>
         <h1 className="success-paragraph">
-          Every <span className="highlight">success</span> is rewarded!
+          Every <span className="highlight"> success </span> is rewarded!
         </h1>
       </div>
       <div className="mentors-component">

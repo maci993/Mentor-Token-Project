@@ -8,6 +8,8 @@ const QuickOverviewCard = ({
   appliedJobs,
   finishedJobs,
 }) => {
+  console.log("QuickOverviewCard Props:", { totalJobs, totalAssignedJobs, appliedJobs, finishedJobs });
+
   return (
     <div className="quick-overview-card">
       {totalJobs !== undefined && (

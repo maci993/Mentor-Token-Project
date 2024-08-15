@@ -22,6 +22,7 @@ import MyStats from "./pages/MyStats.jsx";
 import JobFeed from "./pages/JobFeed.jsx";
 // import Jobs from "./pages/Jobs.jsx";
 import Mentors from "./pages/Mentors.jsx";
+import MentorDetail from "./pages/MentorDetail.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import ProtectedRoutes from "./routes/ProtectedRoutes.jsx";
 import { jwtDecode } from "jwt-decode";
@@ -109,6 +110,16 @@ const router = createBrowserRouter([
           <ProtectedRoutes>
           <Layout nav={false} footer={false}>
             <Mentors />
+          </Layout>
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "mentors/:id",  
+        element: (
+          <ProtectedRoutes>
+          <Layout nav={false} footer={false}>
+            <MentorDetail />
           </Layout>
           </ProtectedRoutes>
         ),

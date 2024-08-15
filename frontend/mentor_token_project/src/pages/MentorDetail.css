@@ -1,0 +1,47 @@
+.mentor-detail-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .mentor-detail-header {
+    margin-left: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .sidebar-mentor-detail {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+  }
+  
+  /* .mentor-detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  } */
+
+ .user-info-card-mentor-detail{
+ 
+  }
+
+ .user-about-card-mentor-detail {
+width: 00px;
+  }
+  
+  .assigned-jobs-section-mentor-detail {
+    margin-bottom: 750px;
+    margin-right: 1200px;
+  }
+  

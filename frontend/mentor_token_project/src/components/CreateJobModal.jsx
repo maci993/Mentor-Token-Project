@@ -3,10 +3,10 @@ import "./JobModal.css";
 
 const CreateJobModal = ({ isOpen, isClosed }) => {
   const [jobDetails, setJobDetails] = useState({
-    companyName: "",
     jobTitle: "",
     description: "",
-    category: "",
+    skillsRequired: "",
+    status: "Open",
   });
 
   const handleChange = (e) => {
@@ -24,12 +24,18 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(jobDetails),
+        body: JSON.stringify({
+          title: jobDetails.jobTitle, 
+          description: jobDetails.description,
+          skillsRequired: jobDetails.skillsRequired.split(',').map(skill => skill.trim()), // Ensure skills are sent as an array
+          status: jobDetails.status,
+        }),
       });
 
       if (res.ok) {
         const data = await res.json();
         console.log("Job created:", data);
+        alert("Job is created!"); 
         isClosed();
       } else {
         console.error("Error creating job:", res.statusText);
@@ -50,27 +56,16 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
         <form className="create-job-form" onSubmit={handleSubmit}>
           <h2>Create New Job</h2>
           <label>
-            Company Name:
-            <input
-              type="text"
-              name="companyName"
-              value={jobDetails.companyName}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
             Job Title:
             <input
-              type="text"
-              name="jobTitle"
-              value={jobDetails.jobTitle}
-              onChange={handleChange}
-              required
+           type="text"
+           name="jobTitle"
+           value={jobDetails.title}
+           onChange={handleChange}
+           required
             />
           </label>
-          <label>
-            {" "}
+  <label>
             Description:
             <textarea
               name="description"
@@ -80,14 +75,26 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
             />
           </label>
           <label>
-            Category:
-            <input
-              type="text"
-              name="category"
-              value={jobDetails.category}
+            Skills required:
+            <textarea
+            className="skills-textarea"
+              name="skillsRequired"
+              value={jobDetails.skillsRequired}
               onChange={handleChange}
               required
             />
+          </label>
+          <label>
+            Job Status:
+            <select
+              name="status"
+              value={jobDetails.status}
+              onChange={handleChange}
+              required
+            >
+              <option value="Open" className="options">Open</option>
+              <option value="Direct" className="options">Direct</option>
+            </select>
           </label>
           <button type="submit" className="submit-button-create-job-modal">
             Create

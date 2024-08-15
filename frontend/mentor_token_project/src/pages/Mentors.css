@@ -4,11 +4,12 @@
 
 .mentors-company-view-page {
   background-color: #f6f6f6;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
+  margin-right: 800px;
 }
 
 .mentors-list-company-view {
-  margin-left: 50px;
   background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
@@ -39,6 +40,10 @@
   margin-right: 20px;
 }
 
+.search-bar-company-view {
+  margin-left: 430px;
+}
+
 .mentors-list-company-view {
   padding-top: 250px;
   padding-right: 560px;
@@ -46,8 +51,8 @@
 
 .quick-overview-company-view {
   position: absolute;
-  margin-left: 650px;
-  margin-top: -200px;
+  margin-left: 750px;
+  margin-top: -790px;
 }
 
 .quick-overview-paragraph {

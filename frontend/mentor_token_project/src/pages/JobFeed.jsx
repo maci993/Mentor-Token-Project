@@ -7,11 +7,6 @@ import JobList from "../components/JobList";
 import JobModal from "../components/JobModal";
 import CreateJobModal from "../components/CreateJobModal"
 import defaultLogo from "../assets/userStartupAvatar.png"
-// import CompanyLogo from "../assets/Job-Feed/companyLogo.svg";
-// import CompanyLogo1 from "../assets/Job-Feed/companyLogo1.svg";
-// import CompanyLogo2 from "../assets/Job-Feed/companyLogo2.svg";
-// import CompanyLogo3 from "../assets/Job-Feed/companyLogo3.svg";
-// import CompanyLogo4 from "../assets/Job-Feed/companyLogo4.svg";
 import "./JobFeed.css";
 
 
@@ -24,8 +19,12 @@ const JobFeed = () => {
   const [isCreateJobModalOpen, setIsCreateJobModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const companyLogo = job.companyLogo || defaultLogo;
+  const [userInfo, setUserInfo] = useState({
+    name: "User",
+    title: "Title",
+    image: defaultLogo
+  });
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
 
   const fetchJobPosts = async () => {
     try {
@@ -53,13 +52,43 @@ const JobFeed = () => {
     }
   };
 
+  const fetchUserInfo = async () => {
+    try {
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.id;
+
+      const res = await fetch(`http://localhost:10000/api/users/${userId}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.ok) {
+        const userData = await res.json();
+        setUserInfo({
+          name: userData.name || "User",
+          title: userData.title || "Mentor",
+          image: userData.image || defaultLogo,
+        });
+      } else {
+        console.error("Error fetching user info:", res.statusText);
+        setError(res.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+      setError(error.message);
+    }
+  };
+
     useEffect(() => {
       const myToken = jwtDecode(token);
       console.log("Retrieved role:", myToken.type);
       setRole(myToken.type);
 
       fetchJobPosts();
-    }, [token]);
+      fetchUserInfo();
+    }, [token, refreshTrigger]);
 
     // const jobs = [
     //   {
@@ -155,9 +184,9 @@ const JobFeed = () => {
     const handleSearch = (query) => {
       const filtered = job.filter(
         (job) =>
-          job.companyName.toLowerCase().includes(query.toLowerCase()) ||
-          job.jobTitle.toLowerCase().includes(query.toLowerCase()) ||
-          job.description.toLowerCase().includes(query.toLowerCase())
+          job.companyName?.toLowerCase().includes(query.toLowerCase()) ||
+          job.jobTitle?.toLowerCase().includes(query.toLowerCase()) ||
+          job.description?.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredJobs(filtered);
     };
@@ -178,6 +207,11 @@ const JobFeed = () => {
       setIsCreateJobModalOpen(false);
     };
 
+    const handleJobApplied = () => {
+      console.log("JOB APPLIED AND REFRESH TRIGGERED")
+      setRefreshTrigger(!refreshTrigger);  
+    };
+
     if (loading) {
       return <p>Loading jobs...</p>;
     }
@@ -196,25 +230,26 @@ const JobFeed = () => {
           <SideBar role={role} />
         </div>
         <div className="search-bar-job-feed">
-          <SearchBar placeholder="Search" onSearch={handleSearch} />
+          <SearchBar placeholder="Search" onSearch={() => {}} />
         </div>
         <div className="user-dropdown-menu-stats">
           <UserDropdownInfo
-            userImg={companyLogo}
-            userName="TechWave"
-            userTitle="Innovations"
-          />
+             userImg={userInfo.image}
+             userName={userInfo.name}
+               userTitle={userInfo.title} />
         </div>
         <div className="job-card-job-feed">
           <h1>Your Startup Jobs</h1>
+          <div>
           {role === "startup" && (
           <button className="create-job-button" onClick={openCreateJobModal}>
             + Create new job
           </button>
         )}
+        </div>
           <JobList jobs={filteredJobs} onCardClick={handleCardClick}/>
         </div>
-        <JobModal isOpen={!!selectedJob} isClosed={closeModal} job={selectedJob} />
+        <JobModal isOpen={!!selectedJob} isClosed={closeModal} job={selectedJob} onJobApplied={() => {}}/>
         <CreateJobModal
         isOpen={isCreateJobModalOpen}
         isClosed={closeCreateJobModal}

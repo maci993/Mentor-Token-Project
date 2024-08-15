@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 import "./BestPerformingMentors.css";
 import LucieWeber from "../assets/Startup-dashboard/LucieWeber.svg";
 import CrystalPorter from "../assets/Startup-dashboard/CrystalPorter.svg";
 import ThomasRose from "../assets/Startup-dashboard/ThomasRose.svg";
 import Arrow from "../assets/arrowSymbol_mentors.svg";
 import BlueArrow from "../assets/arrowSymbol_mentors_blue.svg";
-import BlueOval from "../assets/Startup-dashboard/Oval Copy 11.png"
-
-// const API_URL = "/api";
 
 const BestPerformingMentors = () => {
   const token = window.localStorage.getItem("jwt_token");

@@ -1,13 +1,13 @@
 .job-feed-page {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: relative;
-  margin-left: -60px;
+  margin-left: 70px;
   background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 50px;
 }
 
 .search-bar-job-feed {
@@ -16,13 +16,13 @@
 }
 
 .user-dropdown-menu-stats {
-  margin-left: 1600px;
+  margin-left: 1500px;
   margin-top: -70px;
 }
 
 .job-card-job-feed h1 {
-margin-left: 80px;
-margin-top: 80px;
+  margin-left: 220px;
+  margin-top: 80px;
 }
 
 .background-overlay-job-feed {
@@ -36,5 +36,8 @@ margin-top: 80px;
 }
 
 .create-job-button {
-  margin-left: 1250px;
+  display: flex;
+  margin-left: 1420px;
+  margin-bottom: 50px;
+margin-top: -50px;
 }

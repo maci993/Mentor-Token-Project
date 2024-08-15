@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-// import { fetchJobApplications } from "../services/api";
 import ClockImg from "../assets/clock.png";
 import "./ApplicationSent.css";
 
@@ -19,7 +18,7 @@ const fetchJobApplications = async (token) => {
   return res.json();
 };
 
-const ApplicationSent = ({ title, description }) => {
+const ApplicationSent = ({ title, description, refreshTrigger }) => {
   const token = localStorage.getItem("jwt_token");
   const [applications, setApplications] = useState([]);
   const [error, setError] = useState(null);
@@ -36,7 +35,7 @@ const ApplicationSent = ({ title, description }) => {
     };
 
     fetchApplications();
-  }, [token]);
+  }, [token, refreshTrigger]);
 
   if (error) {
     return <p>Error loading applications: {error}</p>;
@@ -49,7 +48,7 @@ const ApplicationSent = ({ title, description }) => {
       <div className="applications-list">
         {applications.map((application, index) => (
           <div key={index} className="application-item">
-            <span className="application-title-span">{application.title}</span>
+            <span className="application-title-span">{application.jobId.title}</span>
             <div className="application-status">
               <img
                 src={ClockImg}
@@ -67,6 +66,7 @@ const ApplicationSent = ({ title, description }) => {
 ApplicationSent.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  refreshTrigger: PropTypes.any,
 };
 
 export default ApplicationSent;

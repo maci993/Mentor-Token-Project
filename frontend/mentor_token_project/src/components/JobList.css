@@ -1,4 +1,5 @@
 .job-list-container {
+  margin-left: 190px;
   padding: 20px;
   /* background-color:red; */
   border-radius: 10px;
@@ -9,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-  margin-left: 300px;
+  margin-right: 210px;
 }
 
 .filter-label {
@@ -21,14 +22,15 @@
   color: #566a7f;
   line-height: 24px;
   font-weight: 600;
-  margin-left: -240px;
+  margin-left: 10px;
   background-color: #fffefe;
   border-radius: 10px;
   padding-left: 15px;
 }
 
 .filter-label1 {
-  margin-left: 100px;
+  height: 45px;
+  margin-left: 360px;
   font-family: "Manrope";
   display: flex;
   align-items: center;
@@ -68,4 +70,53 @@
   margin-top: 100px;
   margin-left: 250px;
   gap: 50px;
+}
+
+.layout-buttons {
+  display: flex;
+  gap: 70px;
+  margin-left: 350px;
+  margin-top: -50px;
+  text-align: center;
+}
+
+.layout-buttons button {
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #566a7f;
+  padding: 5px;
+  color: #566a7f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.layout-buttons .active {
+  background-color: #e0e0e0;
+  border-radius: 5px;
+}
+
+.layout-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.job-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.job-list-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-text {
+  font-size: 13px;
+  color: #566a7f;
+  margin-bottom: 5px;
 }

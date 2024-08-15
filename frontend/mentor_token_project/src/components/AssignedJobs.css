@@ -23,6 +23,22 @@
   gap: 5px;
   justify-content: space-around;
   margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.filter-tab {
+  margin-right: 70px;
+  margin-left: -870px;
+  padding: 10px 15px;
+  border: none;
+  font-family: "Manrope";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19.12;
+  color: #566a7f;
+  background: none;
+  cursor: pointer;
+  position: relative;
 }
 
 .filter-tabs button {
@@ -39,12 +55,22 @@
   font-size: 14px;
 }
 
-.filter-tabs .active {
-  border-bottom: 2px solid #696cff;
+.filter-tab.active {
   color: #696cff;
 }
 
-.job-list-assigned-jobs{
+.filter-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #696cff;
+  border-radius: 2px;
+}
+
+.job-list-assigned-jobs {
   margin-top: 10px;
   overflow: hidden;
   margin-left: -450px;
@@ -62,7 +88,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  border: 1px solid #ececec;;
+  border: 1px solid #ececec;
   margin: 10px 0;
   border-radius: 5px;
 }
@@ -90,6 +116,7 @@
   background-color: #ebf6eb;
   color: #31aa27;
 }
+
 .status-button.rejected {
   background-color: #fff0f3;
   color: #f2076a;

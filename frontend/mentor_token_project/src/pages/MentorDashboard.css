@@ -3,7 +3,8 @@
 }
 
 .mentor-dashboard-page {
-  margin-left: 50px;
+  margin-left: 150px;
+  width: 100%;
   background-color: #f6f6f6;
   display: flex;
   flex-direction: column;

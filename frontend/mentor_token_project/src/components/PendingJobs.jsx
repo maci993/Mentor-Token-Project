@@ -84,13 +84,17 @@ const PendingJobs = ({ title, description, jobs }) => {
             <div className="job-action-mentor-dashboard">
               <button
                 className="accept-button"
-                onClick={() => handleStatusUpdate(job._id, "Rejected")}
+                onClick={() => { 
+                  alert("Job accepted");
+                  handleStatusUpdate(job._id, "Accepted")}}
               >
                 Accept
               </button>
               <button
                 className="reject-button"
-                onClick={() => handleStatusUpdate(job._id, "Accepted")}
+                onClick={() => {
+                  alert("Job rejected");
+                  handleStatusUpdate(job._id, "Rejected")}}
               >
                 Reject
               </button>

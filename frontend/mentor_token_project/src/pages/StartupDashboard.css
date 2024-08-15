@@ -3,6 +3,8 @@
 }
 
 .startup-dashboard-page {
+  height: 100%;
+  width: 100%;
   margin-left: 150px;
   background-color: #f6f6f6;
   display: flex;

@@ -1,6 +1,6 @@
 .job-card {
   width: 242px;
-  height: 284px;
+  height: 294px;
   gap: 10px;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
@@ -24,7 +24,7 @@
   font-size: 15px;
   font-weight: 400;
   line-height: 22px;
-  margin-left: -40px;
+  margin-left: 20px;
   margin-top: -60px;
 }
 
@@ -55,7 +55,7 @@
   padding: 8px;
   gap: 2.71px;
   background-color: #696cff;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 12.48px;
   font-family: "Noto Sans";
   font-weight: 400;
@@ -64,8 +64,9 @@
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
-  margin-top: 30px;
-  margin-right: 140px
+position: absolute;
+margin-top: 40px;
+margin-left: 30px;
 }
 
 .view-more-button:hover {
@@ -73,11 +74,11 @@
 }
 
 .job-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-  }
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
 
 .job-card:active {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-  }
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}

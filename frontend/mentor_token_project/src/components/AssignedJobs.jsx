@@ -64,15 +64,15 @@ const AssignedJobs = () => {
   });
 
   const getStatus = (status) => {
-    switch (status) {
-      case "Done":
-        return "done";
-      case "Rejected":
-        return "rejected";
-      case "In Progress":
-        return "in-progress";
-      default:
-        return "";
+    const lowerStatus = status.toLowerCase();
+    if (lowerStatus === "done" || lowerStatus === "accepted") {
+      return { backgroundColor: "#ebf6eb", color: "#31aa27" };
+    } else if (lowerStatus === "rejected") {
+      return { backgroundColor: "#fff0f3", color: "#f2076a" };
+    } else if (lowerStatus === "in progress" || lowerStatus === "open") {
+      return { backgroundColor: "#d3d3ff80", color: "#696cff" };
+    } else {
+      return {};
     }
   };
 
@@ -102,7 +102,7 @@ const AssignedJobs = () => {
         {filteredJobs.map((job, index) => (
           <div key={index} className="job-item-mentor-dashboard">
             <span className="job-name">{job.title}</span>
-            <span className={`status-button ${getStatus(job.status)}`}>
+            <span className="status-button" style={getStatus(job.status)}>
               {job.status}
             </span>
           </div>
