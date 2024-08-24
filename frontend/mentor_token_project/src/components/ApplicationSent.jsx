@@ -46,16 +46,22 @@ const ApplicationSent = ({ title, description, refreshTrigger }) => {
       <h2 className="application-sent-title">{title}</h2>
       <p className="application-sent-paragraph">{description}</p>
       <div className="applications-list">
-        {applications.map((application, index) => (
+      {applications.map((application, index) => (
           <div key={index} className="application-item">
-            <span className="application-title-span">{application.jobId.title}</span>
-            <div className="application-status">
-              <img
-                src={ClockImg}
-                alt="status-icon-clock"
-                className="status-icon"
-              />
-            </div>
+            {application.jobId ? (
+              <>
+                <span className="application-title-span">{application.jobId.title}</span>
+                <div className="application-status">
+                  <img
+                    src={ClockImg}
+                    alt="status-icon-clock"
+                    className="status-icon"
+                  />
+                </div>
+              </>
+            ) : (
+              <span className="application-title-span">Job title unavailable</span>
+            )}
           </div>
         ))}
       </div>

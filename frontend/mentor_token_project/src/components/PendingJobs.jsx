@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 import "./PendingJobs.css";
 
 const API_BASE_URL = "/api";
@@ -15,6 +16,20 @@ const fetchJobOffers = async (token) => {
   }
   return res.json();
 };
+
+const deleteJobOffer = async (jobId, token) => {
+  const res = await fetch (`${API_BASE_URL}/jobs/${jobId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+  return res.json();
+  };
+
 
 const updateJobOfferStatus = async (jobId, status, token) => {
   const res = await fetch(`${API_BASE_URL}/jobs/${jobId}`, {
@@ -36,12 +51,17 @@ const PendingJobs = ({ title, description, jobs }) => {
   const [job, setJob] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [role, setRole] = useState(null);
 
   useEffect(() => {
+    const myToken = jwtDecode(token);
+    console.log("Retrieved role:", myToken.type);
+    setRole(myToken.type);
+
     const fetchOffers = async () => {
       try {
-        const offersData = await fetchJobOffers(token);
-        setJob(offersData);
+        const response = await fetchJobOffers(token);
+        setJob(response);
         setLoading(false);
       } catch (err) {
         console.error("Error fetching job offers:", error);
@@ -51,6 +71,17 @@ const PendingJobs = ({ title, description, jobs }) => {
 
     fetchOffers();
   }, [token]);
+
+  const handleDelete = async (jobId) => {
+    try {
+      await deleteJobOffer(jobId, token);
+      const updatedJobs = job.filter((job) => job._id !== jobId);
+      setJob(updatedJobs);
+    } catch (err) {
+      console.error("Error deleting job offer", err);
+      setError(err.message || "An unaxpected error ocured");
+    }
+  };
 
   const handleStatusUpdate = async (jobId, status) => {
     try {
@@ -82,22 +113,35 @@ const PendingJobs = ({ title, description, jobs }) => {
           <div key={index} className="job-item-mentor-dashboard">
             <span className="job-title-mentor-dashboard">{job.title}</span>
             <div className="job-action-mentor-dashboard">
-              <button
-                className="accept-button"
-                onClick={() => { 
-                  alert("Job accepted");
-                  handleStatusUpdate(job._id, "Accepted")}}
-              >
-                Accept
-              </button>
-              <button
-                className="reject-button"
-                onClick={() => {
-                  alert("Job rejected");
-                  handleStatusUpdate(job._id, "Rejected")}}
-              >
-                Reject
-              </button>
+              {role === "mentor" ? (
+                <>
+                  <button
+                    className="accept-button"
+                    onClick={() => {
+                      alert("Job accepted");
+                      handleStatusUpdate(job._id, "Accepted");
+                    }}
+                  >
+                    Accept
+                  </button>
+                  <button
+                    className="reject-button"
+                    onClick={() => {
+                      alert("Job rejected");
+                      handleStatusUpdate(job._id, "Rejected");
+                    }}
+                  >
+                    Reject
+                  </button>
+                </>
+              ) : (
+                <button
+                  className="cancel-button-pending-jobs"
+                  onClick={() => handleStatusUpdate(job._id, "Cancelled")}
+                >
+                  Cancel Offer
+                </button>
+              )}
             </div>
           </div>
         ))}

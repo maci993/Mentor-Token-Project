@@ -93,3 +93,16 @@
 .edit-section {
   margin-bottom: 10px;
 }
+
+.offer-job-button {
+  width: 230px;
+  position: absolute;
+  margin-left: 680px;
+  margin-top: -280px;
+}
+
+.edit-icon-my-stats {
+  margin-right: 20px;
+  width: 19px;
+  height: 19px;
+}

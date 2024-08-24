@@ -12,7 +12,7 @@ const JobCard = ({ job, onCardClick }) => {
   const companyLogo = job.companyLogo || defaultLogo;
   const companyName = job.companyId?.name || "Unknown Company";
   const jobDescription = job.description || "No description available";
-  const jobSkills = job.skills ? job.skills.join(", ") : "No skills listed";
+  const jobSkills = job.skillsRequired ? job.skillsRequired.join(", ") : "No skills listed";
   const jobStatus = job.status || "Status not available";
   console.log("Job object:", job);
   // const companyNameParts = job.companyName.split(" ");

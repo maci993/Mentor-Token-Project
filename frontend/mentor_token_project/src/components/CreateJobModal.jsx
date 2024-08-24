@@ -27,7 +27,7 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
         body: JSON.stringify({
           title: jobDetails.jobTitle, 
           description: jobDetails.description,
-          skillsRequired: jobDetails.skillsRequired.split(',').map(skill => skill.trim()), // Ensure skills are sent as an array
+          skillsRequired: jobDetails.skillsRequired.split(',').map(skill => skill.trim()), 
           status: jobDetails.status,
         }),
       });

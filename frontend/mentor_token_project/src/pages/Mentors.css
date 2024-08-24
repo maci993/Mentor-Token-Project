@@ -1,12 +1,12 @@
-/* .body {
+.body {
   background-color: #f6f6f6;
-} */
+}
 
 .mentors-company-view-page {
   background-color: #f6f6f6;
   height: 100%;
   width: 100%;
-  margin-right: 800px;
+  margin-left: 70px;
 }
 
 .mentors-list-company-view {
@@ -45,14 +45,18 @@
 }
 
 .mentors-list-company-view {
-  padding-top: 250px;
+  padding-top: 290px;
   padding-right: 560px;
+  height: 100%;
+  width: 100%;
+  background-color: #f6f6f6;
 }
 
 .quick-overview-company-view {
+  background-color: #f6f6f6;
   position: absolute;
   margin-left: 750px;
-  margin-top: -790px;
+  margin-top: -1150px;
 }
 
 .quick-overview-paragraph {

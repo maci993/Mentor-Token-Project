@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import SideBar from "../components/SideBar";
 import SearchBar from "../components/SearchBar";
 import UserDropdownInfo from "../components/UserDropdownInfo";
-import UserCompany from "../assets/userStartupAvatar.png"
+import UserCompany from "../assets/userStartupAvatar.png";
 import MentorsList from "../components/MentorsList";
-import "./Mentors.css";
 import Kirra from "../assets/KirraPress.png";
 import Alison from "../assets/company-view-mentors/Alison.svg";
 import Marcus from "../assets/company-view-mentors/Marcus.svg";
 import QuickOverviewCard from "../components/QuickOverviewCard";
-import { jwtDecode } from "jwt-decode";
+import { MentorCard } from "../components/MentorCard";
+import "./Mentors.css";
 
 const Mentors = () => {
   const [role, setRole] = useState(null);
   const [mentors, setMentors] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // const [data, setData] = useState({
@@ -25,8 +27,8 @@ const Mentors = () => {
 
   const data = {
     totalMentors: mentors.length,
-    totalAssignedJobs: 0, 
-    finishedJobs: 0, 
+    totalAssignedJobs: 0,
+    finishedJobs: 0,
   };
 
   const navigate = useNavigate();
@@ -67,6 +69,7 @@ const Mentors = () => {
   useEffect(() => {
     const myToken = jwtDecode(localStorage.getItem("jwt_token"));
     console.log("Retrieved role:", myToken.type);
+
     const fetchMentors = async () => {
       try {
         const response = await fetch("/api/users?type=mentor", {
@@ -81,7 +84,7 @@ const Mentors = () => {
         }
 
         const mentorsData = await response.json();
-      
+
         const sortedMentors = mentorsData
           .map((mentor) => {
             const completedJobs = mentor.acceptedJobs.filter(
@@ -96,6 +99,7 @@ const Mentors = () => {
           .sort((a, b) => b.completedJobs - a.completedJobs); // Sort by completed jobs
 
         setMentors(sortedMentors);
+        setSearchResults(mentorsData);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -115,6 +119,22 @@ const Mentors = () => {
     return <div>Loading...</div>;
   }
 
+  const handleSearch = (query) => {
+    console.log("Search query:", query);
+    const lowercasedQuery = query.toLowerCase();
+
+    const filteredMentors = mentors.filter(
+      (mentor) =>
+        mentor.name.toLowerCase().includes(lowercasedQuery) ||
+        mentor.skills.some((skill) =>
+          skill.toLowerCase().includes(lowercasedQuery)
+        ) ||
+        (mentor.desc && mentor.desc.toLowerCase().includes(lowercasedQuery))
+    );
+    console.log("Filtered mentors:", filteredMentors);
+    setSearchResults(filteredMentors);
+  };
+
   return (
     <div className="mentors-company-view-page">
       <header className="mentors-company-view">
@@ -122,13 +142,15 @@ const Mentors = () => {
           <SearchBar
             placeholder="Search"
             className="search-bar-company-view"
+            onSearch={handleSearch}
             style={{ marginLeft: 100 }}
           />
-          <UserDropdownInfo 
-        userImg={UserCompany}
-        userName="TechWave"
-        userTitle="Innovations"
-        className="drop-down-startup-view"/>
+          <UserDropdownInfo
+            userImg={UserCompany}
+            userName="TechWave"
+            userTitle="Innovations"
+            className="drop-down-startup-view"
+          />
           {/* <UserDropdownInfo
           userImg={Kirra}
           userName="Kirra Press"
@@ -141,12 +163,22 @@ const Mentors = () => {
         <SideBar role={role} />
       </div>
       <div className="mentors-list-company-view">
-        <MentorsList mentors={mentors} onViewMentor={handleViewMentor}/>
+      {searchResults.length > 0 ? (
+          searchResults.map((mentor) => (
+            <MentorCard
+              key={mentor._id}
+              mentor={mentor}
+              onViewMentor={() => handleViewMentor(mentor._id)}
+            />
+          ))
+        ) : (
+          <p>No mentors found</p>
+        )}
       </div>
-      
+
       <div className="quick-overview-company-view">
-      <p className="quick-overview-paragraph">Quick Overview</p>
-      <p className="quick-overview-paragraph1">in the last month</p>
+        <p className="quick-overview-paragraph">Quick Overview</p>
+        <p className="quick-overview-paragraph1">in the last month</p>
         <QuickOverviewCard
           totalMentors={data.totalMentors}
           totalAssignedJobs={data.totalAssignedJobs}

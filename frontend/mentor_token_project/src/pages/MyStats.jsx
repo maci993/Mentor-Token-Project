@@ -172,6 +172,7 @@ const MyStats = () => {
           skills={skills}
           description={description}
           onSave={handleSave}
+          role={role}
         />
       </div>
       <h1 className="performance-over-time">Performance Over Time</h1>

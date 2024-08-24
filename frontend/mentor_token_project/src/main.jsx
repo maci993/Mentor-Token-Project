@@ -29,7 +29,7 @@ import { jwtDecode } from "jwt-decode";
 import "./App.css";
 
 
-const type = "company"; // or "mentor"
+// const type = "company"; // or "mentor"
 
 const router = createBrowserRouter([
   {

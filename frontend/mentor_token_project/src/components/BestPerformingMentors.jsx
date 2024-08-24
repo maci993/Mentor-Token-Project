@@ -5,6 +5,7 @@ import CrystalPorter from "../assets/Startup-dashboard/CrystalPorter.svg";
 import ThomasRose from "../assets/Startup-dashboard/ThomasRose.svg";
 import Arrow from "../assets/arrowSymbol_mentors.svg";
 import BlueArrow from "../assets/arrowSymbol_mentors_blue.svg";
+import defaultLogo from "../assets/Mentors-icons/profile.svg";
 
 const BestPerformingMentors = () => {
   const token = window.localStorage.getItem("jwt_token");
@@ -29,6 +30,7 @@ const BestPerformingMentors = () => {
       achievedJobs: 22,
     },
   ];
+
   // useEffect(() => {
   //   const fetchBestPerformingMentors = async (token) => {
   //     try {
@@ -45,24 +47,16 @@ const BestPerformingMentors = () => {
 
   //       const data = await res.json();
   //       console.log("Data fetched:", data);
-  //       return data;
-  //     } catch (error) {
-  //       throw error;
-  //     }
-  //   };
-
-  //   const fetchMentors = async () => {
-  //     try {
-  //       const mentorsData = await fetchBestPerformingMentors(token);
-  //       setMentors(mentorsData);
+  //       setMentors(data);
   //       setLoading(false);
-  //     } catch (err) {
-  //       console.error("Error fetching mentors:", err);
-  //       setError(err.message || "An unexpected error occurred");
+  //     } catch (error) {
+  //       console.error("Error fetching mentors:", error);
+  //       setError(error.message || "An unexpected error occurred");
+  //       setLoading(false);
   //     }
   //   };
 
-  //   fetchMentors();
+  //   fetchBestPerformingMentors();
   // }, [token]);
 
   // if (loading) {
@@ -73,16 +67,20 @@ const BestPerformingMentors = () => {
   //   return <p>Error loading mentors: {error}</p>;
   // }
 
+  // if (mentors.length === 0) {
+  //   return <p>No mentors found for this month.</p>;
+  // }
+
   return (
     <div className="best-performing-mentors-list">
       <h1 className="best-performing-mentors-title">Best Performing Mentors</h1>
       <ul className="best-performing-mentors-list-unordered">
         {mentors.map((mentor, index) => (
-          <li key={index} className="mentor-item">
+          <li key={mentor._id} className="mentor-item">
             <div className="best-mentor-info">
-            {/* {index === 1 && <img src={BlueOval} alt="blue-oval" className="blue-oval" />} */}
+              {/* {index === 1 && <img src={BlueOval} alt="blue-oval" className="blue-oval" />} */}
               <img
-                src={mentor.photo}
+                src={mentor.photo || defaultLogo}
                 alt={mentor.name}
                 className="best-mentor-photo"
               />
@@ -90,12 +88,20 @@ const BestPerformingMentors = () => {
               <div className="mentors-details">
                 <h3 className="mentor-name">{mentor.name}</h3>
                 <p>
-                 <span className="mentor-jobs-number"> {mentor.achievedJobs}</span> <br/>Achieved Jobs
-                  </p>
+                  <span className="mentor-jobs-number">
+                    {" "}
+                    {mentor.achievedJobs}
+                  </span>{" "}
+                  <br />
+                  Achieved Jobs
+                </p>
               </div>
             </div>
             <div className="best-mentor-icon-arrow">
-              <img src={index === 1 ? BlueArrow : Arrow} alt="mentor-arrow-icon" />
+              <img
+                src={index === 1 ? BlueArrow : Arrow}
+                alt="mentor-arrow-icon"
+              />
             </div>
           </li>
         ))}

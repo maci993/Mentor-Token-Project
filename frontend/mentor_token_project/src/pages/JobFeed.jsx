@@ -90,7 +90,88 @@ const JobFeed = () => {
       fetchUserInfo();
     }, [token, refreshTrigger]);
 
-    // const jobs = [
+    const handleSearch = (query) => {
+      const filtered = job.filter(
+        (job) =>
+          job.name?.toLowerCase().includes(query.toLowerCase()) ||
+          job.title?.toLowerCase().includes(query.toLowerCase()) ||
+          job.description?.toLowerCase().includes(query.toLowerCase())
+      );
+      console.log("Filtered jobs:", filtered); 
+      setFilteredJobs(filtered);
+    };
+
+    const handleCardClick = (job) => {
+      setSelectedJob(job);
+    };
+  
+    const closeModal = () => {
+      setSelectedJob(null);
+    };
+
+    const openCreateJobModal = () => {
+      setIsCreateJobModalOpen(true);
+    };
+  
+    const closeCreateJobModal = () => {
+      setIsCreateJobModalOpen(false);
+    };
+
+    const handleJobApplied = () => {
+      console.log("JOB APPLIED AND REFRESH TRIGGERED")
+      setRefreshTrigger(!refreshTrigger);  
+    };
+
+    if (loading) {
+      return <p>Loading jobs...</p>;
+    }
+
+    if (error) {
+      return <p>Error loading jobs: {error}</p>;
+    }
+    if (job.length === 0) {
+      return <p>No jobs available</p>;
+    };
+
+    return (
+      <div className="job-feed-page">
+         {selectedJob && <div className="background-overlay-job-feed"></div>}
+        <div className="sidebar-job-feed">
+          <SideBar role={role} />
+        </div>
+        <div className="search-bar-job-feed">
+          <SearchBar placeholder="Search" onSearch={handleSearch} />
+        </div>
+        <div className="user-dropdown-menu-stats">
+          <UserDropdownInfo
+             userImg={userInfo.image}
+             userName={userInfo.name}
+               userTitle={userInfo.title} />
+        </div>
+        <div className="job-card-job-feed">
+          <h1>Your Startup Jobs</h1>
+          <div>
+          {role === "startup" && (
+          <button className="create-job-button" onClick={openCreateJobModal}>
+            + Create new job
+          </button>
+        )}
+        </div>
+          <JobList jobs={filteredJobs} onCardClick={handleCardClick}/>
+        </div>
+        <JobModal isOpen={!!selectedJob} isClosed={closeModal} job={selectedJob} onJobApplied={handleJobApplied}/>
+        <CreateJobModal
+        isOpen={isCreateJobModalOpen}
+        isClosed={closeCreateJobModal}
+      />
+      </div>
+    );
+  };
+
+
+export default JobFeed;
+
+ // const jobs = [
     //   {
     //     id: 1,
     //     companyLogo: CompanyLogo,
@@ -180,83 +261,3 @@ const JobFeed = () => {
     //     postedDate: "2023-07-21",
     //   },
     // ];
-
-    const handleSearch = (query) => {
-      const filtered = job.filter(
-        (job) =>
-          job.companyName?.toLowerCase().includes(query.toLowerCase()) ||
-          job.jobTitle?.toLowerCase().includes(query.toLowerCase()) ||
-          job.description?.toLowerCase().includes(query.toLowerCase())
-      );
-      setFilteredJobs(filtered);
-    };
-
-    const handleCardClick = (job) => {
-      setSelectedJob(job);
-    };
-  
-    const closeModal = () => {
-      setSelectedJob(null);
-    };
-
-    const openCreateJobModal = () => {
-      setIsCreateJobModalOpen(true);
-    };
-  
-    const closeCreateJobModal = () => {
-      setIsCreateJobModalOpen(false);
-    };
-
-    const handleJobApplied = () => {
-      console.log("JOB APPLIED AND REFRESH TRIGGERED")
-      setRefreshTrigger(!refreshTrigger);  
-    };
-
-    if (loading) {
-      return <p>Loading jobs...</p>;
-    }
-
-    if (error) {
-      return <p>Error loading jobs: {error}</p>;
-    }
-    if (job.length === 0) {
-      return <p>No jobs available</p>;
-    }
-
-    return (
-      <div className="job-feed-page">
-         {selectedJob && <div className="background-overlay-job-feed"></div>}
-        <div className="sidebar-job-feed">
-          <SideBar role={role} />
-        </div>
-        <div className="search-bar-job-feed">
-          <SearchBar placeholder="Search" onSearch={() => {}} />
-        </div>
-        <div className="user-dropdown-menu-stats">
-          <UserDropdownInfo
-             userImg={userInfo.image}
-             userName={userInfo.name}
-               userTitle={userInfo.title} />
-        </div>
-        <div className="job-card-job-feed">
-          <h1>Your Startup Jobs</h1>
-          <div>
-          {role === "startup" && (
-          <button className="create-job-button" onClick={openCreateJobModal}>
-            + Create new job
-          </button>
-        )}
-        </div>
-          <JobList jobs={filteredJobs} onCardClick={handleCardClick}/>
-        </div>
-        <JobModal isOpen={!!selectedJob} isClosed={closeModal} job={selectedJob} onJobApplied={() => {}}/>
-        <CreateJobModal
-        isOpen={isCreateJobModalOpen}
-        isClosed={closeCreateJobModal}
-      />
-      </div>
-    );
-  };
-
-
-export default JobFeed;
