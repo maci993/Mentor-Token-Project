@@ -138,12 +138,6 @@ const MentorDetail = () => {
           showOfferButton={true}
         />
       </div>
-      {showOfferModal && (
-        <OfferJobModal
-          mentorId={mentorInfo._id}
-          onClose={() => setShowOfferModal(false)}
-        />
-      )}
       <div className="assigned-jobs-section-mentor-detail">
         <AssignedJobs jobs={mentorInfo.assignedJobs} />
       </div>
@@ -151,6 +145,12 @@ const MentorDetail = () => {
         <h2 className="title-pending-jobs">Pending Job Offers</h2>
         <PendingJobs jobs={mentorInfo.pendingJobs} />
       </div>
+      {showOfferModal && (
+        <OfferJobModal
+          mentorId={mentorInfo._id}
+          onClose={() => setShowOfferModal(false)}
+        />
+      )}
     </div>
   );
 };

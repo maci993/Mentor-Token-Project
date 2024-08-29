@@ -17,7 +17,7 @@
   padding: 20px;
   border-radius: 8px;
   width: 470px;
-  height: 461px;
+  height: 601px;
   max-width: 90%;
   align-items: center;
   position: relative;
@@ -143,8 +143,8 @@ border-radius: 5px;
   border-radius: 6.9px;
   gap: 3.11px;
   cursor: pointer;
-  margin-top: 150px;
   margin-right: 2px;
+  margin-top: 200px;
 }
 
 .apply-button:hover {

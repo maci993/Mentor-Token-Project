@@ -7,12 +7,9 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  margin-right: 100px;
 }
 
-.search-bar-my-stats {
-  padding-left: 570px;
-  padding-top: 80px;
-}
 
 .user-dropdown-menu-stats {
   margin-left: 1600px;
@@ -57,5 +54,20 @@ h1 {
   font-weight: 600;
   line-height: 22px;
   margin-left: 620px;
-  margin-top: -466px;
+  margin-top: -20px;
+}
+
+.quick-overview-my-stats {
+margin-top: 0;
+margin-left: 130px;
+}
+
+.search-bar-my-stats {
+margin-left: -420px;
+  display: flex;
+  margin-top: 0px;
+}
+
+.statistics-my-stats {
+  margin-left: -20px;
 }

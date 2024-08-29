@@ -1,47 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 import defaultLogo from "../assets/userStartupAvatar.png";
 import "./JobModal.css";
 
 // console.log("Job object:", job);
 const JobModal = ({ isOpen, isClosed, job, onJobApplied }) => {
-  // console.log('Is Modal Open:', isOpen);
-  // console.log('Job:', job);
-  if (!isOpen || !job) return null;
+  const [selectedJob, setSelectedJob] = useState({});
+  const token = localStorage.getItem("jwt_token");
 
-  const token = window.localStorage.getItem("jwt_token");
-  //  const mentorId = job?.mentorId.id;
-  //     const companyId = job?.companyId._id;
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.id; 
+  const userRole = decodedToken.type;
 
-  const applyToJob = async (jobId) => {
+  useEffect(() => {
+    if (job) {
+      setSelectedJob(job);
+    }
+  }, [job]);
+
+  const handleApplyToJob = async () => {
+    // if (!selectedJob.companyId || !selectedJob.companyId._id) {
+    //   console.error("Missing company ID. Cannot apply to job.");
+    //   alert("Unable to apply: missing company information.");
+    //   return;
+    // }
+    const payload = {
+      companyId: selectedJob.companyId._id, 
+      mentorId: userId,
+      jobId: selectedJob._id,
+      applicationType: "mentorToCompany",
+      status: "pending",
+      acceptedStatus: "in progress",
+    };
+    // console.log("Payload sent:", payload); 
     try {
-      const res = await fetch("http://localhost:10000/api/jobapplications", {
+      const postApplication = await fetch("http://localhost:10000/api/jobapplications", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          jobId: job._id,
-          mentorId: job.mentor._id,
-          companyId: job.company._id,
-          applicationType: "mentorToCompany",
-        }),
+        body: JSON.stringify(payload),
       });
 
-      if (res.ok) {
-        console.log("Applied to job successfully");
-        onJobApplied();
+      if (postApplication.ok) {
+        const errorData = await postApplication.json();
+        alert("Applied to job successfully");
+        onJobApplied(data); 
         isClosed();
       } else {
-        console.error("Error applying to job:", res.statusText);
+        const errorText = await postApplication.text();
+        console.error("Error applying to job:", postApplication.statusText, errorText);
       }
     } catch (error) {
-      console.error("Error applying to job:", error.message);
+      console.error("An error occurred during the job application:", error);
     }
   };
 
-  const companyLogo = job.companyLogo || defaultLogo;
-  const companyName = (job.companyId && job.companyId.name) || "Unknown Company";
+
+  const companyLogo = selectedJob.companyLogo || defaultLogo;
+  const companyName =
+    (selectedJob.companyId && selectedJob.companyId.name) || "Unknown Company";
+
+    if (!isOpen || !selectedJob._id) return null;
 
   return (
     <div className="modal-pop-up">
@@ -55,19 +76,18 @@ const JobModal = ({ isOpen, isClosed, job, onJobApplied }) => {
           className="company-logo-job-modal"
         />
         <h2 className="company-name-job-modal">{companyName}</h2>
-        <h3 className="job-title-job-modal">{job.title || "No title"}</h3>
+        <h3 className="job-title-job-modal">{selectedJob.title || "No title"}</h3>
         <p className="job-desc-job-modal">
-          {job.description || "No description available"}
+          {selectedJob.description || "No description available"}
         </p>
         <p className="skills-job-modal">
-          {job.skillsRequired || "No skills available"}
+          {selectedJob.skillsRequired || "No skills available"}
         </p>
-        <button
-          className="apply-button-job-modal"
-          onClick={() => applyToJob(job?._id)}
-        >
-          Apply
-        </button>
+        {userRole === "mentor" && (
+          <button className="apply-button-job-modal" onClick={handleApplyToJob}>
+            Apply
+          </button>
+        )}
       </div>
     </div>
   );

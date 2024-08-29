@@ -31,17 +31,20 @@ const MyStats = () => {
   //   finishedJobs: 63,
   // };
   const [dataPoints, setDataPoints] = useState([]);
-  const [data, setData] = useState({
+  const [overviewData, setOverviewData] = useState({
     totalJobs: 0,
+    // totalMentors: 0,
     totalAssignedJobs: 0,
     appliedJobs: 0,
     finishedJobs: 0,
   });
-
-  // const [mentors, setMentors] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [mentors, setMentors] = useState([]);
+  const [jobs, setJobs] = useState([]);
+  const [companies, setCompanies] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,27 +76,8 @@ const MyStats = () => {
         setDescription(userData.desc || "");
         setSkills(userData.skills || []);
 
-        //fetch statistics
-        const statisticsResponse = await fetch(
-          "http://localhost:10000/api/jobs",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (!statisticsResponse.ok) {
-          throw new Error("Error fetching statistics data");
-        }
-        const statisticsData = await statisticsResponse.json();
-        setDataPoints(statisticsData.dataPoints || []);
-
-        // Fetch quick overview data
         const overviewResponse = await fetch(
-          "http://localhost:10000/api/jobapplications",
+          "http://localhost:10000/api/overview-stats",
           {
             method: "GET",
             headers: {
@@ -107,14 +91,7 @@ const MyStats = () => {
           throw new Error("Error fetching overview data");
         }
         const overviewData = await overviewResponse.json();
-        console.log("Overview Data:", overviewData);
-
-        setData({
-          totalJobs: overviewData.totalJobs || 0,
-          totalAssignedJobs: overviewData.totalAssignedJobs || 0,
-          appliedJobs: overviewData.appliedJobs || 0,
-          finishedJobs: overviewData.finishedJobs || 0,
-        });
+        setOverviewData(overviewData);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("Error fetching data");
@@ -138,9 +115,49 @@ const MyStats = () => {
     return <div>No user info available</div>;
   }
 
+  // if (!overviewData || overviewData.totalJobs === 0) {
+  //   return <div>No statistics available for this user this year.</div>;
+  // }
+
   const handleSave = (newData) => {
     setDescription(newData.description);
     setSkills(newData.skills);
+  };
+
+  const handleSearch = (query) => {
+    const lowercasedQuery = query.toLowerCase();
+
+    const filteredMentors = mentors.filter(
+      (mentor) =>
+        mentor.name.toLowerCase().includes(lowercasedQuery) ||
+        mentor.skills.some((skill) =>
+          skill.toLowerCase().includes(lowercasedQuery)
+        ) ||
+        (mentor.desc && mentor.desc.toLowerCase().includes(lowercasedQuery))
+    );
+    const filteredJobs = jobs.filter(
+      (job) =>
+        job.title.toLowerCase().includes(lowercasedQuery) ||
+        job.description.toLowerCase().includes(lowercasedQuery) ||
+        job.skillsRequired.some((skill) =>
+          skill.toLowerCase().includes(lowercasedQuery)
+        )
+    );
+    const filteredCompanies = companies.filter(
+      (company) =>
+        company.name.toLowerCase().includes(lowercasedQuery) ||
+        (company.description &&
+          company.description.toLowerCase().includes(lowercasedQuery))
+    );
+
+    setSearchResults([
+      ...filteredMentors.map((mentor) => ({ type: "mentor", data: mentor })),
+      ...filteredJobs.map((job) => ({ type: "job", data: job })),
+      ...filteredCompanies.map((company) => ({
+        type: "company",
+        data: company,
+      })),
+    ]);
   };
 
   return (
@@ -149,7 +166,11 @@ const MyStats = () => {
         <SideBar role={role} />
       </div>
       <div className="search-bar-my-stats">
-        <SearchBar placeholder="Search" />
+        <SearchBar
+          placeholder="Search"
+          className="search-bar-my-stats"
+          onSearch={handleSearch}
+        />
       </div>
       <div className="user-dropdown-menu-stats">
         <UserDropDown
@@ -158,50 +179,76 @@ const MyStats = () => {
           userTitle={userInfo.title || "Mentor"}
         />
       </div>
-      <h1>My stats</h1>
-      <div className="user-info-card-my-stats">
-        <UserInfoCard
-          image={userInfo.image}
-          name={userInfo.name}
-          title={userInfo.title}
-          email={userInfo.email}
-          phone={userInfo.phone}
-        />
-        <UserAboutCard
-          about="About"
-          skills={skills}
-          description={description}
-          onSave={handleSave}
-          role={role}
-        />
-      </div>
-      <h1 className="performance-over-time">Performance Over Time</h1>
-      <div className="statistics-my-stats">
-        <Statistics
-          title="STATISTICS"
-          description="Overall target accomplishment over the year"
-          dataPoints={dataPoints}
-        />
-      </div>
-      <div className="quick-overview-my-stats">
-        <h2>Quick Overview</h2>
-        <QuickOverviewCard
-          totalJobs={data.totalJobs}
-          totalAssignedJobs={data.totalAssignedJobs}
-          appliedJobs={data.appliedJobs}
-          finishedJobs={data.finishedJobs}
-        />
-        {/* {data ? (
-          <QuickOverviewCard
-            totalJobs={data.totalJobs}
-            totalAssignedJobs={data.totalAssignedJobs}
-            appliedJobs={data.appliedJobs}
-            finishedJobs={data.finishedJobs}
-          />
-        ) : (
-          <p>No data available</p>
-        )} */}
-      </div>
+      {searchResults.length > 0 ? (
+        <div className="search-results-section-mentor-dash">
+          <h2 className="search-result-title-mentor-dash">Search Results</h2>
+          {searchResults.map((result, index) => (
+            <div key={index} className="search-result-item">
+              {result.type === "mentor" && (
+                <div className="mentor-result">
+                  <img src={result.data.image || defaultLogo} alt="mentor" />
+                  <div>
+                    <h3>{result.data.name}</h3>
+                    <p>{result.data.title}</p>
+                  </div>
+                </div>
+              )}
+              {result.type === "job" && (
+                <div className="job-result">
+                  <h3>{result.data.title}</h3>
+                  <p>{result.data.description}</p>
+                </div>
+              )}
+              {result.type === "company" && (
+                <div className="company-result">
+                  <h3>{result.data.name}</h3>
+                  <p>{result.data.description}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>
+          <h1>My stats</h1>
+          <div className="user-info-card-my-stats">
+            <UserInfoCard
+              image={userInfo.image}
+              name={userInfo.name}
+              title={userInfo.title}
+              email={userInfo.email}
+              phone={userInfo.phone}
+            />
+            <UserAboutCard
+              about="About"
+              skills={skills}
+              description={description}
+              onSave={handleSave}
+              role={role}
+            />
+          </div>
+          <h1 className="performance-over-time">Performance Over Time</h1>
+          <div className="statistics-my-stats">
+            <Statistics
+              title="STATISTICS"
+              description="Overall target accomplishment over the year"
+              dataPoints={dataPoints}
+            />
+          </div>
+          <div className="quick-overview-my-stats">
+            <h2>Quick Overview</h2>
+            <QuickOverviewCard
+              className="quick-overview-my-stats"
+              role={role}
+              totalJobs={overviewData.totalJobs}
+              // totalMentors={overviewData.totalMentors}
+              totalAssignedJobs={overviewData.totalAssignedJobs}
+              appliedJobs={overviewData.appliedJobs}
+              finishedJobs={overviewData.finishedJobs}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

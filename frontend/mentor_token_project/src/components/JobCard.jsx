@@ -3,7 +3,7 @@ import "./JobCard.css";
 import defaultLogo from "../assets/userStartupAvatar.png";
 
 const JobCard = ({ job, onCardClick }) => {
-  console.log("Rendering job:", job);
+  // console.log("Rendering job:", job);
 
   if (!job) {
     return <div className="job-card">Invalid job data</div>;

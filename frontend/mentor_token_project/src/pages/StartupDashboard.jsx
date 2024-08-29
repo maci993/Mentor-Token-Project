@@ -4,7 +4,8 @@ import SearchBar from "../components/SearchBar";
 import AssignedJobs from "../components/AssignedJobs";
 import UserDropdownInfo from "../components/UserDropdownInfo";
 import BestPerformingMentors from "../components/BestPerformingMentors";
-import Statistics from "../components/Statistics";
+// import Statistics from "../components/Statistics";
+import Statistics from "../components/Statistics"
 import UserCompany from "../assets/userStartupAvatar.png";
 import SideBar from "../components/SideBar";
 import JobCard from "../components/JobCard";

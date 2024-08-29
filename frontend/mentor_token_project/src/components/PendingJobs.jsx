@@ -18,7 +18,7 @@ const fetchJobOffers = async (token) => {
 };
 
 const deleteJobOffer = async (jobId, token) => {
-  const res = await fetch (`${API_BASE_URL}/jobs/${jobId}`, {
+  const res = await fetch(`${API_BASE_URL}/jobs/${jobId}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -28,8 +28,7 @@ const deleteJobOffer = async (jobId, token) => {
     throw new Error(res.statusText);
   }
   return res.json();
-  };
-
+};
 
 const updateJobOfferStatus = async (jobId, status, token) => {
   const res = await fetch(`${API_BASE_URL}/jobs/${jobId}`, {
@@ -85,15 +84,21 @@ const PendingJobs = ({ title, description, jobs }) => {
 
   const handleStatusUpdate = async (jobId, status) => {
     try {
-      await updateJobOfferStatus(jobId, status, token);
-      const updatedJobs = job.map((job) =>
-        job._id === jobId ? { ...job, status } : job
-      );
-      setJob(updatedJobs);
-    } catch (err) {
-      console.error("Error updating job offer status:", err);
-      setError(err.message || "An unexpected error occurred");
-    }
+      await updateJobOfferStatus(jobId, status, token)
+      if (status === "Cancelled") {
+        const updatedJobs = job.filter((job) => job._id !== jobId);
+        setJob(updatedJobs); 
+      } else {
+        const updatedJobs = job.map((job) =>
+          job._id === jobId ? { ...job, status } : job
+        );
+        setJob(updatedJobs); 
+      }
+      alert(`Job ${status.toLowerCase()} successfully!`);
+      } catch {
+        console.error("Error updating job offer status:", err);
+        setError(err.message || "An unexpected error occurred");
+    } 
   };
 
   if (loading) {
@@ -109,42 +114,49 @@ const PendingJobs = ({ title, description, jobs }) => {
       <h2>{title}</h2>
       <p>{description}</p>
       <div className="job-list-mentor-dashboard">
-        {job.map((job, index) => (
-          <div key={index} className="job-item-mentor-dashboard">
-            <span className="job-title-mentor-dashboard">{job.title}</span>
-            <div className="job-action-mentor-dashboard">
-              {role === "mentor" ? (
-                <>
+        {job && job.length > 0 ? (
+          job.map((jobItem, index) => (
+            <div key={index} className="job-item-mentor-dashboard">
+              <span className="job-title-mentor-dashboard">{jobItem.title}</span>
+              <div className="job-action-mentor-dashboard">
+                {role === "mentor" ? (
+                  <>
+                    <button
+                      className="accept-button"
+                      onClick={() => {
+                        alert("Job accepted");
+                        handleStatusUpdate(jobItem._id, "Accepted");
+                      }}
+                    >
+                      Accept
+                    </button>
+                    <button
+                      className="reject-button"
+                      onClick={() => {
+                        alert("Job rejected");
+                        handleStatusUpdate(jobItem._id, "Rejected");
+                      }}
+                    >
+                      Reject
+                    </button>
+                  </>
+                ) : (
                   <button
-                    className="accept-button"
+                    className="cancel-button-pending-jobs"
                     onClick={() => {
-                      alert("Job accepted");
-                      handleStatusUpdate(job._id, "Accepted");
+                      alert("Job offer cancelled");
+                      handleStatusUpdate(jobItem._id, "Cancelled");
                     }}
                   >
-                    Accept
+                    Cancel Offer
                   </button>
-                  <button
-                    className="reject-button"
-                    onClick={() => {
-                      alert("Job rejected");
-                      handleStatusUpdate(job._id, "Rejected");
-                    }}
-                  >
-                    Reject
-                  </button>
-                </>
-              ) : (
-                <button
-                  className="cancel-button-pending-jobs"
-                  onClick={() => handleStatusUpdate(job._id, "Cancelled")}
-                >
-                  Cancel Offer
-                </button>
-              )}
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>No pending jobs available!</p>
+        )}
       </div>
     </div>
   );

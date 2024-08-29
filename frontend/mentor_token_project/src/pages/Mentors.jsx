@@ -19,17 +19,22 @@ const Mentors = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [overviewData, setOverviewData] = useState({
+    totalMentors: 0,
+    totalAssignedJobs: 0,
+    finishedJobs: 0,
+  });
   // const [data, setData] = useState({
   //   totalMentors: 5,
   //   totalAssignedJobs: 3,
   //   finishedJobs: 2,
   // });
 
-  const data = {
-    totalMentors: mentors.length,
-    totalAssignedJobs: 0,
-    finishedJobs: 0,
-  };
+  // const data = {
+  //   totalMentors: mentors.length,
+  //   totalAssignedJobs: 0,
+  //   finishedJobs: 0,
+  // };
 
   const navigate = useNavigate();
 
@@ -67,11 +72,12 @@ const Mentors = () => {
   // ];
 
   useEffect(() => {
-    const myToken = jwtDecode(localStorage.getItem("jwt_token"));
-    console.log("Retrieved role:", myToken.type);
-
     const fetchMentors = async () => {
       try {
+        const token = localStorage.getItem("jwt_token");
+        const myToken = jwtDecode(token);
+        setRole(myToken.type);
+
         const response = await fetch("/api/users?type=mentor", {
           method: "GET",
           headers: {
@@ -96,10 +102,25 @@ const Mentors = () => {
               completedJobs,
             };
           })
-          .sort((a, b) => b.completedJobs - a.completedJobs); // Sort by completed jobs
+          .sort((a, b) => b.completedJobs - a.completedJobs); 
 
         setMentors(sortedMentors);
         setSearchResults(mentorsData);
+
+        const statsResponse = await fetch("/api/overview-stats-mentors", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!statsResponse.ok) {
+          throw new Error("Failed to fetch mentor statistics");
+        }
+
+        const statsData = await statsResponse.json();
+        setOverviewData(statsData);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -108,7 +129,6 @@ const Mentors = () => {
     };
 
     fetchMentors();
-    setRole(myToken.type);
   }, []);
 
   const handleViewMentor = (id) => {
@@ -180,9 +200,11 @@ const Mentors = () => {
         <p className="quick-overview-paragraph">Quick Overview</p>
         <p className="quick-overview-paragraph1">in the last month</p>
         <QuickOverviewCard
-          totalMentors={data.totalMentors}
-          totalAssignedJobs={data.totalAssignedJobs}
-          finishedJobs={data.finishedJobs}
+        className="quick-overview-mentor-page"
+        role={role}
+          totalMentors={overviewData.totalMentors}
+          totalAssignedJobs={overviewData.totalAssignedJobs}
+          finishedJobs={overviewData.finishedJobs}
         />
       </div>
     </div>

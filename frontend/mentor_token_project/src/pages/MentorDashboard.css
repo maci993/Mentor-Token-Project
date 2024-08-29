@@ -1,10 +1,10 @@
-.body{
+.body {
   background-color: #f6f6f6;
 }
 
 .mentor-dashboard-page {
-  margin-left: 150px;
-  width: 100%;
+  width: 2000px;
+  height: 100%;
   background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
@@ -29,7 +29,6 @@ width: 100%;
   margin-top: 70px;
   margin-right: 150px;
   position: absolute;
-
 }
 
 .dashboard-content {
@@ -43,7 +42,7 @@ width: 100%;
 .assigned-jobs-mentor-dashboard {
   margin-top: -900px;
   margin-left: 0;
-} 
+}
 
 /* .dashboard-header {  
   margin-right: 150px;
@@ -58,4 +57,15 @@ width: 100%;
 
 .dropdown-mentor-dashboard {
   margin-right: 20px;
+}
+
+.search-results-section-mentor-dash {
+  background-color: #f6f6f6;
+  width: 70%;
+  margin-left: 600px;
+  margin-top: 200px;
+}
+
+.search-result-title-mentor-dash {
+margin-left: -200px;
 }

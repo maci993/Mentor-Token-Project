@@ -67,7 +67,7 @@ const AssignedJobs = () => {
     const lowerStatus = status.toLowerCase();
     if (lowerStatus === "done" || lowerStatus === "accepted") {
       return { backgroundColor: "#ebf6eb", color: "#31aa27" };
-    } else if (lowerStatus === "rejected") {
+    } else if (lowerStatus === "rejected" || lowerStatus === "cancelled") {
       return { backgroundColor: "#fff0f3", color: "#f2076a" };
     } else if (lowerStatus === "in progress" || lowerStatus === "open") {
       return { backgroundColor: "#d3d3ff80", color: "#696cff" };

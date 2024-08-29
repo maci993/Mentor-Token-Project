@@ -1,5 +1,7 @@
 .body {
   background-color: #f6f6f6;
+  width: 100%;
+  height: 100%;
 }
 
 .mentors-company-view-page {
@@ -55,7 +57,7 @@
 .quick-overview-company-view {
   background-color: #f6f6f6;
   position: absolute;
-  margin-left: 750px;
+  margin-left: 800px;
   margin-top: -1150px;
 }
 
@@ -74,6 +76,7 @@
 
 .quick-overview-paragraph1 {
   font-family: "Roboto";
+  width: 200px;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;

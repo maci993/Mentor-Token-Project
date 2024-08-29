@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Statistics.css";
-import PropTypes from "prop-types";
 
 const Statistics = ({ title, description, userType }) => {
   const [dataPoints, setDataPoints] = useState([]);
@@ -12,10 +11,12 @@ const Statistics = ({ title, description, userType }) => {
       <div className="statistics-card">
         <h2>{title}</h2>
         <p>{description}</p>
-        <p className="no-data-message">No statistics available for this user.</p>
+        <p className="no-data-message">
+          No statistics available for this user.
+        </p>
       </div>
     );
-  };
+  }
 
   useEffect(() => {
     if (dataPoints.length === 0) {
@@ -110,6 +111,5 @@ const Statistics = ({ title, description, userType }) => {
     </div>
   );
 };
-
 
 export default Statistics;
