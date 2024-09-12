@@ -9,11 +9,11 @@ import "./FooterSection.css";
 const FooterSection = () => {
   const navigate = useNavigate();
   const [navigation, setNavigation] = useState("/");
-  // const location = useLocation();
 
   useEffect(() => {
     setNavigation(location.pathname);
   }, [location]);
+
   const updateNavigation = (e, value) => {
     e.preventDefault();
     setNavigation(value);

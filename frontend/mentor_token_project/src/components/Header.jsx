@@ -1,23 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import "./Header.css";
 import Logo from "../assets/Logo.svg";
 import Button from "./Button";
 
 const Header = () => {
-  // const navigate = useNavigate();
-  // const [navigation, setNavigation] = useState("/");
-  // const location = useLocation();
-
-  // useEffect(() => {
-  //   setNavigation(location.pathname);
-  // }, [location]);
-  // const updateNavigation = (e, value) => {
-  //   e.preventDefault();
-  //   setNavigation(value);
-  //   navigate(value);
-  // };
-
   return (
     <header>
       <img src={Logo} className="app-logo" alt="logo-img" />

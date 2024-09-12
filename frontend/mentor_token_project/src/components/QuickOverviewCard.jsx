@@ -9,13 +9,14 @@ const QuickOverviewCard = ({
   appliedJobs,
   finishedJobs,
 }) => {
-  console.log("QuickOverviewCard Props:", {
-    totalJobs,
-    totalMentors,
-    totalAssignedJobs,
-    appliedJobs,
-    finishedJobs,
-  });
+  // console.log("QuickOverviewCard Props:", {
+  //   role,
+  //   totalJobs,
+  //   totalMentors,
+  //   totalAssignedJobs,
+  //   appliedJobs,
+  //   finishedJobs,
+  // });
 
   return (
     <div className="quick-overview-card">
@@ -39,7 +40,7 @@ const QuickOverviewCard = ({
           </div>
         </>
       )}
-      {role === "company" && (
+      {role === "startup" && (
         <>
           <div className="overview-item">
             <p>Total Mentors</p>

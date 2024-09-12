@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import "./Home.css";
 import Computer from "../assets/computer.png";
 import Logos from "../assets/Company-logos/Logos1.svg";
 import Logos1 from "../assets/Company-logos/Logos2.svg";
-// import Mentors from "../components/Mentors";
 import Rocket from "../assets/Rocket.svg";
 import Picture from "../assets/picture-group-hp.svg";
 import Mentors from "../assets/Mentors-img.svg";
 import Features from "../components/Features";
 
 const Home = () => {
-  const handleClick = () => {
-    alert("Button clicked!");
-  };
-
-  const navigate = useNavigate;
-  useEffect(() => {}, []);
 
   return (
     <div className="home-page">

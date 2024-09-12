@@ -16,9 +16,10 @@ const skillsOptions = [
   "MongoDB",
 ];
 
-const RegisterMentor = () => {
-  // const [name, setName] = useState("");
+const RegisterMentor = ({ email, username, password, confirmPassword, goBack }) => {
+  // const [username, setUsername] = useState("");
   // const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
   const [skills, setSkills] = useState([]);
   const [phone, setPhone] = useState("");
   const [description, setDescription] = useState("");
@@ -34,22 +35,79 @@ const RegisterMentor = () => {
       setSkills((prevSkills) => prevSkills.filter((skill) => skill !== value));
     }
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isAccepted) {
-      // console.log("name", name);
-      // console.log("password", password);
-      console.log("skills", skills);
-      console.log("phone", phone);
-      console.log("description", description);
-      navigate("/dashboard-mentor");
-    } else {
-      alert(
-        "You need to accept the Terms of use & Privacy Policy to register."
-      );
+  
+    console.log("Email:", email);
+    console.log("Username:", username);
+    console.log("Confirm Pass", confirmPassword);
+    console.log("Password:", password);
+    console.log("Phone:", phone);
+    console.log("Skills:", skills);
+    console.log("Description:", description);
+
+    if (!isAccepted) {
+      alert("You need to accept the Terms of Use & Privacy Policy to register.");
+      return;
+    }
+
+    if (!email || !username || !password || !confirmPassword || !phone || !skills.length || !description) {
+      alert("Please fill all the required fields!");
+      return;
+    }
+  
+    const mentorData = {
+      email,
+      name: username,
+      password,
+      confirmPassword,
+      type: "mentor", 
+      skills,
+      phone,
+      desc: description,
+    };
+  
+    console.log("Mentor data being sent:", mentorData);
+    
+    try {
+      const response = await fetch("http://localhost:10000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(mentorData),
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Registration successful!", result);
+        navigate("/dashboard-mentor");
+      } else {
+        const errorText = await response.text();
+        console.error("Registration failed:", errorText);
+        alert(errorText || "There was an error during registration.");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      alert("There was a problem registering the mentor.");
     }
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (isAccepted) {
+  //     // console.log("name", name);
+  //     // console.log("password", password);
+  //     // console.log("skills", skills);
+  //     // console.log("phone", phone);
+  //     // console.log("description", description);
+  //     navigate("/dashboard-mentor");
+  //   } else {
+  //     alert(
+  //       "You need to accept the Terms of use & Privacy Policy to register."
+  //     );
+  //   }
+  // };
 
   const toggleCheckbox = () => {
     setIsAccepted(!isAccepted);
@@ -73,6 +131,7 @@ const RegisterMentor = () => {
               <label>Phone Number</label>
               <br />
               <input
+              id="phone"
                 className="startup-input"
                 type="tel"
                 value={phone}
@@ -86,6 +145,7 @@ const RegisterMentor = () => {
                 {skillsOptions.map((skill) => (
                   <label key={skill} className="skills-checkbox-label">
                     <input
+                    id={skill}
                       type="checkbox"
                       value={skill}
                       checked={skills.includes(skill)}
@@ -99,6 +159,7 @@ const RegisterMentor = () => {
               <label>Description</label>
               <br />
               <textarea
+              id="description"
                 className="startup-input"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -107,27 +168,6 @@ const RegisterMentor = () => {
               />
               <br />
             </div>
-            {/* <label>Mentor Name</label>
-              <br />
-              <input
-                className="startup-name-input"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name and surname"
-                required
-              />
-              <br />
-              <label>Mentor's Password</label>
-              <br />
-              <input
-                className="startup-input"
-                type="text"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Your password"
-                required
-              /> */}
             <div className="register-startup-button">
               <Button type="submit" name="Register" />
             </div>
@@ -137,9 +177,16 @@ const RegisterMentor = () => {
                   className={`checkbox-custom ${
                     isAccepted ? "checked" : "unchecked"
                   }`}
-                ></div>
-                <span>
-                  {" "}
+                >
+                   <input
+                   id="terms-checkbox"
+                    type="checkbox"
+                    checked={isAccepted}
+                    onChange={toggleCheckbox}
+                    style={{ display: "none" }} 
+                  />
+                </div>
+                <span className="span-terms-of-use">
                   By signing up to create an account I accept Company’s{" "}
                 </span>
                 <span className="terms-of-use-text-register-form">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LogPage from "../components/LogPage.jsx";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button.jsx";
 import StartupProfileImage from "../assets/Register-Images/profileImg.png";
 import CameraImage from "../assets/Register-Images/photo.png";
@@ -8,26 +8,64 @@ import CheckMarkChecked from "../assets/checkbox/checkbox-checked.png";
 import CheckMark from "../assets/checkbox/checkbox-unchecked.png";
 import "./Register-Startup.css";
 
-const RegisterStartup = () => {
-  const [startupName, setStartupName] = useState("");
-  const [nameSurname, setNameSurname] = useState("");
+const RegisterStartup = ({ email, name, password, confirmPassword }) => {
+  // const [startupName, setStartupName] = useState("");
+  // const [nameSurname, setNameSurname] = useState("");
+  const [representative, setRepresentative] = useState("");
   const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
   const [isAccepted, setIsAccepted] = useState(false);
 
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-if(isAccepted){
-    console.log("StartupName", startupName);
-    console.log("nameSurname", nameSurname);
-    console.log("address", address);
-    console.log("email", email);
-    navigate("/dashboard-startup");
-  } else {
-    alert("You need to accept the Terms of use & Privacy Policy to register.")
-  }
+    if (!representative || !address || !isAccepted) {
+      alert("Please fill all the required fields!");
+      return;
+    }
+
+    // if (!email || !name || !password || !confirmPassword || !startupName || !nameSurname || !address) {
+    //   alert("Please fill all the required fields!");
+    //   return;
+    // }
+
+    // if (password !== confirmPassword) {
+    //   alert("Passwords do not match!");
+    //   return;
+    // }
+    const startupData = {
+      email,
+      name,
+      password,
+      confirmPassword,
+      type: "startup",
+      representative,
+      address,
+    };
+
+    console.log("Startup data being sent:", startupData);
+
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(startupData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Registration successful!", result);
+        navigate("/dashboard-startup");
+      } else {
+        const errorText = await response.text();
+        console.error("Registration failed:", errorText);
+        alert(errorText || "There was an error during registration.");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      alert("There was a problem registering the startup.");
+    }
   };
 
   const toggleCheckbox = () => {
@@ -58,7 +96,7 @@ if(isAccepted){
               <input
                 className="startup-name-input"
                 type="text"
-                value={startupName}
+                value={name}
                 onChange={(e) => setStartupName(e.target.value)}
                 placeholder="My Startup Name"
                 required
@@ -72,8 +110,8 @@ if(isAccepted){
               <input
                 className="startup-input"
                 type="text"
-                value={nameSurname}
-                onChange={(e) => setNameSurname(e.target.value)}
+                value={representative}
+                onChange={(e) => setRepresentative(e.target.value)}
                 placeholder="Name and surname"
                 required
               />
@@ -109,14 +147,19 @@ if(isAccepted){
               </div>
               <div className="under-button-text">
                 <div className="checkbox-container" onClick={toggleCheckbox}>
-                  <div className={`checkbox-custom ${isAccepted ? "checked" : "unchecked"}`}>
-                  </div>
-                  <span> By signing up to create an account I accept Company’s{" "}</span>
+                  <div
+                    className={`checkbox-custom ${
+                      isAccepted ? "checked" : "unchecked"
+                    }`}
+                  ></div>
+                  <span>
+                    {" "}
+                    By signing up to create an account I accept Company’s{" "}
+                  </span>
                   <span className="terms-of-use-text-register-form">
-                  Terms of use & Privacy Policy.</span>
-                  </div>
-
-               
+                    Terms of use & Privacy Policy.
+                  </span>
+                </div>
               </div>
             </div>
           </form>

@@ -8,7 +8,7 @@
   background-color: #f6f6f6;
   height: 100%;
   width: 100%;
-  margin-left: 70px;
+  margin-left: 50px;
 }
 
 .mentors-list-company-view {
@@ -33,18 +33,16 @@
 }
 
 .search-bar-company-view {
-  margin-left: 400px;
+  margin-left: 350px;
   display: flex;
   margin-top: 0px;
 }
 
-.search-bar-and-dropdown .dropdown-company-view {
-  margin-right: 20px;
+
+.search-bar-and-dropdown .drop-down-startup-view {
+  margin-left: 1580px;
 }
 
-.search-bar-company-view {
-  margin-left: 430px;
-}
 
 .mentors-list-company-view {
   padding-top: 290px;

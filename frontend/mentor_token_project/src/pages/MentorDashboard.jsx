@@ -40,13 +40,31 @@ const MentorDashboard = () => {
   const token = localStorage.getItem("jwt_token");
 
   useEffect(() => {
-    const myToken = jwtDecode(localStorage.getItem("jwt_token"));
-    console.log("Retrieved role:", myToken.type);
-    setRole(myToken.type);
+    // const myToken = jwtDecode(localStorage.getItem("jwt_token"));
+    // console.log("Retrieved role:", myToken.type);
+    // setRole(myToken.type);
 
-    fetchUserInfo();
-    fetchJobs();
-    fetchJobApplications();
+    // fetchUserInfo();
+    // fetchJobs();
+    // fetchJobApplications();
+    if (!token || typeof token !== 'string') {
+      console.error("Invalid token:", token);
+      return;
+    }
+
+    try {
+      const myToken = jwtDecode(token);
+      console.log("Retrieved role:", myToken.type);
+      setRole(myToken.type);
+
+      // Fetch data once the token is valid
+      fetchUserInfo();
+      fetchJobs();
+      fetchJobApplications();
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      setError("Invalid token.");
+    }
   }, [token, refreshTrigger]);
 
   const fetchUserInfo = async () => {
@@ -188,7 +206,7 @@ const MentorDashboard = () => {
       </header>
       {searchResults.length > 0 ? (
         <div className="search-results-section-mentor-dash">
-          <h2 className="search-result-title-mentor-dash">Search Results</h2>
+          <h2 className="search-result-title-mentor">Search Results</h2>
           {searchResults.map((result, index) => (
             <div key={index} className="search-result-item">
               {result.type === "mentor" && (

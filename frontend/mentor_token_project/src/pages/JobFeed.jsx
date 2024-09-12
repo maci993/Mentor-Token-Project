@@ -145,8 +145,7 @@ const JobFeed = () => {
         <div className="user-dropdown-menu-stats">
           <UserDropdownInfo
              userImg={userInfo.image}
-             userName={userInfo.name}
-               userTitle={userInfo.title} />
+             userName={userInfo.name} />
         </div>
         <div className="job-card-job-feed">
           <h1>Your Startup Jobs</h1>

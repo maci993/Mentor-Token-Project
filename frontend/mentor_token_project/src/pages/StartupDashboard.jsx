@@ -5,11 +5,12 @@ import AssignedJobs from "../components/AssignedJobs";
 import UserDropdownInfo from "../components/UserDropdownInfo";
 import BestPerformingMentors from "../components/BestPerformingMentors";
 // import Statistics from "../components/Statistics";
-import Statistics from "../components/Statistics"
+import Statistics from "../components/Statistics";
 import UserCompany from "../assets/userStartupAvatar.png";
 import SideBar from "../components/SideBar";
 import JobCard from "../components/JobCard";
 import { MentorCard, MentorsList } from "../components/MentorCard";
+import defaultLogo from "../assets/userStartupAvatar.png";
 import "./StartupDashboard.css";
 
 const getFinishedJobsByMonth = (jobs) => {
@@ -17,8 +18,10 @@ const getFinishedJobsByMonth = (jobs) => {
 
   jobs.forEach((job) => {
     if (job.status === "Finished") {
-      const finishedDate = new Date(job.finishedDate); 
-      const monthKey = `${finishedDate.getFullYear()}-${finishedDate.getMonth() + 1}`;
+      const finishedDate = new Date(job.finishedDate);
+      const monthKey = `${finishedDate.getFullYear()}-${
+        finishedDate.getMonth() + 1
+      }`;
 
       if (!jobsByMonth[monthKey]) {
         jobsByMonth[monthKey] = 0;
@@ -35,6 +38,7 @@ const getFinishedJobsByMonth = (jobs) => {
 };
 
 const StartupDashboard = () => {
+  const token = window.localStorage.getItem("jwt_token");
   const dataPoints = [0, 20, 60, 70, 100, 110, 80, 40, 50, 30, 20];
   const [role, setRole] = useState(null);
   const [mentors, setMentors] = useState([]);
@@ -42,6 +46,11 @@ const StartupDashboard = () => {
   const [companies, setCompanies] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
+  const [userInfo, setUserInfo] = useState({
+    name: "User",
+    title: "Title",
+    image: defaultLogo,
+  });
 
   useEffect(() => {
     const myToken = jwtDecode(localStorage.getItem("jwt_token"));
@@ -84,7 +93,37 @@ const StartupDashboard = () => {
       }
     };
 
+    const fetchUserInfo = async () => {
+      try {
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+
+        const res = await fetch(`http://localhost:10000/api/users/${userId}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (res.ok) {
+          const userData = await res.json();
+          setUserInfo({
+            name: userData.name || "User",
+            title: userData.title || "Mentor",
+            image: userData.image || defaultLogo,
+          });
+        } else {
+          console.error("Error fetching user info:", res.statusText);
+          setError(res.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+        setError(error.message);
+      }
+    };
+
     fetchData();
+    fetchUserInfo();
   }, []);
 
   const handleSearch = (query) => {
@@ -120,16 +159,15 @@ const StartupDashboard = () => {
     ]);
   };
 
-    // Get data points for finished jobs
-    const finishedJobsDataPoints = getFinishedJobsByMonth(jobs);
+  // Get data points for finished jobs
+  const finishedJobsDataPoints = getFinishedJobsByMonth(jobs);
 
   return (
     <div className="startup-dashboard-page">
       <header className="dashboard-header">
         <UserDropdownInfo
-          userImg={UserCompany}
-          userName="TechWave"
-          userTitle="Innovations"
+          userImg={userInfo.image}
+          userName={userInfo.name}
           className="drop-down-startup-dash"
         />
       </header>

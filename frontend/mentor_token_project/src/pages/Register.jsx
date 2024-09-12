@@ -29,8 +29,8 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [role, setRole] = useState("Company");
+  const [name, setName] = useState("");
+  const [type, setType] = useState("mentor");
   const [passwordStrength, setPasswordStrength] = useState(false);
   const [noNameAndEmail, setNoNameAndEmail] = useState(false);
   const [characters, setCharacters] = useState(false);
@@ -38,18 +38,17 @@ const Register = () => {
   const [passwordMatch, setPasswordMatch] = useState(false);
   const [emailAddressPattern, setEmailAddressPattern] = useState(false);
   const [continueButton, setContinueButton] = useState(false);
-  const [error, setError] = useState("");
 
-  const updateRole = (userRole) => {
-    setRole(userRole);
-    console.log("The role is:", userRole);
+  const updateType = (userType) => {
+    setType(userType);
+    console.log("The role is:", userType);
   };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const noNameAndEmail =
-      !password.toLowerCase().includes(username.toLowerCase()) ||
+      !password.toLowerCase().includes(name.toLowerCase()) ||
       !password.toLowerCase().includes(email.toLowerCase());
     // (!password.toUpperCase().includes(username.toUpperCase()) ||
     //       !password.toUpperCase().includes(email.toUpperCase())
@@ -75,7 +74,11 @@ const Register = () => {
       noNameAndEmail && characters && numberSymbol && passwordMatch
     );
 
-    const isFormValid = passwordMatch && passwordStrength && emailAddressPattern && username.trim() !== "";
+    const isFormValid =
+      passwordMatch &&
+      passwordStrength &&
+      emailAddressPattern &&
+      name.trim() !== "";
     setContinueButton(isFormValid);
 
     console.log("No Name and Email:", noNameAndEmail);
@@ -86,7 +89,7 @@ const Register = () => {
   }, [
     password,
     confirmPassword,
-    username,
+    name,
     email,
     noNameAndEmail,
     characters,
@@ -112,14 +115,17 @@ const Register = () => {
       alert("Please enter a valid email address!");
       return;
     }
+
+    const userData = {
+      email,
+      name,
+      password,
+      confirmPassword,
+      type,
+    };
     setContinueButton(true);
-    console.log("Form submitted successfully!");
+    console.log("Form submitted successfully!", userData);
   };
-  // if (role === "mentor") {
-  //   navigate("/register-mentor");
-  // } else {
-  //   navigate("/register-startup");
-  // }
 
   const customStyles = (selected) => ({
     backgroundColor: selected
@@ -129,10 +135,28 @@ const Register = () => {
   });
 
   return continueButton ? (
-    role === "mentor" ? (
-      <RegisterMentor goBack={() => setContinueButton(false)} />
+    type === "mentor" ? (
+      <RegisterMentor
+        email={email}
+        setEmail={setEmail}
+        username={name}
+        setName={setName}
+        password={password}
+        setPassword={setPassword}
+        confirmPassword={confirmPassword}
+        goBack={() => setContinueButton(false)}
+      />
     ) : (
-      <RegisterStartup goBack={() => setContinueButton(false)} />
+      <RegisterStartup
+        email={email}
+        setEmail={setEmail}
+        name={name}
+        setUsername={setName}
+        password={password}
+        setPassword={setPassword}
+        confirmPassword={confirmPassword}
+        goBack={() => setContinueButton(false)}
+      />
     )
   ) : (
     <LogPage
@@ -141,9 +165,9 @@ const Register = () => {
           <h1 className="register-page-title">CHOOSE ACCOUNT TYPE</h1>
           <div style={{ width: "528px", height: "46px" }}>
             <SwitchSelector
-              onChange={updateRole}
+              onChange={updateType}
               options={options}
-              initialSelectedIndex={0}
+              initialSelectedIndex={type === "mentor" ? 1 : 0}
               backgroundColor={"#F5F5F9"}
               fontColor={"#566A7F"}
               optionBorderRadius={8}
@@ -177,14 +201,14 @@ const Register = () => {
                 <input
                   className="username-register"
                   type="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Username"
                   required
                 />
               </div>
               <div className="input-container">
-                <label htmlFor="password" className="input-label">
+                <label htmlFor="password" className="input-label-pass">
                   Password
                 </label>
                 <input
@@ -237,7 +261,6 @@ const Register = () => {
                 <br />
               </div>
               <div className="register-button">
-              {/* ne raboti */}
                 <Button
                   type="submit"
                   name="Continue"

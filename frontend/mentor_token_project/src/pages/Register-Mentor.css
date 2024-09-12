@@ -33,7 +33,7 @@
   font-weight: 500;
   line-height: 21.86px;
   color: #3a4857;
-  margin-bottom: -15px;
+  margin-bottom: -20px;
   display: block;
 }
 
@@ -67,4 +67,8 @@
   border-radius: 5px;
   font-family: "Manrope";
   font-size: 14px;
+}
+
+.terms-of-use-text-register-form .span-terms-of-use {
+  margin-bottom: 0px;
 }

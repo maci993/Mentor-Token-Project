@@ -3,8 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import LogPage from "../components/LogPage.jsx";
 import { jwtDecode } from "jwt-decode";
-// import { useUser } from '../context/UserContext';
-
 import "./Login.css";
 
 const Login = () => {
@@ -21,6 +19,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
@@ -34,11 +33,11 @@ const Login = () => {
         const data = await res.json();
         // const { jwt_token, type, id } = data;
         localStorage.setItem("jwt_token", data.token);
-        console.log(data, "data from login");
+        // console.log(data, "data from login");
         const decodedToken = jwtDecode(data.token);
         setMessage("Login successful!");
         const type = decodedToken.type;
-        console.log("User role:", type);
+        // console.log("User role:", type);
 
         if (type === "startup") {
           navigate("/dashboard-startup");

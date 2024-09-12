@@ -11,9 +11,11 @@ import Alison from "../assets/company-view-mentors/Alison.svg";
 import Marcus from "../assets/company-view-mentors/Marcus.svg";
 import QuickOverviewCard from "../components/QuickOverviewCard";
 import { MentorCard } from "../components/MentorCard";
+import defaultLogo from "../assets/userStartupAvatar.png"
 import "./Mentors.css";
 
 const Mentors = () => {
+  const token = window.localStorage.getItem("jwt_token");
   const [role, setRole] = useState(null);
   const [mentors, setMentors] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
@@ -23,6 +25,11 @@ const Mentors = () => {
     totalMentors: 0,
     totalAssignedJobs: 0,
     finishedJobs: 0,
+  });
+  const [userInfo, setUserInfo] = useState({
+    name: "User",
+    title: "Title",
+    image: defaultLogo
   });
   // const [data, setData] = useState({
   //   totalMentors: 5,
@@ -120,6 +127,7 @@ const Mentors = () => {
         }
 
         const statsData = await statsResponse.json();
+        // console.log("DATA FRON QUICK OVERVIEW", statsData);
         setOverviewData(statsData);
       } catch (error) {
         setError(error.message);
@@ -128,7 +136,37 @@ const Mentors = () => {
       }
     };
 
+    const fetchUserInfo = async () => {
+      try {
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+  
+        const res = await fetch(`http://localhost:10000/api/users/${userId}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        if (res.ok) {
+          const userData = await res.json();
+          setUserInfo({
+            name: userData.name || "User",
+            title: userData.title || "Mentor",
+            image: userData.image || defaultLogo,
+          });
+        } else {
+          console.error("Error fetching user info:", res.statusText);
+          setError(res.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+        setError(error.message);
+      }
+    };
+
     fetchMentors();
+    fetchUserInfo();
   }, []);
 
   const handleViewMentor = (id) => {
@@ -166,9 +204,8 @@ const Mentors = () => {
             style={{ marginLeft: 100 }}
           />
           <UserDropdownInfo
-            userImg={UserCompany}
-            userName="TechWave"
-            userTitle="Innovations"
+           userImg={userInfo.image}
+           userName={userInfo.name}
             className="drop-down-startup-view"
           />
           {/* <UserDropdownInfo
