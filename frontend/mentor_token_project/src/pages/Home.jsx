@@ -11,7 +11,6 @@ import Mentors from "../assets/Mentors-img.svg";
 import Features from "../components/Features";
 
 const Home = () => {
-
   return (
     <div className="home-page">
       <div className="images-container">
@@ -62,7 +61,7 @@ const Home = () => {
       <div className="rocket-home">
         <img src={Rocket} alt="rocket-image" />
       </div>
-      <Features className="features-home-page"/>
+      <Features className="features-home-page" />
       <div>
         <h1 className="success-paragraph">
           Every <span className="highlight"> success </span> is rewarded!

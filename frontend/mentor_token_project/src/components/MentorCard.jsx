@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import defaultLogo from "../assets/Mentors-icons/profile.svg"
+import defaultLogo from "../assets/Mentors-icons/profile.svg";
 import "./MentorsList.css";
 
 const MentorCard = ({ mentor, onViewMentor, image }) => {
@@ -16,7 +16,9 @@ const MentorCard = ({ mentor, onViewMentor, image }) => {
             <Star key={index} type={type} />
           ))}
 
-          <span className="mentor-rating-span">{mentor.rating?.toFixed(1)}</span>
+          <span className="mentor-rating-span">
+            {mentor.rating?.toFixed(1)}
+          </span>
           <span className="mentor-rating-span2">
             average based on {mentor.reviews} reviews
           </span>
@@ -94,23 +96,23 @@ const getLocalStorageItem = (key) => {
   try {
     return localStorage.getItem(key);
   } catch (err) {
-    console.error('Could not access localStorage:', err);
+    console.error("Could not access localStorage:", err);
     return null;
   }
 };
 
 const MentorsList = ({ mentors, onViewMentor }) => {
-    return (
-      <div className="mentor-list">
-        {mentors.map((mentor) => (
-          <MentorCard
-            key={mentor._id}
-            mentor={mentor}
-            onViewMentor={() => onViewMentor(mentor._id)}
-          />
-        ))}
-      </div>
-    );
-  };
+  return (
+    <div className="mentor-list">
+      {mentors.map((mentor) => (
+        <MentorCard
+          key={mentor._id}
+          mentor={mentor}
+          onViewMentor={() => onViewMentor(mentor._id)}
+        />
+      ))}
+    </div>
+  );
+};
 
-  export { MentorCard, MentorsList };
+export { MentorCard, MentorsList };

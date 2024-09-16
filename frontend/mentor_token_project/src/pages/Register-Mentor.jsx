@@ -16,7 +16,13 @@ const skillsOptions = [
   "MongoDB",
 ];
 
-const RegisterMentor = ({ email, username, password, confirmPassword, goBack }) => {
+const RegisterMentor = ({
+  email,
+  username,
+  password,
+  confirmPassword,
+  goBack,
+}) => {
   // const [username, setUsername] = useState("");
   // const [password, setPassword] = useState("");
   // const [email, setEmail] = useState("");
@@ -37,7 +43,7 @@ const RegisterMentor = ({ email, username, password, confirmPassword, goBack }) 
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     console.log("Email:", email);
     console.log("Username:", username);
     console.log("Confirm Pass", confirmPassword);
@@ -47,28 +53,38 @@ const RegisterMentor = ({ email, username, password, confirmPassword, goBack }) 
     console.log("Description:", description);
 
     if (!isAccepted) {
-      alert("You need to accept the Terms of Use & Privacy Policy to register.");
+      alert(
+        "You need to accept the Terms of Use & Privacy Policy to register."
+      );
       return;
     }
 
-    if (!email || !username || !password || !confirmPassword || !phone || !skills.length || !description) {
+    if (
+      !email ||
+      !username ||
+      !password ||
+      !confirmPassword ||
+      !phone ||
+      !skills.length ||
+      !description
+    ) {
       alert("Please fill all the required fields!");
       return;
     }
-  
+
     const mentorData = {
       email,
       name: username,
       password,
       confirmPassword,
-      type: "mentor", 
+      type: "mentor",
       skills,
       phone,
       desc: description,
     };
-  
+
     console.log("Mentor data being sent:", mentorData);
-    
+
     try {
       const response = await fetch("http://localhost:10000/api/auth/register", {
         method: "POST",
@@ -77,7 +93,7 @@ const RegisterMentor = ({ email, username, password, confirmPassword, goBack }) 
         },
         body: JSON.stringify(mentorData),
       });
-  
+
       if (response.ok) {
         const result = await response.json();
         console.log("Registration successful!", result);
@@ -131,7 +147,7 @@ const RegisterMentor = ({ email, username, password, confirmPassword, goBack }) 
               <label>Phone Number</label>
               <br />
               <input
-              id="phone"
+                id="phone"
                 className="startup-input"
                 type="tel"
                 value={phone}
@@ -145,7 +161,7 @@ const RegisterMentor = ({ email, username, password, confirmPassword, goBack }) 
                 {skillsOptions.map((skill) => (
                   <label key={skill} className="skills-checkbox-label">
                     <input
-                    id={skill}
+                      id={skill}
                       type="checkbox"
                       value={skill}
                       checked={skills.includes(skill)}
@@ -159,7 +175,7 @@ const RegisterMentor = ({ email, username, password, confirmPassword, goBack }) 
               <label>Description</label>
               <br />
               <textarea
-              id="description"
+                id="description"
                 className="startup-input"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -178,12 +194,12 @@ const RegisterMentor = ({ email, username, password, confirmPassword, goBack }) 
                     isAccepted ? "checked" : "unchecked"
                   }`}
                 >
-                   <input
-                   id="terms-checkbox"
+                  <input
+                    id="terms-checkbox"
                     type="checkbox"
                     checked={isAccepted}
                     onChange={toggleCheckbox}
-                    style={{ display: "none" }} 
+                    style={{ display: "none" }}
                   />
                 </div>
                 <span className="span-terms-of-use">

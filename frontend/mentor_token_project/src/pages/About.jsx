@@ -5,12 +5,11 @@ import UserCard from "../components/UserCard";
 import Button from "../components/Button";
 import Ian from "../assets/Team-Members/ian.png";
 import Maya from "../assets/Team-Members/MayaMatt.svg";
-import alex from "../assets/Team-Members/alex.jpg"
+import alex from "../assets/Team-Members/alex.jpg";
 import Keira from "../assets/Team-Members/KeiraBattye.svg";
 import Dominic from "../assets/Team-Members/DominicGame.svg";
 import James from "../assets/Team-Members/JamesVial.svg";
-import Footer from "../components/FooterSection"
-
+import Footer from "../components/FooterSection";
 
 const users = [
   {
@@ -58,26 +57,32 @@ const About = () => {
 
   return (
     <div className="about-page">
-        <div className="team-container">
-          {/* <div className="bg-image"> */}
-            {/* <img src={hero} alt="hero-background" /> */}
-            {/* <div className="text-section"> */}
-              <h1 className="title-about-page">Meet our team members</h1>
-              <p className="paragraph-about-page">
-                We Focus on the details of everything we do. All to help
-                businesses around the world
-                <br />
-                Focus on what's most important to them.
-              </p>
-              <div className="about-button">
-              <Link to={"/contact"}>
-                <Button name={"→ Get in touch"} />
-              </Link>
-              </div>
+      <div className="team-container">
+        {/* <div className="bg-image"> */}
+        {/* <img src={hero} alt="hero-background" /> */}
+        {/* <div className="text-section"> */}
+        <h1 className="title-about-page">Meet our team members</h1>
+        <p className="paragraph-about-page">
+          We Focus on the details of everything we do. All to help businesses
+          around the world
+          <br />
+          Focus on what's most important to them.
+        </p>
+        <div className="about-button">
+          <Link to={"/contact"}>
+            <Button name={"→ Get in touch"} />
+          </Link>
         </div>
-        <div className="user-cards-about-page">
+      </div>
+      <div className="user-cards-about-page">
         {users.map((user, index) => (
-          <UserCard key={index} img={user.img} name={user.name} position={user.position} hobby={user.hobby}/>
+          <UserCard
+            key={index}
+            img={user.img}
+            name={user.name}
+            position={user.position}
+            hobby={user.hobby}
+          />
         ))}
       </div>
     </div>

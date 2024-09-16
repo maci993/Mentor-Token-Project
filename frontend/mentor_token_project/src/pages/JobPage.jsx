@@ -8,20 +8,20 @@ const JobPage = () => {
   const [selectedJob, setSelectedJob] = useState(null);
 
   const handleJobApplied = () => {
-    setRefreshTrigger(!refreshTrigger); 
+    setRefreshTrigger(!refreshTrigger);
   };
 
   return (
     <div>
       <JobFeed onJobSelect={setSelectedJob} />
-      <ApplicationSent 
-        title="Applications sent" 
-        description="Jobs you have applied to" 
-        refreshTrigger={refreshTrigger} 
+      <ApplicationSent
+        title="Applications sent"
+        description="Jobs you have applied to"
+        refreshTrigger={refreshTrigger}
       />
-      <JobModal 
-        isOpen={!!selectedJob} 
-        isClosed={() => setSelectedJob(null)} 
+      <JobModal
+        isOpen={!!selectedJob}
+        isClosed={() => setSelectedJob(null)}
         job={selectedJob}
         onJobApplied={handleJobApplied}
       />

@@ -25,9 +25,11 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          title: jobDetails.jobTitle, 
+          title: jobDetails.jobTitle,
           description: jobDetails.description,
-          skillsRequired: jobDetails.skillsRequired.split(',').map(skill => skill.trim()), 
+          skillsRequired: jobDetails.skillsRequired
+            .split(",")
+            .map((skill) => skill.trim()),
           status: jobDetails.status,
         }),
       });
@@ -35,7 +37,7 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
       if (res.ok) {
         const data = await res.json();
         console.log("Job created:", data);
-        alert("Job is created!"); 
+        alert("Job is created!");
         isClosed();
       } else {
         console.error("Error creating job:", res.statusText);
@@ -58,14 +60,14 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
           <label>
             Job Title:
             <input
-           type="text"
-           name="jobTitle"
-           value={jobDetails.title}
-           onChange={handleChange}
-           required
+              type="text"
+              name="jobTitle"
+              value={jobDetails.title}
+              onChange={handleChange}
+              required
             />
           </label>
-  <label>
+          <label>
             Description:
             <textarea
               name="description"
@@ -77,7 +79,7 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
           <label>
             Skills required:
             <textarea
-            className="skills-textarea"
+              className="skills-textarea"
               name="skillsRequired"
               value={jobDetails.skillsRequired}
               onChange={handleChange}
@@ -92,8 +94,12 @@ const CreateJobModal = ({ isOpen, isClosed }) => {
               onChange={handleChange}
               required
             >
-              <option value="Open" className="options">Open</option>
-              <option value="Direct" className="options">Direct</option>
+              <option value="Open" className="options">
+                Open
+              </option>
+              <option value="Direct" className="options">
+                Direct
+              </option>
             </select>
           </label>
           <button type="submit" className="submit-button-create-job-modal">

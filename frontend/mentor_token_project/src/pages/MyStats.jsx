@@ -5,7 +5,8 @@ import SearchBar from "../components/SearchBar";
 import UserDropDown from "../components/UserDropdownInfo";
 import UserInfoCard from "../components/UserInfoCard";
 import UserAboutCard from "../components/UserAboutCard";
-import Statistics from "../components/Statistics";
+// import Statistics from "../components/Statistics";
+import StatisticsChart from "../components/StatisticsChart";
 import QuickOverviewCard from "../components/QuickOverviewCard";
 import defaultLogo from "../assets/Mentors-icons/profile.svg";
 import "./MyStats.css";
@@ -76,6 +77,7 @@ const MyStats = () => {
         setDescription(userData.desc || "");
         setSkills(userData.skills || []);
 
+        //fetch quick overview data
         const overviewResponse = await fetch(
           "http://localhost:10000/api/overview-stats",
           {
@@ -92,6 +94,24 @@ const MyStats = () => {
         }
         const overviewData = await overviewResponse.json();
         setOverviewData(overviewData);
+
+        //fetch statistics
+        const statisticsResponse = await fetch(
+          `http://localhost:10000/api/statistics/${myToken.id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!statisticsResponse.ok) {
+          throw new Error("Error fetching statistics data");
+        }
+        const statisticsData = await statisticsResponse.json();
+        setDataPoints(statisticsData);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("Error fetching data");
@@ -229,7 +249,7 @@ const MyStats = () => {
           </div>
           <h1 className="performance-over-time">Performance Over Time</h1>
           <div className="statistics-my-stats">
-            <Statistics
+            <StatisticsChart
               title="STATISTICS"
               description="Overall target accomplishment over the year"
               dataPoints={dataPoints}

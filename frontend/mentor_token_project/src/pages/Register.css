@@ -36,11 +36,14 @@
   font-family: "Manrope";
   font-weight: 400;
   font-size: 14px;
-  color:#696cff;
+  color: #696cff;
   margin-top: 25px;
 }
 
-.email-register, .password-register, .username-register, .confirm-password-register {
+.email-register,
+.password-register,
+.username-register,
+.confirm-password-register {
   font-family: "Manrope";
   font-weight: 400;
   font-size: 15px;
@@ -82,42 +85,44 @@
   margin-bottom: 5px;
 }
 
-.register-button button{
-    width: 530px;
-    height: 60px;
-    margin-top: 100px;
-    border-radius: 9px;
-    gap: 10px;
-    background-color: #D3D3FF;
-    color: #FFFFFF;
-    font-family: "Manrope";
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 30px;
+.register-button button {
+  width: 530px;
+  height: 60px;
+  margin-top: 100px;
+  border-radius: 9px;
+  gap: 10px;
+  background-color: #d3d3ff;
+  color: #ffffff;
+  font-family: "Manrope";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 .under-button-text .whitespace-register-form {
-    font-weight: 600px;
-    font-size: 16px;
-    line-height: 22px;
-    margin-left: 170px;
-    color: #566a7f;
+  font-weight: 600px;
+  font-size: 16px;
+  line-height: 22px;
+  margin-left: 170px;
+  color: #566a7f;
 }
 
 .login-text-register-form {
-    font-weight: 600px;
-    font-size: 16px;
-    line-height: 22px;
-    margin-left: 5px;
-    color: #9574ff;
-    text-decoration: none;
+  font-weight: 600px;
+  font-size: 16px;
+  line-height: 22px;
+  margin-left: 5px;
+  color: #9574ff;
+  text-decoration: none;
 }
 
-.email:focus, .password:focus, .username:focus, .confirm-password:focus {
+.email:focus,
+.password:focus,
+.username:focus,
+.confirm-password:focus {
   border-color: rgba(104, 108, 255, 1);
   box-shadow: 0 0 5px rgba(104, 108, 255, 0.5);
 }
-
 
 .valid {
   color: rgb(29, 207, 29);

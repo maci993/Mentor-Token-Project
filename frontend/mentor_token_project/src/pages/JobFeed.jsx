@@ -5,10 +5,10 @@ import SearchBar from "../components/SearchBar";
 import UserDropdownInfo from "../components/UserDropdownInfo";
 import JobList from "../components/JobList";
 import JobModal from "../components/JobModal";
-import CreateJobModal from "../components/CreateJobModal"
-import defaultLogo from "../assets/userStartupAvatar.png"
+import CreateJobModal from "../components/CreateJobModal";
+import defaultLogo from "../assets/userStartupAvatar.png";
+import mentorDefaultLogo from "../assets/Mentors-icons/profile.svg";
 import "./JobFeed.css";
-
 
 const JobFeed = () => {
   const token = window.localStorage.getItem("jwt_token");
@@ -22,7 +22,7 @@ const JobFeed = () => {
   const [userInfo, setUserInfo] = useState({
     name: "User",
     title: "Title",
-    image: defaultLogo
+    image: defaultLogo,
   });
   const [refreshTrigger, setRefreshTrigger] = useState(false);
 
@@ -66,10 +66,16 @@ const JobFeed = () => {
 
       if (res.ok) {
         const userData = await res.json();
+        const userLogo =
+          userData.image ||
+          (userData.type === "mentor" ? mentorDefaultLogo : defaultLogo);
+
         setUserInfo({
           name: userData.name || "User",
-          title: userData.title || "Mentor",
-          image: userData.image || defaultLogo,
+          title:
+            userData.title ||
+            (userData.type === "mentor" ? "Mentor" : "Startup"),
+          image: userLogo,
         });
       } else {
         console.error("Error fetching user info:", res.statusText);
@@ -81,182 +87,184 @@ const JobFeed = () => {
     }
   };
 
-    useEffect(() => {
-      const myToken = jwtDecode(token);
-      console.log("Retrieved role:", myToken.type);
-      setRole(myToken.type);
+  useEffect(() => {
+    const myToken = jwtDecode(token);
+    console.log("Retrieved role:", myToken.type);
+    setRole(myToken.type);
 
-      fetchJobPosts();
-      fetchUserInfo();
-    }, [token, refreshTrigger]);
+    fetchJobPosts();
+    fetchUserInfo();
+  }, [token, refreshTrigger]);
 
-    const handleSearch = (query) => {
-      const filtered = job.filter(
-        (job) =>
-          job.name?.toLowerCase().includes(query.toLowerCase()) ||
-          job.title?.toLowerCase().includes(query.toLowerCase()) ||
-          job.description?.toLowerCase().includes(query.toLowerCase())
-      );
-      console.log("Filtered jobs:", filtered); 
-      setFilteredJobs(filtered);
-    };
+  const handleSearch = (query) => {
+    const filtered = job.filter(
+      (job) =>
+        job.name?.toLowerCase().includes(query.toLowerCase()) ||
+        job.title?.toLowerCase().includes(query.toLowerCase()) ||
+        job.description?.toLowerCase().includes(query.toLowerCase())
+    );
+    console.log("Filtered jobs:", filtered);
+    setFilteredJobs(filtered);
+  };
 
-    const handleCardClick = (job) => {
-      setSelectedJob(job);
-    };
-  
-    const closeModal = () => {
-      setSelectedJob(null);
-    };
+  const handleCardClick = (job) => {
+    setSelectedJob(job);
+  };
 
-    const openCreateJobModal = () => {
-      setIsCreateJobModalOpen(true);
-    };
-  
-    const closeCreateJobModal = () => {
-      setIsCreateJobModalOpen(false);
-    };
+  const closeModal = () => {
+    setSelectedJob(null);
+  };
 
-    const handleJobApplied = () => {
-      console.log("JOB APPLIED AND REFRESH TRIGGERED")
-      setRefreshTrigger(!refreshTrigger);  
-    };
+  const openCreateJobModal = () => {
+    setIsCreateJobModalOpen(true);
+  };
 
-    if (loading) {
-      return <p>Loading jobs...</p>;
-    }
+  const closeCreateJobModal = () => {
+    setIsCreateJobModalOpen(false);
+  };
 
-    if (error) {
-      return <p>Error loading jobs: {error}</p>;
-    }
-    if (job.length === 0) {
-      return <p>No jobs available</p>;
-    };
+  const handleJobApplied = () => {
+    console.log("JOB APPLIED AND REFRESH TRIGGERED");
+    setRefreshTrigger(!refreshTrigger);
+  };
 
-    return (
-      <div className="job-feed-page">
-         {selectedJob && <div className="background-overlay-job-feed"></div>}
-        <div className="sidebar-job-feed">
-          <SideBar role={role} />
-        </div>
-        <div className="search-bar-job-feed">
-          <SearchBar placeholder="Search" onSearch={handleSearch} />
-        </div>
-        <div className="user-dropdown-menu-stats">
-          <UserDropdownInfo
-             userImg={userInfo.image}
-             userName={userInfo.name} />
-        </div>
-        <div className="job-card-job-feed">
-          <h1>Your Startup Jobs</h1>
-          <div>
+  if (loading) {
+    return <p>Loading jobs...</p>;
+  }
+
+  if (error) {
+    return <p>Error loading jobs: {error}</p>;
+  }
+  if (job.length === 0) {
+    return <p>No jobs available</p>;
+  }
+
+  return (
+    <div className="job-feed-page">
+      {selectedJob && <div className="background-overlay-job-feed"></div>}
+      <div className="sidebar-job-feed">
+        <SideBar role={role} />
+      </div>
+      <div className="search-bar-job-feed">
+        <SearchBar placeholder="Search" onSearch={handleSearch} />
+      </div>
+      <div className="user-dropdown-menu-stats">
+        <UserDropdownInfo userImg={userInfo.image} userName={userInfo.name} />
+      </div>
+      <div className="job-card-job-feed">
+        <h1>Your Startup Jobs</h1>
+        <div>
           {role === "startup" && (
-          <button className="create-job-button" onClick={openCreateJobModal}>
-            + Create new job
-          </button>
-        )}
+            <button className="create-job-button" onClick={openCreateJobModal}>
+              + Create new job
+            </button>
+          )}
         </div>
-          <JobList jobs={filteredJobs} onCardClick={handleCardClick}/>
-        </div>
-        <JobModal isOpen={!!selectedJob} isClosed={closeModal} job={selectedJob} onJobApplied={handleJobApplied}/>
-        <CreateJobModal
+        <JobList jobs={filteredJobs} onCardClick={handleCardClick} />
+      </div>
+      <JobModal
+        isOpen={!!selectedJob}
+        isClosed={closeModal}
+        job={selectedJob}
+        onJobApplied={handleJobApplied}
+      />
+      <CreateJobModal
         isOpen={isCreateJobModalOpen}
         isClosed={closeCreateJobModal}
       />
-      </div>
-    );
-  };
-
+    </div>
+  );
+};
 
 export default JobFeed;
 
- // const jobs = [
-    //   {
-    //     id: 1,
-    //     companyLogo: CompanyLogo,
-    //     companyName: "TechWave Innovations",
-    //     jobTitle: "New Job Offer",
-    //     description:
-    //       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
-    //     category: "Tech",
-    //     popularity: 100,
-    //     postedDate: "2023-07-20",
-    //   },
-    //   {
-    //     id: 2,
-    //     companyLogo: CompanyLogo1,
-    //     companyName: "TechWave Innovations",
-    //     jobTitle: "New Job Offer",
-    //     description:
-    //       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
-    //     category: "Business",
-    //     popularity: 50,
-    //     postedDate: "2023-07-21",
-    //   },
-    //   {
-    //     id: 2,
-    //     companyLogo: CompanyLogo2,
-    //     companyName: "TechWave Innovations",
-    //     jobTitle: "New Job Offer",
-    //     description:
-    //       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
-    //     category: "Business",
-    //     popularity: 50,
-    //     postedDate: "2023-07-21",
-    //   },
-    //   {
-    //     id: 2,
-    //     companyLogo: CompanyLogo3,
-    //     companyName: "TechWave Innovations",
-    //     jobTitle: "New Job Offer",
-    //     description:
-    //       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
-    //     category: "Business",
-    //     popularity: 50,
-    //     postedDate: "2023-07-21",
-    //   },
-    //   {
-    //     id: 2,
-    //     companyLogo: CompanyLogo4,
-    //     companyName: "TechWave Innovations",
-    //     jobTitle: "New Job Offer",
-    //     description:
-    //       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
-    //     category: "Business",
-    //     popularity: 50,
-    //     postedDate: "2023-07-21",
-    //   },
-    //   {
-    //     id: 2,
-    //     companyLogo: CompanyLogo1,
-    //     companyName: "TechWave Innovations",
-    //     jobTitle: "New Job Offer",
-    //     description:
-    //       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
-    //     category: "Business",
-    //     popularity: 50,
-    //     postedDate: "2023-07-21",
-    //   },
-    //   {
-    //     id: 2,
-    //     companyLogo: CompanyLogo3,
-    //     companyName: "TechWave Innovations",
-    //     jobTitle: "New Job Offer",
-    //     description:
-    //       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
-    //     category: "Business",
-    //     popularity: 50,
-    //     postedDate: "2023-07-21",
-    //   },
-    //   {
-    //     id: 2,
-    //     companyLogo: CompanyLogo2,
-    //     companyName: "TechWave Innovations",
-    //     jobTitle: "New Job Offer",
-    //     description:
-    //       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
-    //     category: "Business",
-    //     popularity: 50,
-    //     postedDate: "2023-07-21",
-    //   },
-    // ];
+// const jobs = [
+//   {
+//     id: 1,
+//     companyLogo: CompanyLogo,
+//     companyName: "TechWave Innovations",
+//     jobTitle: "New Job Offer",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
+//     category: "Tech",
+//     popularity: 100,
+//     postedDate: "2023-07-20",
+//   },
+//   {
+//     id: 2,
+//     companyLogo: CompanyLogo1,
+//     companyName: "TechWave Innovations",
+//     jobTitle: "New Job Offer",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
+//     category: "Business",
+//     popularity: 50,
+//     postedDate: "2023-07-21",
+//   },
+//   {
+//     id: 2,
+//     companyLogo: CompanyLogo2,
+//     companyName: "TechWave Innovations",
+//     jobTitle: "New Job Offer",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
+//     category: "Business",
+//     popularity: 50,
+//     postedDate: "2023-07-21",
+//   },
+//   {
+//     id: 2,
+//     companyLogo: CompanyLogo3,
+//     companyName: "TechWave Innovations",
+//     jobTitle: "New Job Offer",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
+//     category: "Business",
+//     popularity: 50,
+//     postedDate: "2023-07-21",
+//   },
+//   {
+//     id: 2,
+//     companyLogo: CompanyLogo4,
+//     companyName: "TechWave Innovations",
+//     jobTitle: "New Job Offer",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
+//     category: "Business",
+//     popularity: 50,
+//     postedDate: "2023-07-21",
+//   },
+//   {
+//     id: 2,
+//     companyLogo: CompanyLogo1,
+//     companyName: "TechWave Innovations",
+//     jobTitle: "New Job Offer",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
+//     category: "Business",
+//     popularity: 50,
+//     postedDate: "2023-07-21",
+//   },
+//   {
+//     id: 2,
+//     companyLogo: CompanyLogo3,
+//     companyName: "TechWave Innovations",
+//     jobTitle: "New Job Offer",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
+//     category: "Business",
+//     popularity: 50,
+//     postedDate: "2023-07-21",
+//   },
+//   {
+//     id: 2,
+//     companyLogo: CompanyLogo2,
+//     companyName: "TechWave Innovations",
+//     jobTitle: "New Job Offer",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur. Facilisis nunc ut tellus augue a aliquam arcu. Libero imperdiet odio sed morbi quis felis proin.",
+//     category: "Business",
+//     popularity: 50,
+//     postedDate: "2023-07-21",
+//   },
+// ];

@@ -8,12 +8,11 @@
   height: 51px;
   gap: 16px;
   align-content: center;
-  background-color: #696CFF;
+  background-color: #696cff;
   color: white;
   border: none;
   box-shadow: blue;
-} 
-
+}
 
 /* .button {
   background-color: #696CFF;

@@ -17,14 +17,16 @@ const LogPage = ({ logData }) => {
       <div className="log-in-page-info">
         <div>
           <NavLink to="/">
-          <span className="back-text">← Back</span>
+            <span className="back-text">← Back</span>
           </NavLink>
           <h1 className="grow-your-startup-title">
             GROW
             <br />
             YOUR STARTUP!
           </h1>
-          <span className="span-log-page">MONITORING AND EVALUATING NOW IS EASY!</span>
+          <span className="span-log-page">
+            MONITORING AND EVALUATING NOW IS EASY!
+          </span>
         </div>
         <div className="log-in-page-logo">
           <NavLink to="/">

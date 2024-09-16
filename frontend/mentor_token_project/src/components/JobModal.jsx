@@ -9,7 +9,7 @@ const JobModal = ({ isOpen, isClosed, job, onJobApplied }) => {
   const token = localStorage.getItem("jwt_token");
 
   const decodedToken = jwtDecode(token);
-  const userId = decodedToken.id; 
+  const userId = decodedToken.id;
   const userRole = decodedToken.type;
 
   useEffect(() => {
@@ -25,44 +25,50 @@ const JobModal = ({ isOpen, isClosed, job, onJobApplied }) => {
     //   return;
     // }
     const payload = {
-      companyId: selectedJob.companyId._id, 
+      companyId: selectedJob.companyId._id,
       mentorId: userId,
       jobId: selectedJob._id,
       applicationType: "mentorToCompany",
       status: "pending",
       acceptedStatus: "in progress",
     };
-    // console.log("Payload sent:", payload); 
+    // console.log("Payload sent:", payload);
     try {
-      const postApplication = await fetch("http://localhost:10000/api/jobapplications", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(payload),
-      });
+      const postApplication = await fetch(
+        "http://localhost:10000/api/jobapplications",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (postApplication.ok) {
         const errorData = await postApplication.json();
         alert("Applied to job successfully");
-        onJobApplied(data); 
+        onJobApplied(data);
         isClosed();
       } else {
         const errorText = await postApplication.text();
-        console.error("Error applying to job:", postApplication.statusText, errorText);
+        console.error(
+          "Error applying to job:",
+          postApplication.statusText,
+          errorText
+        );
       }
     } catch (error) {
       console.error("An error occurred during the job application:", error);
     }
   };
 
-
   const companyLogo = selectedJob.companyLogo || defaultLogo;
   const companyName =
     (selectedJob.companyId && selectedJob.companyId.name) || "Unknown Company";
 
-    if (!isOpen || !selectedJob._id) return null;
+  if (!isOpen || !selectedJob._id) return null;
 
   return (
     <div className="modal-pop-up">
@@ -76,7 +82,9 @@ const JobModal = ({ isOpen, isClosed, job, onJobApplied }) => {
           className="company-logo-job-modal"
         />
         <h2 className="company-name-job-modal">{companyName}</h2>
-        <h3 className="job-title-job-modal">{selectedJob.title || "No title"}</h3>
+        <h3 className="job-title-job-modal">
+          {selectedJob.title || "No title"}
+        </h3>
         <p className="job-desc-job-modal">
           {selectedJob.description || "No description available"}
         </p>

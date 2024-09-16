@@ -8,7 +8,7 @@
   background-color: #f6f6f6;
   height: 100%;
   width: 100%;
-  margin-left: 50px;
+  margin-left: 80px;
 }
 
 .mentors-list-company-view {
@@ -38,11 +38,9 @@
   margin-top: 0px;
 }
 
-
 .search-bar-and-dropdown .drop-down-startup-view {
   margin-left: 1580px;
 }
-
 
 .mentors-list-company-view {
   padding-top: 290px;
@@ -55,7 +53,7 @@
 .quick-overview-company-view {
   background-color: #f6f6f6;
   position: absolute;
-  margin-left: 800px;
+  margin-left: 650px;
   margin-top: -1150px;
 }
 

@@ -11,7 +11,7 @@ import Alison from "../assets/company-view-mentors/Alison.svg";
 import Marcus from "../assets/company-view-mentors/Marcus.svg";
 import QuickOverviewCard from "../components/QuickOverviewCard";
 import { MentorCard } from "../components/MentorCard";
-import defaultLogo from "../assets/userStartupAvatar.png"
+import defaultLogo from "../assets/userStartupAvatar.png";
 import "./Mentors.css";
 
 const Mentors = () => {
@@ -29,7 +29,7 @@ const Mentors = () => {
   const [userInfo, setUserInfo] = useState({
     name: "User",
     title: "Title",
-    image: defaultLogo
+    image: defaultLogo,
   });
   // const [data, setData] = useState({
   //   totalMentors: 5,
@@ -109,7 +109,7 @@ const Mentors = () => {
               completedJobs,
             };
           })
-          .sort((a, b) => b.completedJobs - a.completedJobs); 
+          .sort((a, b) => b.completedJobs - a.completedJobs);
 
         setMentors(sortedMentors);
         setSearchResults(mentorsData);
@@ -118,7 +118,7 @@ const Mentors = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
@@ -140,14 +140,14 @@ const Mentors = () => {
       try {
         const decodedToken = jwtDecode(token);
         const userId = decodedToken.id;
-  
+
         const res = await fetch(`http://localhost:10000/api/users/${userId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-  
+
         if (res.ok) {
           const userData = await res.json();
           setUserInfo({
@@ -204,8 +204,8 @@ const Mentors = () => {
             style={{ marginLeft: 100 }}
           />
           <UserDropdownInfo
-           userImg={userInfo.image}
-           userName={userInfo.name}
+            userImg={userInfo.image}
+            userName={userInfo.name}
             className="drop-down-startup-view"
           />
           {/* <UserDropdownInfo
@@ -220,7 +220,7 @@ const Mentors = () => {
         <SideBar role={role} />
       </div>
       <div className="mentors-list-company-view">
-      {searchResults.length > 0 ? (
+        {searchResults.length > 0 ? (
           searchResults.map((mentor) => (
             <MentorCard
               key={mentor._id}
@@ -237,8 +237,8 @@ const Mentors = () => {
         <p className="quick-overview-paragraph">Quick Overview</p>
         <p className="quick-overview-paragraph1">in the last month</p>
         <QuickOverviewCard
-        className="quick-overview-mentor-page"
-        role={role}
+          className="quick-overview-mentor-page"
+          role={role}
           totalMentors={overviewData.totalMentors}
           totalAssignedJobs={overviewData.totalAssignedJobs}
           finishedJobs={overviewData.finishedJobs}

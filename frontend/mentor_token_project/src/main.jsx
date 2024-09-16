@@ -28,7 +28,6 @@ import ProtectedRoutes from "./routes/ProtectedRoutes.jsx";
 import { jwtDecode } from "jwt-decode";
 import "./App.css";
 
-
 // const type = "company"; // or "mentor"
 
 const router = createBrowserRouter([
@@ -98,9 +97,9 @@ const router = createBrowserRouter([
         path: "dashboard-startup",
         element: (
           <ProtectedRoutes>
-          <Layout nav={false} footer={false}>
-            <StartupDashboard />
-          </Layout>
+            <Layout nav={false} footer={false}>
+              <StartupDashboard />
+            </Layout>
           </ProtectedRoutes>
         ),
       },
@@ -108,19 +107,19 @@ const router = createBrowserRouter([
         path: "mentors",
         element: (
           <ProtectedRoutes>
-          <Layout nav={false} footer={false}>
-            <Mentors />
-          </Layout>
+            <Layout nav={false} footer={false}>
+              <Mentors />
+            </Layout>
           </ProtectedRoutes>
         ),
       },
       {
-        path: "mentors/:id",  
+        path: "mentors/:id",
         element: (
           <ProtectedRoutes>
-          <Layout nav={false} footer={false}>
-            <MentorDetail />
-          </Layout>
+            <Layout nav={false} footer={false}>
+              <MentorDetail />
+            </Layout>
           </ProtectedRoutes>
         ),
       },
@@ -128,30 +127,29 @@ const router = createBrowserRouter([
         path: "jobs",
         element: (
           <ProtectedRoutes>
-          <Layout nav={false} footer={false}>
-            <JobFeed />
-          </Layout>
+            <Layout nav={false} footer={false}>
+              <JobFeed />
+            </Layout>
           </ProtectedRoutes>
         ),
       },
       {
         path: "dashboard-mentor",
         element: (
-      <ProtectedRoutes>
-          <Layout nav={false} footer={false}>
-            <MentorDashboard />
-          </Layout>
+          <ProtectedRoutes>
+            <Layout nav={false} footer={false}>
+              <MentorDashboard />
+            </Layout>
           </ProtectedRoutes>
         ),
       },
       {
-
         path: "job-feed",
         element: (
           <ProtectedRoutes>
-          <Layout nav={false} footer={false}>
-            <JobFeed />
-          </Layout>
+            <Layout nav={false} footer={false}>
+              <JobFeed />
+            </Layout>
           </ProtectedRoutes>
         ),
       },
@@ -159,9 +157,9 @@ const router = createBrowserRouter([
         path: "my-stats",
         element: (
           <ProtectedRoutes>
-          <Layout nav={false} footer={false}>
-            <MyStats />
-          </Layout>
+            <Layout nav={false} footer={false}>
+              <MyStats />
+            </Layout>
           </ProtectedRoutes>
         ),
       },
@@ -175,7 +173,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-      <RouterProvider router={router} />
-
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

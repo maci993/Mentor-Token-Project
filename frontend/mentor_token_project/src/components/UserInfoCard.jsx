@@ -4,7 +4,7 @@ import PhoneIcon from "../assets/MyStats/phone.svg";
 import LinkedinIcon from "../assets/MyStats/LinkedinLogo.svg";
 import CheckMark from "../assets/MyStats/CheckMarkGreen.svg";
 import "./UserInfoCard.css";
-import defaultLogo from "../assets/Mentors-icons/profile.svg"
+import defaultLogo from "../assets/Mentors-icons/profile.svg";
 
 const UserInfoCard = ({
   image,
@@ -21,12 +21,12 @@ const UserInfoCard = ({
     <div className="user-info-card">
       <img src={userImage} alt={name} className="user-image" />
       {checkmark && (
-      <img
-        src={CheckMark}
-        alt="check-mark-green"
-        className="check-mark-green"
-      />
-    )}
+        <img
+          src={CheckMark}
+          alt="check-mark-green"
+          className="check-mark-green"
+        />
+      )}
       <h2 className="user-name-user-info-card">{name}</h2>
       <p className="user-title-user-info-card">{title}</p>
       <img

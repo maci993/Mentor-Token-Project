@@ -31,7 +31,7 @@ const OfferJobModal = ({ mentorId, onClose }) => {
           jobTitle,
           jobDescription,
           skillsRequired,
-          applicationType: "Direct", 
+          applicationType: "Direct",
         }),
       });
 

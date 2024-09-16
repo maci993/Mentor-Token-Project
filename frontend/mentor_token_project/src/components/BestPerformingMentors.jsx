@@ -32,43 +32,42 @@ const BestPerformingMentors = () => {
   ];
 
   // useEffect(() => {
-  //   const fetchBestPerformingMentors = async (token) => {
+  //   const fetchBestMentors = async () => {
   //     try {
-  //       const res = await fetch("/api/best-performing-mentors", {
+  //       const token = localStorage.getItem("jwt_token");
+  //       const response = await fetch("/api/best-performing-mentors", {
   //         method: "GET",
   //         headers: {
   //           Authorization: `Bearer ${token}`,
   //         },
   //       });
-  //       console.log("Response status:", res.status);
-  //       if (!res.ok) {
-  //         throw new Error(`Error: ${res.status} ${res.statusText}`);
+
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch best-performing mentors");
   //       }
 
-  //       const data = await res.json();
-  //       console.log("Data fetched:", data);
+  //       const data = await response.json();
   //       setMentors(data);
-  //       setLoading(false);
   //     } catch (error) {
-  //       console.error("Error fetching mentors:", error);
-  //       setError(error.message || "An unexpected error occurred");
+  //       setError(error.message);
+  //     } finally {
   //       setLoading(false);
   //     }
   //   };
 
-  //   fetchBestPerformingMentors();
-  // }, [token]);
+  //   fetchBestMentors();
+  // }, []);
 
   // if (loading) {
-  //   return <p>Loading mentors...</p>;
+  //   return <p>Loading best-performing mentors...</p>;
   // }
 
   // if (error) {
-  //   return <p>Error loading mentors: {error}</p>;
+  //   return <p>Error: {error}</p>;
   // }
 
   // if (mentors.length === 0) {
-  //   return <p>No mentors found for this month.</p>;
+  //   return <p>No best-performing mentors available at the moment.</p>;
   // }
 
   return (
@@ -89,9 +88,8 @@ const BestPerformingMentors = () => {
                 <h3 className="mentor-name">{mentor.name}</h3>
                 <p>
                   <span className="mentor-jobs-number">
-                    {" "}
-                    {mentor.achievedJobs}
-                  </span>{" "}
+                    {mentor.completedJobs}
+                  </span>
                   <br />
                   Achieved Jobs
                 </p>

@@ -47,7 +47,7 @@ const MentorDashboard = () => {
     // fetchUserInfo();
     // fetchJobs();
     // fetchJobApplications();
-    if (!token || typeof token !== 'string') {
+    if (!token || typeof token !== "string") {
       console.error("Invalid token:", token);
       return;
     }

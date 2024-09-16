@@ -3,7 +3,7 @@
   height: 440px;
   padding-right: 30px;
   margin-top: 30px;
-  margin-left:-100px;
+  margin-left: -100px;
   /* margin-top: 40px;
   padding-right: 30px;
   padding: 20px; */
@@ -21,7 +21,7 @@
   color: #404d61;
 }
 
-.best-performing-mentors-list-unordered{
+.best-performing-mentors-list-unordered {
   margin-top: 95px;
 }
 
@@ -58,7 +58,7 @@
   margin-right: 10px;
 }
 
-.mentors-details .mentor-name{
+.mentors-details .mentor-name {
   margin-top: 10px;
   font-family: "Manrope";
   font-size: 16px;
@@ -99,7 +99,6 @@
 .mentor-item:last-child {
   border-bottom: none;
 }
-
 
 /* .best-mentor-info .blue-oval {
   position: absolute;

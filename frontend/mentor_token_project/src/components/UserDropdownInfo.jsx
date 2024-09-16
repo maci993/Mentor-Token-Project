@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./UserDropdownInfo.css";
 import PropTypes from "prop-types";
 
-
 const UserDropdownInfo = ({ userImg, userName, userTitle, className }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -13,11 +12,7 @@ const UserDropdownInfo = ({ userImg, userName, userTitle, className }) => {
   return (
     <div className={`user-dropdown-menu ${className}`}>
       <div className="user-info-startup" onClick={toggleDropdown}>
-        <img
-          src={userImg}
-          alt="user-avatar"
-          className="user-avatar-startup"
-        />
+        <img src={userImg} alt="user-avatar" className="user-avatar-startup" />
         <div className="user-details-startup">
           <span className="user-name">{userName}</span>
           <span className="user-title">{userTitle}</span>
@@ -39,6 +34,5 @@ UserDropdownInfo.propTypes = {
   userName: PropTypes.string.isRequired,
   userTitle: PropTypes.string.isRequired,
 };
-
 
 export default UserDropdownInfo;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faStar } from "@fortawesome/pro-regular-svg-icons";
-import defaultLogo from "../assets/Mentors-icons/profile.svg"
+import defaultLogo from "../assets/Mentors-icons/profile.svg";
 import "./MentorsList.css";
 
 const MentorCard = ({ mentor, onViewMentor, image }) => {
@@ -20,7 +20,9 @@ const MentorCard = ({ mentor, onViewMentor, image }) => {
             <Star key={index} type={type} />
           ))}
 
-          <span className="mentor-rating-span">{mentor.rating?.toFixed(1)}</span>
+          <span className="mentor-rating-span">
+            {mentor.rating?.toFixed(1)}
+          </span>
           <span className="mentor-rating-span2">
             average based on {mentor.reviews} reviews
           </span>
@@ -98,13 +100,12 @@ const getLocalStorageItem = (key) => {
   try {
     return localStorage.getItem(key);
   } catch (err) {
-    console.error('Could not access localStorage:', err);
+    console.error("Could not access localStorage:", err);
     return null;
   }
 };
 
 const MentorsList = ({ onViewMentor }) => {
-
   const [mentors, setMentors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -112,12 +113,12 @@ const MentorsList = ({ onViewMentor }) => {
   useEffect(() => {
     const fetchMentors = async () => {
       try {
-        const token = getLocalStorageItem('jwt_token');
+        const token = getLocalStorageItem("jwt_token");
         if (!token) {
-          throw new Error('Token not found');
+          throw new Error("Token not found");
         }
 
-        const response = await fetch('/api/users?type=mentor', {
+        const response = await fetch("/api/users?type=mentor", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

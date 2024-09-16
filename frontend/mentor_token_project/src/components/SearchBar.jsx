@@ -15,7 +15,7 @@ const SearchBar = ({ placeholder, onSearch, className }) => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       event.preventDefault();
       const query = event.target.value;
       if (onSearch) {
@@ -24,10 +24,8 @@ const SearchBar = ({ placeholder, onSearch, className }) => {
     }
   };
 
-
-
   return (
-    <div className={`search-bar ${className}`} >
+    <div className={`search-bar ${className}`}>
       <FontAwesomeIcon icon={faSearch} className="search-icon" />
       <input
         type="text"

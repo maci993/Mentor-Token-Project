@@ -54,8 +54,8 @@
 }
 
 .assigned-jobs-section-mentor-detail {
-position: absolute;
-margin-top: -350px;
+  position: absolute;
+  margin-top: -350px;
   margin-right: 940px;
 }
 
@@ -65,10 +65,9 @@ margin-top: -350px;
   width: 290px;
   height: 20px;
   color: #404d61;
-
 }
 .pending-jobs-section-mentor-detail {
-position: absolute;
-margin-top: 680px;
+  position: absolute;
+  margin-top: 680px;
   margin-left: 900px;
 }

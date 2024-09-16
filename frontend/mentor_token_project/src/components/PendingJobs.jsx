@@ -84,21 +84,21 @@ const PendingJobs = ({ title, description, jobs }) => {
 
   const handleStatusUpdate = async (jobId, status) => {
     try {
-      await updateJobOfferStatus(jobId, status, token)
+      await updateJobOfferStatus(jobId, status, token);
       if (status === "Cancelled") {
         const updatedJobs = job.filter((job) => job._id !== jobId);
-        setJob(updatedJobs); 
+        setJob(updatedJobs);
       } else {
         const updatedJobs = job.map((job) =>
           job._id === jobId ? { ...job, status } : job
         );
-        setJob(updatedJobs); 
+        setJob(updatedJobs);
       }
       alert(`Job ${status.toLowerCase()} successfully!`);
-      } catch {
-        console.error("Error updating job offer status:", err);
-        setError(err.message || "An unexpected error occurred");
-    } 
+    } catch {
+      console.error("Error updating job offer status:", err);
+      setError(err.message || "An unexpected error occurred");
+    }
   };
 
   if (loading) {
@@ -117,7 +117,9 @@ const PendingJobs = ({ title, description, jobs }) => {
         {job && job.length > 0 ? (
           job.map((jobItem, index) => (
             <div key={index} className="job-item-mentor-dashboard">
-              <span className="job-title-mentor-dashboard">{jobItem.title}</span>
+              <span className="job-title-mentor-dashboard">
+                {jobItem.title}
+              </span>
               <div className="job-action-mentor-dashboard">
                 {role === "mentor" ? (
                   <>

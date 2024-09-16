@@ -4,8 +4,8 @@ import SearchBar from "../components/SearchBar";
 import AssignedJobs from "../components/AssignedJobs";
 import UserDropdownInfo from "../components/UserDropdownInfo";
 import BestPerformingMentors from "../components/BestPerformingMentors";
+import StatisticsChart from "../components/StatisticsChart";
 // import Statistics from "../components/Statistics";
-import Statistics from "../components/Statistics";
 import UserCompany from "../assets/userStartupAvatar.png";
 import SideBar from "../components/SideBar";
 import JobCard from "../components/JobCard";
@@ -13,38 +13,19 @@ import { MentorCard, MentorsList } from "../components/MentorCard";
 import defaultLogo from "../assets/userStartupAvatar.png";
 import "./StartupDashboard.css";
 
-const getFinishedJobsByMonth = (jobs) => {
-  const jobsByMonth = {};
-
-  jobs.forEach((job) => {
-    if (job.status === "Finished") {
-      const finishedDate = new Date(job.finishedDate);
-      const monthKey = `${finishedDate.getFullYear()}-${
-        finishedDate.getMonth() + 1
-      }`;
-
-      if (!jobsByMonth[monthKey]) {
-        jobsByMonth[monthKey] = 0;
-      }
-      jobsByMonth[monthKey]++;
-    }
-  });
-
-  // Sort by month and format dataPoints array
-  const sortedMonths = Object.keys(jobsByMonth).sort();
-  const dataPoints = sortedMonths.map((month) => jobsByMonth[month]);
-
-  return dataPoints;
-};
-
 const StartupDashboard = () => {
   const token = window.localStorage.getItem("jwt_token");
-  const dataPoints = [0, 20, 60, 70, 100, 110, 80, 40, 50, 30, 20];
+  // const dataPoints = [0, 20, 60, 70, 100, 110, 80, 40, 50, 30, 20];
   const [role, setRole] = useState(null);
   const [mentors, setMentors] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [statisticsData, setStatisticsData] = useState({
+    totalJobs: 0,
+    totalAssignedJobs: 0,
+    finishedJobs: 0,
+  });
   const [error, setError] = useState(null);
   const [userInfo, setUserInfo] = useState({
     name: "User",
@@ -116,6 +97,18 @@ const StartupDashboard = () => {
           console.error("Error fetching user info:", res.statusText);
           setError(res.statusText);
         }
+        //fetch for statistics
+        const statisticsResponse = await fetch(
+          `http://localhost:10000/api/statistics/${userId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        if (!statisticsResponse.ok)
+          throw new Error("Failed to fetch statistics");
+        const statisticsData = await statisticsResponse.json();
+        setStatisticsData(statisticsData);
       } catch (error) {
         console.error("Error fetching user info:", error);
         setError(error.message);
@@ -152,15 +145,8 @@ const StartupDashboard = () => {
           company.description.toLowerCase().includes(lowercasedQuery))
     );
 
-    setSearchResults([
-      ...filteredMentors,
-      ...filteredJobs,
-      ...filteredCompanies,
-    ]);
+    setSearchResults([filteredMentors, filteredJobs, filteredCompanies]);
   };
-
-  // Get data points for finished jobs
-  const finishedJobsDataPoints = getFinishedJobsByMonth(jobs);
 
   return (
     <div className="startup-dashboard-page">
@@ -233,10 +219,12 @@ const StartupDashboard = () => {
                 )}
               />
               <p className="overall-statistics-title">OVERALL STATISTICS</p>
-              <Statistics
+              <StatisticsChart
                 title="STATISTICS"
                 description="Overall target accomplishment over the year"
-                dataPoints={finishedJobsDataPoints}
+                totalJobs={statisticsData.totalJobs}
+                totalAssignedJobs={statisticsData.totalAssignedJobs}
+                finishedJobs={statisticsData.finishedJobs}
                 userType={role}
               />
             </div>

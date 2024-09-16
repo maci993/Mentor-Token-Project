@@ -36,7 +36,7 @@
 }
 
 .close-button-job-modal:hover {
-    background-color: white;
+  background-color: white;
 }
 
 .create-job-form {
@@ -63,10 +63,10 @@
 }
 
 .create-job-form select {
-font-family: "Manrope";
-width:80px;
-margin-left: 5px;
-border-radius: 5px;
+  font-family: "Manrope";
+  width: 80px;
+  margin-left: 5px;
+  border-radius: 5px;
 }
 
 .create-job-form .skills-textarea {
@@ -119,7 +119,7 @@ border-radius: 5px;
   margin-right: 40px;
   font-family: "Manrope";
   font-weight: 400;
-  color: #757D8A;
+  color: #757d8a;
   font-size: 13.75px;
   line-height: 17.42px;
 }
@@ -127,7 +127,7 @@ border-radius: 5px;
 .skills-job-modal {
   font-family: "Manrope";
   font-weight: 400;
-  color: #757D8A;
+  color: #757d8a;
   font-size: 13.75px;
   line-height: 17.42px;
   margin-top: 30px;

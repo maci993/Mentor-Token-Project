@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import JobCard from "./JobCard";
 // import listViewIcon from "../assets/icons-job-feed/filters-icon.svg"
-import listViewIcon from "../assets/icons-job-feed/sort-az.svg"
-import gridViewIcon from "../assets/icons-job-feed/layout-grid.svg"
+import listViewIcon from "../assets/icons-job-feed/sort-az.svg";
+import gridViewIcon from "../assets/icons-job-feed/layout-grid.svg";
 import "./JobList.css";
 
 const JobList = ({ jobs, onCardClick }) => {
   const [category, setCategory] = useState("All");
   const [sorting, setSorting] = useState("Popular");
-  const [layout, setLayout] = useState("grid"); 
+  const [layout, setLayout] = useState("grid");
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
@@ -63,11 +63,17 @@ const JobList = ({ jobs, onCardClick }) => {
           </select>
         </label>
         <div className="layout-buttons">
-          <button onClick={() => handleLayoutChange("list")} className={layout === "list" ? "active" : ""}>
+          <button
+            onClick={() => handleLayoutChange("list")}
+            className={layout === "list" ? "active" : ""}
+          >
             <img src={listViewIcon} alt="List View" className="layout-icon" />
             {/* <span className="filter-text">Filters</span> */}
           </button>
-          <button onClick={() => handleLayoutChange("grid")} className={layout === "grid" ? "active" : ""}>
+          <button
+            onClick={() => handleLayoutChange("grid")}
+            className={layout === "grid" ? "active" : ""}
+          >
             <img src={gridViewIcon} alt="Grid View" className="layout-icon" />
           </button>
         </div>

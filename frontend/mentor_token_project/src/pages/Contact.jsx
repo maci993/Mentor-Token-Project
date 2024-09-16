@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Footer from "../components/FooterSection"
+import Footer from "../components/FooterSection";
 import "./Contact.css";
 
 const Contact = () => {
@@ -24,11 +24,12 @@ const Contact = () => {
         <h1 className="contact-page-title">Let's Talk!</h1>
         <p className="paragraph-contact-page">
           We're thrilled to connect with you! Whether you have a question, need
-          assistance, or want to discuss a potential project, we're<br /> here to
-          listen and help. At Mentor Token, we believe in the power of
-          collaboration and are committed to providing you with the best<br /> support
-          and solutions. Fill out the form below, and one of our team members
-          will get back to you as soon as possible.
+          assistance, or want to discuss a potential project, we're
+          <br /> here to listen and help. At Mentor Token, we believe in the
+          power of collaboration and are committed to providing you with the
+          best
+          <br /> support and solutions. Fill out the form below, and one of our
+          team members will get back to you as soon as possible.
           <br />
           <strong>Let's create something amazing together!</strong>
         </p>

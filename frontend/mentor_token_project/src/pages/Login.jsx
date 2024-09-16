@@ -55,13 +55,14 @@ const Login = () => {
   // const jwt_token = await res.json();
   // const token = jwt_token.token;
 
-  
   return (
     <LogPage
       logData={
         <>
           <h1 className="log-in-title">LOG IN TO MENTOR TOKEN</h1>
-          <p className="under-title-paragraph">Enter your email and pass to login.</p>
+          <p className="under-title-paragraph">
+            Enter your email and pass to login.
+          </p>
           <form className="log-in-form" onSubmit={handleLogin}>
             <div className="log-in-inputs">
               <input
