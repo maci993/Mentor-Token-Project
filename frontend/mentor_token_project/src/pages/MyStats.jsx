@@ -197,6 +197,7 @@ const MyStats = () => {
           userImg={userInfo.image || defaultLogo}
           userName={userInfo.name}
           userTitle={userInfo.title || "Mentor"}
+          className="user-dropdown-my-stats"
         />
       </div>
       {searchResults.length > 0 ? (

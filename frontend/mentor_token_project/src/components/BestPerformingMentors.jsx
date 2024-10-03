@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./BestPerformingMentors.css";
 import LucieWeber from "../assets/Startup-dashboard/LucieWeber.svg";
 import CrystalPorter from "../assets/Startup-dashboard/CrystalPorter.svg";
 import ThomasRose from "../assets/Startup-dashboard/ThomasRose.svg";
 import Arrow from "../assets/arrowSymbol_mentors.svg";
 import BlueArrow from "../assets/arrowSymbol_mentors_blue.svg";
 import defaultLogo from "../assets/Mentors-icons/profile.svg";
+import "./BestPerformingMentors.css";
 
 const BestPerformingMentors = () => {
   const token = window.localStorage.getItem("jwt_token");
@@ -83,12 +83,11 @@ const BestPerformingMentors = () => {
                 alt={mentor.name}
                 className="best-mentor-photo"
               />
-
               <div className="mentors-details">
                 <h3 className="mentor-name">{mentor.name}</h3>
                 <p>
                   <span className="mentor-jobs-number">
-                    {mentor.completedJobs}
+                    {mentor.achievedJobs}
                   </span>
                   <br />
                   Achieved Jobs

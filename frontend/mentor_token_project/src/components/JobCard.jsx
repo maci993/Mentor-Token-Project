@@ -1,6 +1,6 @@
 import React from "react";
-import "./JobCard.css";
 import defaultLogo from "../assets/userStartupAvatar.png";
+import "./JobCard.css";
 
 const JobCard = ({ job, onCardClick }) => {
   // console.log("Rendering job:", job);
@@ -28,7 +28,7 @@ const JobCard = ({ job, onCardClick }) => {
       <h4>{job.title}</h4>
       <p>{jobDescription}</p>
       <p>{jobSkills}</p>
-      <p>{jobStatus}</p>
+      <p className="job-status-job-card">{jobStatus}</p>
 
       <button className="view-more-button" onClick={() => onCardClick(job)}>
         View More

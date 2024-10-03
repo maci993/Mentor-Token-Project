@@ -8,7 +8,6 @@ const StatisticsChart = ({ title, description, userType }) => {
     const [loading, setLoading] = useState(true);
   
     useEffect(() => {
-      // Simulate data fetching, replace with actual data fetching logic
       setTimeout(() => {
         const fetchedData = [10, 25, 35, 50, 20, 40, 60, 45, 80, 70, 90, 100]; // Example data
         setDataPoints(fetchedData);

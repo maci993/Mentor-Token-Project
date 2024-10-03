@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import LogPage from "../components/LogPage.jsx";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button.jsx";
 import StartupProfileImage from "../assets/Register-Images/profileImg.png";
 import CameraImage from "../assets/Register-Images/photo.png";
-import CheckMarkChecked from "../assets/checkbox/checkbox-checked.png";
-import CheckMark from "../assets/checkbox/checkbox-unchecked.png";
 import "./Register-Startup.css";
 
 const RegisterStartup = ({ email, name, password, confirmPassword }) => {
@@ -14,8 +12,52 @@ const RegisterStartup = ({ email, name, password, confirmPassword }) => {
   const [representative, setRepresentative] = useState("");
   const [address, setAddress] = useState("");
   const [isAccepted, setIsAccepted] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploadedFilePath, setUploadedFilePath] = useState(null);
 
+  const fileInputRef = useRef(null);
   const navigate = useNavigate();
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const triggerFileUpload = () => {
+    fileInputRef.current.click();
+  };
+
+  const uploadFile = async () => {
+    if (!selectedFile) {
+      alert("Please select a profile picture.");
+      return null;
+    }
+
+    const formData = new FormData();
+    formData.append("document", selectedFile);
+
+    try {
+      const response = await fetch("http://localhost:10000/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("File upload successful:", result);
+        setUploadedFilePath(result.file_name);
+        return result.file_name;
+      } else {
+        console.error("File upload failed:", await response.text());
+        alert("File upload failed.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error during file upload:", error);
+      alert("There was an error uploading the file.");
+      return null;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!representative || !address || !isAccepted) {
@@ -23,15 +65,12 @@ const RegisterStartup = ({ email, name, password, confirmPassword }) => {
       return;
     }
 
-    // if (!email || !name || !password || !confirmPassword || !startupName || !nameSurname || !address) {
-    //   alert("Please fill all the required fields!");
-    //   return;
-    // }
+    const filePath = await uploadFile();
+    if (!filePath) {
+      alert("File upload failed, please try again.");
+      return;
+    }
 
-    // if (password !== confirmPassword) {
-    //   alert("Passwords do not match!");
-    //   return;
-    // }
     const startupData = {
       email,
       name,
@@ -40,6 +79,7 @@ const RegisterStartup = ({ email, name, password, confirmPassword }) => {
       type: "startup",
       representative,
       address,
+      profilePicture: filePath,
     };
 
     console.log("Startup data being sent:", startupData);
@@ -78,16 +118,36 @@ const RegisterStartup = ({ email, name, password, confirmPassword }) => {
         <>
           <h1 className="setup-startup-acc-title">SETUP STARTUP ACCOUNT</h1>
           <div className="startup-profile-img">
-            <img
-              src={StartupProfileImage}
-              className="profile-img"
-              alt="startup-profile-image"
-            />
-            <img
-              src={CameraImage}
-              className="camera-img"
-              alt="startup-camera-image"
-            />
+          {selectedFile ? (
+              <img
+                src={URL.createObjectURL(selectedFile)}
+                className="profile-img"
+                alt="startup-profile"
+              />
+            ) : (
+              <img
+                src={StartupProfileImage}
+                className="profile-img"
+                alt="startup-profile-image"
+              />
+            )}
+            <label htmlFor="profilePictureInput" className="upload-label">
+              <img
+                src={CameraImage}
+                className="camera-img"
+                alt="startup-camera-image"
+                onClick={triggerFileUpload}
+                style={{ cursor: "pointer" }}
+              />
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="upload-input"
+                style={{ display: "none" }}
+              />
+            </label>
           </div>
           <form className="startup-account-form" onSubmit={handleSubmit}>
             <div className="startup-inputs">

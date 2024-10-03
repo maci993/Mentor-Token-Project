@@ -13,9 +13,9 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("email:", email, "password:", password, message);
-  }, [email, password, message]);
+  // useEffect(() => {
+  //   console.log("email:", email, "password:", password, message);
+  // }, [email, password, message]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -91,6 +91,7 @@ const Login = () => {
                   Register.
                 </NavLink>
               </div>
+              <NavLink to="/forgot-password"  className="forgot-password-link">Forgot Password?</NavLink>
             </div>
           </form>
           {message && <p className="log-in-message">{message}</p>}

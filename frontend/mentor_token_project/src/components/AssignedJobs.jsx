@@ -15,16 +15,21 @@ import "./AssignedJobs.css";
 // ];
 
 const AssignedJobs = () => {
-  const token = window.localStorage.getItem("jwt_token");
+  const token = localStorage.getItem("jwt_token");
   console.log("jwt_token", token);
   const [filter, setFilter] = useState("All");
-  const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [jobsData, setJobsData] = useState([]);
 
   useEffect(() => {
     const fetchJobPosts = async () => {
+      if (!token) {
+     setError("No token found. Please log in.");
+        setLoading(false);
+        return;
+      }
+
       try {
         const response = await fetch("http://localhost:10000/api/jobs", {
           headers: {
@@ -35,8 +40,9 @@ const AssignedJobs = () => {
         if (!response.ok) {
           throw new Error(`Error fetching jobs: ${response.statusText}`);
         }
-        const dataa = await response.json();
-        setJobsData(dataa);
+        const data = await response.json();
+        // console.log("Jobs data>>>>>>>>>>>:", dataa);
+        setJobsData(data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching jobs:", error);

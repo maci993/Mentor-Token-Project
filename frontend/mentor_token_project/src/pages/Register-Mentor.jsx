@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import LogPage from "../components/LogPage.jsx";
 import Button from "../components/Button.jsx";
 import Elipse from "../assets/Register-Images/EllipseUser.png";
 import UserImg from "../assets/Register-Images/user.png";
+import CameraImage from "../assets/Register-Images/photo.png";
 import "./Register-Mentor.css";
 
 const skillsOptions = [
@@ -21,7 +22,6 @@ const RegisterMentor = ({
   username,
   password,
   confirmPassword,
-  goBack,
 }) => {
   // const [username, setUsername] = useState("");
   // const [password, setPassword] = useState("");
@@ -30,8 +30,51 @@ const RegisterMentor = ({
   const [phone, setPhone] = useState("");
   const [description, setDescription] = useState("");
   const [isAccepted, setIsAccepted] = useState(false);
-
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploadedFilePath, setUploadedFilePath] = useState(null);
+  const fileInputRef = useRef(null);
   const navigate = useNavigate();
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const triggerFileUpload = () => {
+    fileInputRef.current.click();
+  };
+
+  //upload file
+  const uploadFile = async () => {
+    if (!selectedFile) {
+      alert("Please select a profile picture.");
+      return null;
+    }
+
+    const formData = new FormData();
+    formData.append("document", selectedFile);
+
+    try {
+      const response = await fetch("http://localhost:10000/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("File upload successful:", result);
+        setUploadedFilePath(result.file_name);
+        return result.file_name;
+      } else {
+        console.error("File upload failed:", await response.text());
+        alert("File upload failed.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error during file upload:", error);
+      alert("There was an error uploading the file.");
+      return null;
+    }
+  };
 
   const handleSkillsChange = (e) => {
     const { value, checked } = e.target;
@@ -41,16 +84,17 @@ const RegisterMentor = ({
       setSkills((prevSkills) => prevSkills.filter((skill) => skill !== value));
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Email:", email);
-    console.log("Username:", username);
-    console.log("Confirm Pass", confirmPassword);
-    console.log("Password:", password);
-    console.log("Phone:", phone);
-    console.log("Skills:", skills);
-    console.log("Description:", description);
+    // console.log("Email:", email);
+    // console.log("Username:", username);
+    // console.log("Confirm Pass", confirmPassword);
+    // console.log("Password:", password);
+    // console.log("Phone:", phone);
+    // console.log("Skills:", skills);
+    // console.log("Description:", description);
 
     if (!isAccepted) {
       alert(
@@ -72,6 +116,13 @@ const RegisterMentor = ({
       return;
     }
 
+    const filePath = await uploadFile();
+
+    if (!filePath) {
+      alert("File upload failed, please try again.");
+      return;
+    }
+
     const mentorData = {
       email,
       name: username,
@@ -81,6 +132,7 @@ const RegisterMentor = ({
       skills,
       phone,
       desc: description,
+      profilePicture: filePath,
     };
 
     console.log("Mentor data being sent:", mentorData);
@@ -97,7 +149,15 @@ const RegisterMentor = ({
       if (response.ok) {
         const result = await response.json();
         console.log("Registration successful!", result);
-        navigate("/dashboard-mentor");
+
+        if (result.token) {
+          console.log("Received token:", result.token);
+          localStorage.setItem("jwt_token", result.token);
+          navigate("/dashboard-mentor");
+        } else {
+          console.error("Token not found in registration response.");
+          setErrorMessage("Token not found. Please try logging in.");
+        }
       } else {
         const errorText = await response.text();
         console.error("Registration failed:", errorText);
@@ -108,22 +168,6 @@ const RegisterMentor = ({
       alert("There was a problem registering the mentor.");
     }
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (isAccepted) {
-  //     // console.log("name", name);
-  //     // console.log("password", password);
-  //     // console.log("skills", skills);
-  //     // console.log("phone", phone);
-  //     // console.log("description", description);
-  //     navigate("/dashboard-mentor");
-  //   } else {
-  //     alert(
-  //       "You need to accept the Terms of use & Privacy Policy to register."
-  //     );
-  //   }
-  // };
 
   const toggleCheckbox = () => {
     setIsAccepted(!isAccepted);
@@ -140,7 +184,32 @@ const RegisterMentor = ({
               className="mentor-image-elipse"
               alt="mentor-image-elipse"
             />
-            <img src={UserImg} className="mentor-img" alt="mentor-image" />
+            {selectedFile ? (
+              <img
+                src={URL.createObjectURL(selectedFile)}
+                className="mentor-img"
+                alt="mentor-profile"
+              />
+            ) : (
+              <img src={UserImg} className="mentor-img" alt="mentor-image" />
+            )}
+            <label htmlFor="profilePictureInput" className="upload-label">
+              <img
+                src={CameraImage}
+                alt="camera-picture"
+                className="camera-picture"
+                onClick={triggerFileUpload}
+                style={{ cursor: "pointer" }}
+              />
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="upload-input"
+                style={{ display: "none" }}
+              />
+            </label>
           </div>
           <form className="startup-account-form" onSubmit={handleSubmit}>
             <div className="startup-inputs">

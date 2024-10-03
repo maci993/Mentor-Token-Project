@@ -3,9 +3,9 @@ import LogPage from "../components/LogPage.jsx";
 import SwitchSelector from "react-switch-selector";
 import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import "./Register.css";
 import RegisterMentor from "./Register-Mentor.jsx";
 import RegisterStartup from "./Register-Startup.jsx";
+import "./Register.css";
 
 const options = [
   {
@@ -193,7 +193,6 @@ const Register = () => {
                   required
                 />
               </div>
-              <br />
               <div className="input-container">
                 <label htmlFor="username" className="input-label">
                   Username
@@ -220,7 +219,6 @@ const Register = () => {
                   required
                 />
               </div>
-              <br />
               <div className="input-container">
                 <label htmlFor="confirmPassword" className="input-label">
                   Confirm Password
@@ -280,6 +278,9 @@ const Register = () => {
                   Login.
                 </NavLink>
               </div>
+              <NavLink to="/forgot-password" className="forgot-password-link">
+                Forgot password?
+              </NavLink>
             </div>
           </form>
         </>

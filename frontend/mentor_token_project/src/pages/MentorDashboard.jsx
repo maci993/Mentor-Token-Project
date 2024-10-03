@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import AssignedJobs from "../components/AssignedJobs";
 import UserDropdownInfo from "../components/UserDropdownInfo";
@@ -23,6 +24,7 @@ const MentorDashboard = () => {
   // ];
 
   const [role, setRole] = useState(null);
+  const [token, setToken] = useState(null);
   const [applications, setApplications] = useState([]);
   const [refreshTrigger, setRefreshTrigger] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -37,7 +39,8 @@ const MentorDashboard = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const token = localStorage.getItem("jwt_token");
+  // const token = localStorage.getItem("jwt_token");
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     // const myToken = jwtDecode(localStorage.getItem("jwt_token"));
@@ -47,25 +50,34 @@ const MentorDashboard = () => {
     // fetchUserInfo();
     // fetchJobs();
     // fetchJobApplications();
-    if (!token || typeof token !== "string") {
-      console.error("Invalid token:", token);
-      return;
-    }
+    // if (!token || typeof token !== "string") {
+    //   console.error("Invalid token:", token);
+    //   return;
+    // }
+    const storedToken = localStorage.getItem("jwt_token");
+    console.log("Stored token:", storedToken);
+    if (!storedToken || typeof storedToken !== 'string') {
+      console.error('Invalid token: null or not a string');
+      navigate('/login'); 
+    } else {
+      setToken(storedToken);
 
     try {
-      const myToken = jwtDecode(token);
+      const myToken = jwtDecode(storedToken);
       console.log("Retrieved role:", myToken.type);
       setRole(myToken.type);
 
       // Fetch data once the token is valid
-      fetchUserInfo();
-      fetchJobs();
-      fetchJobApplications();
+      fetchUserInfo(storedToken);
+      fetchJobs(storedToken);
+      fetchJobApplications(storedToken);
     } catch (error) {
       console.error("Error decoding token:", error);
       setError("Invalid token.");
+      navigate("/login");
     }
-  }, [token, refreshTrigger]);
+  }
+  }, [navigate, refreshTrigger]);
 
   const fetchUserInfo = async () => {
     try {
@@ -81,11 +93,7 @@ const MentorDashboard = () => {
 
       if (res.ok) {
         const userData = await res.json();
-        setUserInfo({
-          name: userData.name || "User",
-          title: userData.title || "Mentor",
-          image: userData.image || defaultLogo,
-        });
+        setUserInfo(userData);
       } else {
         console.error("Error fetching user info:", res.statusText);
         setError(res.statusText);
@@ -197,9 +205,9 @@ const MentorDashboard = () => {
             onSearch={handleSearch}
           />
           <UserDropdownInfo
-            userImg={userInfo.image}
+            userImg={userInfo.image || defaultLogo}
             userName={userInfo.name}
-            userTitle={userInfo.title}
+            userTitle={userInfo.title || "Mentor"}
             className="dropdown-mentor-dashboard"
           />
         </div>
@@ -248,6 +256,7 @@ const MentorDashboard = () => {
           <div className="right-section">
             <PendingJobs
               title="Pending Jobs"
+            className="pending-jobs-mentor-dash"
               description="Jobs offered from your startup"
               jobs={applications}
               onJobApplied={handleJobApplied}

@@ -8,7 +8,7 @@ import UserAboutCard from "../components/UserAboutCard";
 import AssignedJobs from "../components/AssignedJobs";
 import PendingJobs from "../components/PendingJobs";
 import OfferJobModal from "../components/OfferJobModal";
-import Kirra from "../assets/KirraPress.png";
+// import Kirra from "../assets/KirraPress.png";
 import UserCompany from "../assets/userStartupAvatar.png";
 import { jwtDecode } from "jwt-decode";
 import defaultLogo from "../assets/Mentors-icons/profile.svg";

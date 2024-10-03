@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import defaultLogo from "../assets/Mentors-icons/profile.svg";
 import "./MentorsList.css";
 

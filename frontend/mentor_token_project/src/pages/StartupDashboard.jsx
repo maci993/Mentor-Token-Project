@@ -6,10 +6,9 @@ import UserDropdownInfo from "../components/UserDropdownInfo";
 import BestPerformingMentors from "../components/BestPerformingMentors";
 import StatisticsChart from "../components/StatisticsChart";
 // import Statistics from "../components/Statistics";
-import UserCompany from "../assets/userStartupAvatar.png";
 import SideBar from "../components/SideBar";
 import JobCard from "../components/JobCard";
-import { MentorCard, MentorsList } from "../components/MentorCard";
+import { MentorCard } from "../components/MentorCard";
 import defaultLogo from "../assets/userStartupAvatar.png";
 import "./StartupDashboard.css";
 
@@ -34,10 +33,20 @@ const StartupDashboard = () => {
   });
 
   useEffect(() => {
-    const myToken = jwtDecode(localStorage.getItem("jwt_token"));
+    try {
+      if (!token || typeof token !== "string") {
+        throw new Error("Invalid or missing token. Please log in.");
+      }
+
+    const myToken = jwtDecode(token);
     console.log("Retrieved role:", myToken.type);
     setRole(myToken.type);
-  }, []);
+  } catch (err) {
+    console.error("Error decoding token:", err.message);
+    setError("Authentication error, please log in.");
+    window.location.href = "/login";
+  }
+  }, [token]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,7 +126,7 @@ const StartupDashboard = () => {
 
     fetchData();
     fetchUserInfo();
-  }, []);
+  }, [token]);
 
   const handleSearch = (query) => {
     const lowercasedQuery = query.toLowerCase();
@@ -221,6 +230,7 @@ const StartupDashboard = () => {
               <p className="overall-statistics-title">OVERALL STATISTICS</p>
               <StatisticsChart
                 title="STATISTICS"
+                className="statistics-startup-dash"
                 description="Overall target accomplishment over the year"
                 totalJobs={statisticsData.totalJobs}
                 totalAssignedJobs={statisticsData.totalAssignedJobs}

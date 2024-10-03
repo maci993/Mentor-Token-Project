@@ -1,5 +1,7 @@
 .body {
   background-color: #f6f6f6;
+  width: 100%;
+  height:fit-content;
 }
 
 .mentor-dashboard-page {
@@ -41,7 +43,7 @@ width: 100%;
 
 .assigned-jobs-mentor-dashboard {
   margin-top: -900px;
-  margin-left: 0;
+  margin-left: 10px;
 }
 
 /* .dashboard-header {  
@@ -50,7 +52,7 @@ width: 100%;
 } */
 
 .search-bar-mentor-dashboard {
-  margin-left: 400px;
+  margin-left: 350px;
   display: flex;
   margin-top: 0px;
 }
@@ -58,6 +60,7 @@ width: 100%;
 .dropdown-mentor-dashboard {
   margin-right: 20px;
 }
+
 
 .search-results-section-mentor-dash {
   background-color: #f6f6f6;

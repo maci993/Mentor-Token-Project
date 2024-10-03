@@ -27,7 +27,8 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import ProtectedRoutes from "./routes/ProtectedRoutes.jsx";
 import { jwtDecode } from "jwt-decode";
 import "./App.css";
-
+import ForgotPassword from "./pages/ForgotPassword.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
 // const type = "company"; // or "mentor"
 
 const router = createBrowserRouter([
@@ -159,6 +160,26 @@ const router = createBrowserRouter([
           <ProtectedRoutes>
             <Layout nav={false} footer={false}>
               <MyStats />
+            </Layout>
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "forgot-password",
+        element: (
+          <ProtectedRoutes>
+            <Layout nav={false} footer={false}>
+              <ForgotPassword />
+            </Layout>
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "/reset-password/:id/:token",
+        element: (
+          <ProtectedRoutes>
+            <Layout nav={false} footer={false}>
+              <ResetPassword />
             </Layout>
           </ProtectedRoutes>
         ),
